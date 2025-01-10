@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title">Artículos sobre Dietas Saludables</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery para simplificar -->
+    <script src="https://unpkg.com/i18next@21.6.3/i18next.min.js"></script> <!-- i18next -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="aplica-a-todo.css"><!--esta es el enlace de estilo-->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: green;
+            margin: 0;
+            padding:20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 50px;
+            border-radius: 0 0 50% 50%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.8;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            margin-bottom: 30px;
+        }
+
+        .card-header {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.8rem;
+            text-align: center;
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .card-text {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #4CAF50;
+            margin-top: 40px;
+        }
+
+        .benefits-list, .diets-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .benefits-list li, .diets-list li {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .card img {
+            border-radius: 15px;
+            max-height: 350px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .col-md-6 {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-warning navbar-light sticky-top">
+   
+        <div class="container-fluid">
+    
+          <a class="navbar-brand" href="#">
+            <img src="img/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-center">
+          ZITEX</a>
+          <!-- Selector de idioma -->
+      <div>
+        <select id="language-selector">
+          <option value="en">English</option>
+          <option value="es" selected>Español</option>
+        </select>
+      </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto" id="menu">
+              <!-- Aqui XML-->
+            </div>
+          </div>
+        </div>
+      </nav>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <!--Scrip para cambiar de idioma de los menus principales y submenus dinamicante desde xml y json-->
+  <script>
+    let currentLang = "es"; // Idioma actual
+
+    function loadXML(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "menu1.xml", true);
+      xhr.onload = function () { 
+        if (xhr.status === 200) {
+          const xmlDoc = xhr.responseXML;
+          callback(null, xmlDoc);
+        } else {
+          callback(new Error("Error al cargar el menú XML."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function loadJSON(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "submenu1.json", true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const jsonData = JSON.parse(xhr.responseText);
+          callback(null, jsonData);
+        } else {
+          callback(new Error("Error al cargar el JSON de submenús."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function generateMenu(xmlDoc, jsonData) {
+      const items = xmlDoc.getElementsByTagName("item");
+      let menuHTML = ""; // Eliminamos la lista duplicada
+
+      for (let i = 0; i < items.length; i++) {
+        const nombreNode = items[i].getElementsByTagName("nombre")[0];
+        const nombre = nombreNode.getElementsByTagName(currentLang)[0].textContent;
+        const link = items[i].getElementsByTagName("link")[0].textContent;
+
+        // Menú principal
+        menuHTML += `
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="${link}" id="navbarDropdown-${i}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ${nombre}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown-${i}">
+        `;
+
+        // Submenús
+        const menuKey = nombreNode.getElementsByTagName("es")[0].textContent; // Usar clave en español como referencia
+        const submenuData = jsonData[menuKey];
+
+        if (submenuData && submenuData.length > 0) {
+          submenuData.forEach(submenu => {
+            const submenuNombre = submenu.nombre[currentLang];
+            menuHTML += `
+              <li><a class="dropdown-item" href="${submenu.link}">${submenuNombre}</a></li>
+            `;
+          });
+        } else {
+          menuHTML += `
+            <li><span class="dropdown-item-text">No hay submenús disponibles</span></li>
+          `;
+        }
+
+        menuHTML += `</ul></li>`;
+      }
+
+      // Insertar el menú generado en el contenedor adecuado
+      document.getElementById("menu").innerHTML = menuHTML;
+    }
+
+    function changeLanguage(newLang) {
+      currentLang = newLang;
+      loadXML(function (xmlError, xmlDoc) {
+        if (xmlError) {
+          console.error(xmlError);
+          return;
+        }
+
+        loadJSON(function (jsonError, jsonData) {
+          if (jsonError) {
+            console.error(jsonError);
+            return;
+          }
+
+          generateMenu(xmlDoc, jsonData);
+        });
+      });
+    }
+
+    // Cargar XML y JSON inicialmente
+    loadXML(function (xmlError, xmlDoc) {
+      if (xmlError) {
+        console.error(xmlError);
+        return;
+      }
+
+      loadJSON(function (jsonError, jsonData) {
+        if (jsonError) {
+          console.error(jsonError);
+          return;
+        }
+
+        generateMenu(xmlDoc, jsonData);
+      });
+    });
+
+    // Asignar evento al selector de idioma
+    document.getElementById("language-selector").addEventListener("change", function (event) {
+      changeLanguage(event.target.value);
+    });
+  </script>
+<!--Aqui termina el script para el cambio de idiomas (internalizacion)-->
+    
+<!--scrip para la internalizacion del contenido-->
+<script>
+     //Función para cargar el archivo XML -->
+    function loadTranslations(language) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "extra-trans.xml", true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var parser = new DOMParser();
+          var xmlDoc = parser.parseFromString(xhr.responseText, "application/xml");
+
+          var translations = {};
+          var keys = xmlDoc.getElementsByTagName("key");
+          for (var i = 0; i < keys.length; i++) {
+            var name = keys[i].getAttribute("name");
+            var value = keys[i].getElementsByTagName(language)[0].textContent;
+            translations[name] = value;
+          }
+
+          i18next.init(
+            {
+              lng: language,
+              resources: {
+                [language]: {
+                  translation: translations,
+                },
+              },
+            },
+            function (err, t) {
+              document.querySelectorAll("[data-i18n]").forEach(function (element) {
+                element.innerHTML = t(element.getAttribute("data-i18n"));
+              });
+            }
+          );
+        }
+      };
+      xhr.send();
+    }
+
+    // Cambiar idioma con el selector
+    document.getElementById("language-selector").addEventListener("change", function () {
+      loadTranslations(this.value);
+    });
+
+    // Idioma predeterminado al cargar la página
+    window.onload = function () {
+      loadTranslations("es");
+    };
+  </script>
+  <!--Aqui termina el script de la internalizacion del contenido-->
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1 data-i18n="arti.title">Artículos sobre Dietas Saludables</h1>
+        <p data-i18n="arti.parrafo">Todo lo que necesitas saber para mantener una vida saludable y disfrutar de una alimentación balanceada</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Dietas Saludables Info -->
+            <div class="col-lg-10 mx-auto">
+                <!-- Card for Healthy Diets -->
+                <div class="card">
+                    <div class="card-header">
+                        <strong data-i18n="arti-salu.title">Las Dietas Saludables</strong>
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title" data-i18n="arti-salu.subtitle">Definición y Beneficios</h2>
+                        <p class="card-text" data-i18n="arti-salu.parrafo1">
+                            Las dietas saludables se basan en el consumo equilibrado de alimentos que aportan los nutrientes necesarios para
+                            el funcionamiento óptimo del cuerpo. Esto incluye una amplia variedad de alimentos como frutas, verduras,
+                            proteínas magras, granos enteros y grasas saludables.
+                        </p>
+                        <p class="card-text" data-i18n="arti-salu.parrafo2">
+                            Incorporar estos alimentos a tu dieta diaria tiene múltiples beneficios para tu salud, como mejorar la
+                            salud cardiovascular, controlar el peso, aumentar los niveles de energía y reducir el riesgo de enfermedades
+                            crónicas.
+                        </p>
+
+                        <h3 class="section-title" data-i18n="arti-salu.subtitle1">Beneficios de una Dieta Saludable:</h3>
+                        <ul class="benefits-list">
+                            <li data-i18n="arti-salu.lista1">Mejora la salud cardiovascular: Disminuye el riesgo de enfermedades cardíacas al mantener una
+                                presión arterial saludable.</li>
+                            <li data-i18n="arti-salu.lista2">Control de peso: Una dieta rica en fibra y baja en grasas saturadas ayuda a mantener el peso
+                                corporal adecuado.</li>
+                            <li data-i18n="arti-salu.lista3">Aumento de energía: Los alimentos frescos y naturales proporcionan energía constante durante
+                                el día.</li>
+                            <li data-i18n="arti-salu.lista4">Prevención de enfermedades crónicas: Reducir el riesgo de diabetes, hipertensión, y ciertos tipos
+                                de cáncer.</li>
+                        </ul>
+
+                        <h3 class="section-title" data-i18n="arti-salu.subtitle2">Tipos de Dietas Saludables:</h3>
+                        <ul class="diets-list">
+                            <li data-i18n="arti-salu.lista5">Dieta Mediterránea: Rica en frutas, verduras, aceite de oliva y pescado. Promueve la salud del
+                                corazón y la longevidad.</li>
+                            <li data-i18n="arti-salu.lista6">Dieta DASH: Diseñada para reducir la presión arterial, enfocándose en alimentos bajos en sodio
+                                y ricos en potasio, calcio y magnesio.</li>
+                            <li data-i18n="arti-salu.lista7">Dieta Plant-Based: Basada en alimentos de origen vegetal, con el objetivo de reducir el consumo
+                                de carne y productos animales.</li>
+                        </ul>
+
+                        <h3 class="section-title" data-i18n="arti-salu.subtitle3">Consejos para Empezar:</h3>
+                        <p class="card-text" data-i18n="arti-salu.parrafo">Si quieres comenzar a implementar una dieta más saludable, aquí tienes algunos consejos:</p>
+                        <ul class="benefits-list">
+                            <li data-i18n="arti-salu.lista8">Come más frutas y verduras: Intenta incluir al menos 5 porciones al día.</li>
+                            <li data-i18n="arti-salu.lista9">Opta por grasas saludables: Usa aceite de oliva, aguacates y frutos secos en lugar de grasas saturadas.</li>
+                            <li data-i18n="arti-salu.lista10">Controla las porciones: Evita comer en exceso controlando las cantidades y disfrutando de tus
+                                alimentos con moderación.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Image Section -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <img src="img/frut-fresc.jpg" alt="Frutas Frescas">
+                            <div class="card-body">
+                                <h5 class="card-title" data-i18n="arti-bene.title">Beneficios de las Frutas y Verduras</h5>
+                                <p class="card-text" data-i18n="arti-bene.parrafo1">Las frutas y verduras son esenciales en una dieta saludable. Proporcionan fibra, vitaminas y minerales
+                                    que ayudan a mejorar tu salud general.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <img src="img/pesc-grill.jpg" alt="Pescado Grillado">
+                            <div class="card-body">
+                                <h5 class="card-title" data-i18n="arti-bene.title1">Pescado: Una Excelente Fuente de Proteína</h5>
+                                <p class="card-text" data-i18n="arti-bene.parrafo2">El pescado es una gran fuente de proteínas magras, grasas saludables y antioxidantes que promueven la
+                                    salud cardiovascular.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p data-i18n="arti-copy.title">&copy; 2025 Artículos sobre Dietas Saludables - Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

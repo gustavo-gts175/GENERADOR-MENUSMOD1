@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!--url del sitio de github mas el nombre del proyecto-->
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+   </url>
+    <!--index de la pagina-->
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/index.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <!--submenus del menu Inicio-->
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/inicio-descripcion.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/inicio-preguntas-frec.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+    <!--submenu del menu Formulario-->
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/formulario.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+    <!--submenu del menu Generar Menu-->
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/generar-me-semanal.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+    <!--submenus del menu Recomendaciones-->
+    <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/recomendaciones-consejos.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/recomendaciones-ideas.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/recomendaciones-sugerencias.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/recomendaciones-desperdicio.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <!--submenus del menu Comunidad-->
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/comunidad-foros.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+    <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/comunidad-recetas.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/comunidad-encuentros.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/comunidad-compartir.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <!--submenus del menu Extras-->
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/extra-articulos.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/extra-videos.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/extra-guias.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/extra-porciones.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <!--submenu del menu FAQ-->
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/faq.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+      <!--submenu del menu Contacto-->
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/contacto-formulario.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+         <!--submenu del menu V-Principal-->
+   <url>
+      <loc>https://gustavo-gts175.github.io/GENERADOR-MENUSMOD1/index.html</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+</urlset>

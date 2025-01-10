@@ -1,0 +1,104 @@
+<translations>
+<!--Esta parte es para la pagina de inicio-Descripcion de menu objetivos-beneficios-->
+  <key name="title">
+    <es>Descripcion Objetivo y Beneficios</es>
+    <en>Description Objective and Benefits</en>
+  </key>
+  <key name="descrip1.title">
+    <es>Bienvenidos al Generador de Menús para la Semana</es>
+    <en>Welcome to the Menu Generator for the Week</en>
+  </key>
+  <key name="descrip1.subtitle">
+    <es>Nuestro generador te ayudará a crear menús semanales saludables, variados y adaptados a tus preferencias. ¡Di adiós a la incertidumbre de qué cocinar!</es>
+    <en>Our generator will help you create healthy, varied weekly menus adapted to your preferences. Say goodbye to the uncertainty of what to cook!</en>
+  </key>
+  <key name="descrip1.button">
+    <es>Comienza Ahora</es>
+    <en>Start Now</en>
+  </key>
+  <key name="benef.title">
+    <es>Beneficios de Planificar tus Menús Semanales</es>
+    <en>Benefits of Planning your Weekly Menus</en>
+  </key>
+   <key name="ahorros.title">
+    <es>Ahorro de Tiempo</es>
+    <en>Time Saving</en>
+  </key>
+  <key name="ahorros.subtitle">
+    <es>Eliminamos el estrés de decidir qué cocinar cada día. ¡Con solo un par de clics, tendrás tu semana organizada!</es>
+    <en>We eliminate the stress of deciding what to cook each day. With just a couple of clicks, you'll have your week organized!</en>
+  </key>
+  <key name="comi.title">
+    <es>Comidas Saludables</es>
+    <en>Healthy Meals</en>
+  </key>
+  <key name="comi.subtitle">
+    <es>Incorpora opciones balanceadas para mejorar tu salud y bienestar de forma fácil y práctica.</es>
+    <en>Incorporate balanced options to improve your health and well-being in an easy and practical way.</en>
+  </key>
+    <key name="varie.title">
+    <es>Variedad y Creatividad</es>
+    <en>Variety and Creativity</en>
+  </key>
+  <key name="varie.subtitle">
+    <es>Disfruta de una amplia gama de recetas para todos los gustos, sin que la rutina te limite.</es>
+    <en>Enjoy a wide range of recipes for all tastes, without being limited by routine.</en>
+  </key>
+  <key name="varie.button">
+    <es>¿Tienes preguntas? Descúbrelas aquí</es>
+    <en>Do you have questions? Discover them here</en>
+  </key>
+  <key name="copy.title">
+    <es>2025 Generador de Menús para la Semana. Todos los derechos reservados.</es>
+    <en>2025 Menu Generator for the Week. All rights reserved.</en>
+  </key>
+  <!--esta parte ya es parte de la pagina de inicio-preguntas frecuentes-->
+    <key name="title1">
+    <es>Preguntas Freduentes</es>
+    <en>Frequently asked questions</en>
+  </key>
+  <key name="inipreg-frec.title">
+    <es>Preguntas Frecuentes (FAQs)</es>
+    <en>Frequently Asked Questions (FAQs)</en>
+  </key>
+   <key name="inipreg1-frec.button">
+    <es>¿Cómo funciona el Generador de Menús?</es>
+    <en>How does the Menu Generator work?</en>
+  </key>
+   <key name="inipreg1-frec.subtitle">
+    <es>El generador te pide tus preferencias y restricciones dietéticas. Luego, genera un menú completo con recetas detalladas y una lista de compras. ¡Es rápido y fácil!</es>
+    <en>The generator asks you for your dietary preferences and restrictions. Then, generate a complete menu with detailed recipes and a shopping list. It's quick and easy!</en>
+  </key>
+  <key name="inipreg2-frec.button">
+    <es>¿Puedo modificar las recetas si no me gustan?</es>
+    <en>Can I modify the recipes if I don't like them?</en>
+  </key>
+  <key name="inipreg2-frec.subtitle">
+    <es>Sí, puedes personalizar las recetas. Cambia los ingredientes, agrega o elimina elementos según tus gustos o necesidades dietéticas.</es>
+    <en>Yes, you can customize the recipes. Change ingredients, add or remove items according to your tastes or dietary needs.</en>
+  </key>
+  <key name="inipreg3-frec.button">
+    <es>¿Necesito registrarme para usar el generador?</es>
+    <en>Do I need to register to use the generator?</en>
+  </key>
+  <key name="inipreg3-frec.subtitle">
+    <es>Sí, el registro es necesario para guardar tus menús personalizados y acceder a recomendaciones adicionales.</es>
+    <en>Yes, registration is required to save your personalized menus and access additional recommendations.</en>
+  </key>
+  <key name="inipreg-freclis.title">
+  <es>¿Estás listo para empezar?</es>
+  <en>Are you ready to start?</en>
+  </key>
+ <key name="inipreg-freclis.sutitle">
+  <es>¡Comienza a generar tu menú semanal hoy mismo y disfruta de las ventajas de una planificación eficiente y saludable!</es>
+  <en>Start generating your weekly menu today and enjoy the benefits of efficient and healthy planning!</en>
+  </key>
+  <key name="inipreg-freclis.button">
+    <es>Genera tu Menu Ahora</es>
+    <en>Generate your Menu Now</en>
+  </key>
+  <key name="inipreg-freccopy.title">
+    <es>2025 Generador de Menús para la Semana. Todos los derechos reservados.</es>
+    <en>2025 Menu Generator for the Week. All rights reserved.</en>
+  </key>
+</translations>

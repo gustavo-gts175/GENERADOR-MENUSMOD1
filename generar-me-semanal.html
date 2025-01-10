@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title">Generar menu</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery para simplificar -->
+    <script src="https://unpkg.com/i18next@21.6.3/i18next.min.js"></script> <!-- i18next -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="aplica-a-todo.css"><!-- esta es el enlace de estilo -->
+    <style>
+        body{
+            padding: 20px;
+            background-color: rgb(37, 35, 35);
+        }
+        .meal-card {
+            margin-bottom: 20px;
+        }
+        .meal-type {
+            font-weight: bold;
+        }
+        .modal-body p {
+            margin-bottom: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        .titulo{
+            color:green;
+        }
+    </style>
+</head>
+<body class="bg-light">
+        <nav class="navbar navbar-expand-lg bg-warning navbar-light sticky-top">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img src="img/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-center">
+              ZITEX
+            </a>
+            <!-- Selector de idioma -->
+            <div>
+              <select id="language-selector">
+                <option value="en">English</option>
+                <option value="es" selected>Español</option>
+              </select>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Aquí irá el menú -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto" id="menu">
+                <!-- El menú se generará aquí dinámicamente -->
+              </ul>
+            </div>
+          </div>
+        </nav>
+      
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!--Scrip para cambiar de idioma de los menus principales y submenus dinamicante desde xml y json-->
+  <script>
+    let currentLang = "es"; // Idioma actual
+
+    function loadXML(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "menu1.xml", true);
+      xhr.onload = function () { 
+        if (xhr.status === 200) {
+          const xmlDoc = xhr.responseXML;
+          callback(null, xmlDoc);
+        } else {
+          callback(new Error("Error al cargar el menú XML."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function loadJSON(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "submenu1.json", true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const jsonData = JSON.parse(xhr.responseText);
+          callback(null, jsonData);
+        } else {
+          callback(new Error("Error al cargar el JSON de submenús."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function generateMenu(xmlDoc, jsonData) {
+      const items = xmlDoc.getElementsByTagName("item");
+      let menuHTML = ""; // Eliminamos la lista duplicada
+
+      for (let i = 0; i < items.length; i++) {
+        const nombreNode = items[i].getElementsByTagName("nombre")[0];
+        const nombre = nombreNode.getElementsByTagName(currentLang)[0].textContent;
+        const link = items[i].getElementsByTagName("link")[0].textContent;
+
+        // Menú principal
+        menuHTML += `
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="${link}" id="navbarDropdown-${i}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ${nombre}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown-${i}">
+        `;
+
+        // Submenús
+        const menuKey = nombreNode.getElementsByTagName("es")[0].textContent; // Usar clave en español como referencia
+        const submenuData = jsonData[menuKey];
+
+        if (submenuData && submenuData.length > 0) {
+          submenuData.forEach(submenu => {
+            const submenuNombre = submenu.nombre[currentLang];
+            menuHTML += `
+              <li><a class="dropdown-item" href="${submenu.link}">${submenuNombre}</a></li>
+            `;
+          });
+        } else {
+          menuHTML += `
+            <li><span class="dropdown-item-text">No hay submenús disponibles</span></li>
+          `;
+        }
+
+        menuHTML += `</ul></li>`;
+      }
+
+      // Insertar el menú generado en el contenedor adecuado
+      document.getElementById("menu").innerHTML = menuHTML;
+    }
+
+    function changeLanguage(newLang) {
+      currentLang = newLang;
+      loadXML(function (xmlError, xmlDoc) {
+        if (xmlError) {
+          console.error(xmlError);
+          return;
+        }
+
+        loadJSON(function (jsonError, jsonData) {
+          if (jsonError) {
+            console.error(jsonError);
+            return;
+          }
+
+          generateMenu(xmlDoc, jsonData);
+        });
+      });
+    }
+
+    // Cargar XML y JSON inicialmente
+    loadXML(function (xmlError, xmlDoc) {
+      if (xmlError) {
+        console.error(xmlError);
+        return;
+      }
+
+      loadJSON(function (jsonError, jsonData) {
+        if (jsonError) {
+          console.error(jsonError);
+          return;
+        }
+
+        generateMenu(xmlDoc, jsonData);
+      });
+    });
+
+    // Asignar evento al selector de idioma
+    document.getElementById("language-selector").addEventListener("change", function (event) {
+      changeLanguage(event.target.value);
+    });
+  </script>
+<!--Aqui termina el script para el cambio de idiomas (internalizacion)-->
+    
+<!--scrip para la internalizacion del contenido-->
+<script>
+     //Función para cargar el archivo XML -->
+    function loadTranslations(language) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "generar-m-semanal-trans.xml", true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var parser = new DOMParser();
+          var xmlDoc = parser.parseFromString(xhr.responseText, "application/xml");
+
+          var translations = {};
+          var keys = xmlDoc.getElementsByTagName("key");
+          for (var i = 0; i < keys.length; i++) {
+            var name = keys[i].getAttribute("name");
+            var value = keys[i].getElementsByTagName(language)[0].textContent;
+            translations[name] = value;
+          }
+
+          i18next.init(
+            {
+              lng: language,
+              resources: {
+                [language]: {
+                  translation: translations,
+                },
+              },
+            },
+            function (err, t) {
+              document.querySelectorAll("[data-i18n]").forEach(function (element) {
+                element.innerHTML = t(element.getAttribute("data-i18n"));
+              });
+            }
+          );
+        }
+      };
+      xhr.send();
+    }
+
+    // Cambiar idioma con el selector
+    document.getElementById("language-selector").addEventListener("change", function () {
+      loadTranslations(this.value);
+    });
+
+    // Idioma predeterminado al cargar la página
+    window.onload = function () {
+      loadTranslations("es");
+    };
+  </script>
+  <!--Aqui termina el script de la internalizacion del contenido-->
+    <div class="container my-5">
+        <h1 class="text-center mb-4 titulo" data-i18n="gene.title">Menú Semanal</h1>
+          <!-- Menú de los 7 días -->
+        <div class="row" id="menuContainer">
+            <!-- Lunes -->
+            <div class="col-md-4">
+                <div class="card meal-card" id="lunes">
+                    <div class="card-header text-center bg-primary text-white">
+                      <h3 data-i18n="gene-lun.title">Lunes</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="meal">
+                            <p class="meal-type" data-i18n="gene-lun.parrafo1">Desayuno:</p>
+                            <p data-i18n="gene-lun.parrafo2">Ensalada de quinoa</p>
+                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalLunesDesayuno" data-i18n="gene-lun.button1">Ver información nutricional</button>
+                        </div>
+                        <div class="meal">
+                            <p class="meal-type" data-i18n="gene-lun.parrafo3">Almuerzo:</p>
+                            <p data-i18n="gene-lun.parrafo4">Tacos de vegetales </p>
+                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalLunesAlmuerzo" data-i18n="gene-lun.button2">Ver información nutricional</button>
+                        </div>
+                        <div class="meal">
+                            <p class="meal-type" data-i18n="gene-lun.parrafo5">Cena:</p>
+                            <p data-i18n="gene-lun.parrafo6">Sopa de lentejas</p>
+                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalLunesCena" data-i18n="gene-lun.button3">Ver información nutricional</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal desayuno para Lunes -->
+            <div class="modal fade" id="modalLunesDesayuno" tabindex="-1" aria-labelledby="modalLunesDesayunoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLunesDesayunoLabel" data-i18n="gene-lundes.title">Información Nutricional - Desayuno (Lunes)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-lundes.parrafo1"><strong>Receta:</strong> Ensalada de quinoa</p>
+                        <p data-i18n="gene-lundes.parrafo2"><strong>Alternativas:</strong> Ensalada de garbanzos</p>
+                        <p data-i18n="gene-lundes.parrafo3"><strong>Calorías:</strong> 350</p>
+                        <p data-i18n="gene-lundes.parrafo4"><strong>Proteínas:</strong> 10g</p>
+                        <p data-i18n="gene-lundes.parrafo5"><strong>Carbohidratos:</strong> 45g</p>
+                        <p data-i18n="gene-lundes.parrafo6"><strong>Grasas:</strong> 12g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-lundes.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Almuerzo Lunes -->
+        <div class="modal fade" id="modalLunesAlmuerzo" tabindex="-1" aria-labelledby="modalLunesAlmuerzoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLunesAlmuerzoLabel" data-i18n="gene-lunalm.title">Información Nutricional - Almuerzo (Lunes)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-lunalm.parrafo1"><strong>Receta:</strong> Tacos de vegetales</p>
+                        <p data-i18n="gene-lunalm.parrafo2"><strong>Alternativas:</strong> Tacos de soja</p>
+                        <p data-i18n="gene-lunalm.parrafo3"><strong>Calorías:</strong> 400</p>
+                        <p data-i18n="gene-lunalm.parrafo4"><strong>Proteínas:</strong> 15g</p>
+                        <p data-i18n="gene-lunalm.parrafo5"><strong>Carbohidratos:</strong> 50g</p>
+                        <p data-i18n="gene-lunalm.parrafo6"><strong>Grasas:</strong> 10g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-lunalm.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Cena Lunes -->
+        <div class="modal fade" id="modalLunesCena" tabindex="-1" aria-labelledby="modalLunesCenaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLunesCenaLabel" data-i18n="gene-luncen.title">Información Nutricional - Cena (Lunes)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-luncen.parrafo1"><strong>Receta:</strong> Sopa de lentejas</p>
+                        <p data-i18n="gene-luncen.parrafo2"><strong>Alternativas:</strong> Sopa de garbanzo</p>
+                        <p data-i18n="gene-luncen.parrafo3"><strong>Calorías:</strong> 300</p>
+                        <p data-i18n="gene-luncen.parrafo4"><strong>Proteínas:</strong> 18g</p>
+                        <p data-i18n="gene-luncen.parrafo5"><strong>Carbohidratos:</strong> 40g</p>
+                        <p data-i18n="gene-luncen.parrafo6"><strong>Grasas:</strong> 5g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-luncen.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Martes -->
+        <div class="col-md-4">
+            <div class="card meal-card" id="martes">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3 data-i18n="gene-mar.title">Martes</h3>
+                </div>
+                <div class="card-body">
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-mar.parrafo1">Desayuno:</p>
+                        <p data-i18n="gene-mar.parrafo2">Porridge de avena</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalMartesDesayuno" data-i18n="gene-mar.button1">Ver información nutricional</button>
+                    </div>
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-mar.parrafo3">Almuerzo:</p>
+                        <p data-i18n="gene-mar.parrafo4">Ensalada de pollo</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalMartesAlmuerzo" data-i18n="gene-mar.button2">Ver información nutricional</button>
+                    </div>
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-mar.parrafo5">Cena:</p>
+                        <p data-i18n="gene-mar.parrafo6">Arroz integral con brócoli</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalMartesCena" data-i18n="gene-mar.button3">Ver información nutricional</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal  desayuno para Martes -->
+        <div class="modal fade" id="modalMartesDesayuno" tabindex="-1" aria-labelledby="modalMartesDesayunoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalMartesDesayunoLabel" data-i18n="gene-mardes.title">Información Nutricional - Desayuno (Martes)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-mardes.parrafo1"><strong>Receta:</strong> Porridge de avena</p>
+                        <p data-i18n="gene-mardes.parrafo2"><strong>Alternativas:</strong> Avena con frutas</p>
+                        <p data-i18n="gene-mardes.parrafo3"><strong>Calorías:</strong> 300</p>
+                        <p data-i18n="gene-mardes.parrafo4"><strong>Proteínas:</strong> 10g</p>
+                        <p data-i18n="gene-mardes.parrafo5"><strong>Carbohidratos:</strong> 50g</p>
+                        <p data-i18n="gene-mardes.parrafo6"><strong>Grasas:</strong> 5g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-mardes.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Almuerzo Martes -->
+        <div class="modal fade" id="modalMartesAlmuerzo" tabindex="-1" aria-labelledby="modalMartesAlmuerzoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalMartesAlmuerzoLabel" data-i18n="gene-maralm.title">Información Nutricional - Almuerzo (Martes)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-maralm.parrafo1"><strong>Receta:</strong> Ensalada de pollo</p>
+                        <p data-i18n="gene-maralm.parrafo2"><strong>Alternativas:</strong> Ensalada de tofu</p>
+                        <p data-i18n="gene-maralm.parrafo3"><strong>Calorías:</strong> 450</p>
+                        <p data-i18n="gene-maralm.parrafo4"><strong>Proteínas:</strong> 30g</p>
+                        <p data-i18n="gene-maralm.parrafo5"><strong>Carbohidratos:</strong> 40g</p>
+                        <p data-i18n="gene-maralm.parrafo6"><strong>Grasas:</strong> 12g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-maralm.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Cena Martes -->
+        <div class="modal fade" id="modalMartesCena" tabindex="-1" aria-labelledby="modalMartesCenaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalMartesCenaLabel" data-i18n="gene-marcen.title">Información Nutricional - Cena (Martes)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-marcen.parrafo1"><strong>Receta:</strong> Arroz integral con brócoli</p>
+                        <p data-i18n="gene-marcen.parrafo2"><strong>Alternativas:</strong> Pasta de trigo integral</p>
+                        <p data-i18n="gene-marcen.parrafo3"><strong>Calorías:</strong> 350</p>
+                        <p data-i18n="gene-marcen.parrafo4"><strong>Proteínas:</strong> 8g</p>
+                        <p data-i18n="gene-marcen.parrafo5"><strong>Carbohidratos:</strong> 60g</p>
+                        <p data-i18n="gene-marcen.parrafo6"><strong>Grasas:</strong> 7g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-marcen.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--miercoles-->
+        <div class="col-md-4">
+            <div class="card meal-card" id="miercoles">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3 data-i18n="gene-mie.title">Miércoles</h3>
+                </div>
+                <div class="card-body">
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-mie.parrafo1">Desayuno:</p>
+                        <p data-i18n="gene-mie.parrafo2">Avena con frutas</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalMiercolesDesayuno" data-i18n="gene-mie.button1">Ver información nutricional</button>
+                    </div>
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-mie.parrafo3">Almuerzo:</p>
+                        <p data-i18n="gene-mie.parrafo4">Pollo asado con ensalada verde</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalMiercolesAlmuerzo" data-i18n="gene-mie.button2">Ver información nutricional</button>
+                    </div>
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-mie.parrafo5">Cena:</p>
+                        <p data-i18n="gene-mie.parrafo6">Vegetales al vapor con arroz integral</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalMiercolesCena" data-i18n="gene-mie.button3">Ver información nutricional</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jueves -->
+        <div class="col-md-4">
+            <div class="card meal-card" id="jueves">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3 data-i18n="gene-jue.title">Jueves</h3>
+                </div>
+                <div class="card-body">
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-jue.parrafo1">Desayuno:</p>
+                        <p data-i18n="gene-jue.parrafo2">Batido de proteínas con plátano</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalJuevesDesayuno" data-i18n="gene-jue.button1">Ver información nutricional</button>
+                    </div>
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-jue.parrafo3">Almuerzo:</p>
+                        <p data-i18n="gene-jue.parrafo4">Ensalada de quinoa con verduras</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalJuevesAlmuerzo" data-i18n="gene-jue.button2">Ver información nutricional</button>
+                    </div>
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-jue.parrafo5">Cena:</p>
+                        <p data-i18n="gene-jue.parrafo6">Sopa de lentejas</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalJuevesCena" data-i18n="gene-jue.button3">Ver información nutricional</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modales para Miércoles -->
+
+        <!-- Modal para Desayuno Miércoles -->
+        <div class="modal fade" id="modalMiercolesDesayuno" tabindex="-1" aria-labelledby="modalMiercolesDesayunoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalMiercolesDesayunoLabel" data-i18n="gene-miedes.title">Información Nutricional - Desayuno (Miércoles)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-miedes.parrafo1"><strong>Receta:</strong> Avena con frutas</p>
+                        <p data-i18n="gene-miedes.parrafo2"><strong>Alternativas:</strong> Avena con nueces</p>
+                        <p data-i18n="gene-miedes.parrafo3"><strong>Calorías:</strong> 300</p>
+                        <p data-i18n="gene-miedes.parrafo4"><strong>Proteínas:</strong> 8g</p>
+                        <p data-i18n="gene-miedes.parrafo5"><strong>Carbohidratos:</strong> 50g</p>
+                        <p data-i18n="gene-miedes.parrafo6"><strong>Grasas:</strong> 7g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-miedes.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Almuerzo Miércoles -->
+        <div class="modal fade" id="modalMiercolesAlmuerzo" tabindex="-1" aria-labelledby="modalMiercolesAlmuerzoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalMiercolesAlmuerzoLabel" data-i18n="gene-miealm.title">Información Nutricional - Almuerzo (Miércoles)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-miealm.parrafo1"><strong>Receta:</strong> Pollo asado con ensalada verde</p>
+                        <p data-i18n="gene-miealm.parrafo2"><strong>Alternativas:</strong> Pavo asado con ensalada verde</p>
+                        <p data-i18n="gene-miealm.parrafo3"><strong>Calorías:</strong> 400</p>
+                        <p data-i18n="gene-miealm.parrafo4"><strong>Proteínas:</strong> 30g</p>
+                        <p data-i18n="gene-miealm.parrafo5"><strong>Carbohidratos:</strong> 15g</p>
+                        <p data-i18n="gene-miealm.parrafo6"><strong>Grasas:</strong> 20g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-miealm.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Cena Miércoles -->
+        <div class="modal fade" id="modalMiercolesCena" tabindex="-1" aria-labelledby="modalMiercolesCenaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalMiercolesCenaLabel" data-i18n="gene-miecen.title">Información Nutricional - Cena (Miércoles)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-miecen.parrafo1"><strong>Receta:</strong> Vegetales al vapor con arroz integral</p>
+                        <p data-i18n="gene-miecen.parrafo2"><strong>Alternativas:</strong> Verduras al vapor con quinoa</p>
+                        <p data-i18n="gene-miecen.parrafo3"><strong>Calorías:</strong> 250</p>
+                        <p data-i18n="gene-miecen.parrafo4"><strong>Proteínas:</strong> 6g</p>
+                        <p data-i18n="gene-miecen.parrafo5"><strong>Carbohidratos:</strong> 45g</p>
+                        <p data-i18n="gene-miecen.parrafo6"><strong>Grasas:</strong> 5g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-miecen.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modales para Jueves -->
+
+        <!-- Modal para Desayuno Jueves -->
+        <div class="modal fade" id="modalJuevesDesayuno" tabindex="-1" aria-labelledby="modalJuevesDesayunoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalJuevesDesayunoLabel" data-i18n="gene-juedes.title">Información Nutricional - Desayuno (Jueves)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-juedes.parrafo1"><strong>Receta:</strong> Batido de proteínas con plátano</p>
+                        <p data-i18n="gene-juedes.parrafo2"><strong>Alternativas:</strong> Batido de proteína con fresa</p>
+                        <p data-i18n="gene-juedes.parrafo3"><strong>Calorías:</strong> 350</p>
+                        <p data-i18n="gene-juedes.parrafo4"><strong>Proteínas:</strong> 25g</p>
+                        <p data-i18n="gene-juedes.parrafo5"><strong>Carbohidratos:</strong> 30g</p>
+                        <p data-i18n="gene-juedes.parrafo6"><strong>Grasas:</strong> 12g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-juedes.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Almuerzo Jueves -->
+        <div class="modal fade" id="modalJuevesAlmuerzo" tabindex="-1" aria-labelledby="modalJuevesAlmuerzoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalJuevesAlmuerzoLabel" data-i18n="gene-juealm.title">Información Nutricional - Almuerzo (Jueves)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-juealm.parrafo1"><strong>Receta:</strong> Ensalada de quinoa con verduras</p>
+                        <p data-i18n="gene-juealm.parrafo2"><strong>Alternativas:</strong> Ensalada de lentejas con verduras</p>
+                        <p data-i18n="gene-juealm.parrafo3"><strong>Calorías:</strong> 400</p>
+                        <p data-i18n="gene-juealm.parrafo4"><strong>Proteínas:</strong> 15g</p>
+                        <p data-i18n="gene-juealm.parrafo5"><strong>Carbohidratos:</strong> 50g</p>
+                        <p data-i18n="gene-juealm.parrafo6"><strong>Grasas:</strong> 15g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-juealm.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Cena Jueves -->
+        <div class="modal fade" id="modalJuevesCena" tabindex="-1" aria-labelledby="modalJuevesCenaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalJuevesCenaLabel" data-i18n="gene-juecen.title">Información Nutricional - Cena (Jueves)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-juecen.parrafo1"><strong>Receta:</strong> Sopa de lentejas</p>
+                        <p data-i18n="gene-juecen.parrafo2"><strong>Alternativas:</strong> Sopa de garbanzos</p>
+                        <p data-i18n="gene-juecen.parrafo3"><strong>Calorías:</strong> 250</p>
+                        <p data-i18n="gene-juecen.parrafo4"><strong>Proteínas:</strong> 15g</p>
+                        <p data-i18n="gene-juecen.parrafo5"><strong>Carbohidratos:</strong> 40g</p>
+                        <p data-i18n="gene-juecen.parrafo6"><strong>Grasas:</strong> 5g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-juecen.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Viernes -->
+        <div class="col-md-4">
+            <div class="card meal-card" id="viernes">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3 data-i18n="gene-vie.title">Viernes</h3>
+                </div>
+                <div class="card-body">
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-vie.parrafo1">Desayuno:</p>
+                        <p data-i18n="gene-vie.parrafo2">Pancakes integrales</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalViernesDesayuno" data-i18n="gene-vie.button1">Ver información nutricional</button>
+                    </div>
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-vie.parrafo3">Almuerzo:</p>
+                        <p data-i18n="gene-vie.parrafo4">Ensalada de atún con aguacate</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalViernesAlmuerzo" data-i18n="gene-vie.button2">Ver información nutricional</button>
+                    </div>
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-vie.parrafo5">Cena:</p>
+                        <p data-i18n="gene-vie.parrafo6">Salmón a la plancha con espárragos</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalViernesCena" data-i18n="gene-vie.button3">Ver información nutricional</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sábado -->
+        <div class="col-md-4">
+            <div class="card meal-card" id="sabado">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3 data-i18n="gene-sab.title">Sábado</h3>
+                </div>
+                <div class="card-body">
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-sab.parrafo1">Desayuno:</p>
+                        <p data-i18n="gene-sab.parrafo2">Yogur con granola y frutas</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalSabadoDesayuno" data-i18n="gene-sab.button1">Ver información nutricional</button>
+                    </div>
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-sab.parrafo3">Almuerzo:</p>
+                        <p data-i18n="gene-sab.parrafo4">Hamburguesa de pollo con ensalada</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalSabadoAlmuerzo" data-i18n="gene-sab.button2">Ver información nutricional</button>
+                    </div>
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-sab.parrafo5">Cena:</p>
+                        <p data-i18n="gene-sab.parrafo6">Filete de ternera con papas al horno</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalSabadoCena" data-i18n="gene-sab.button3">Ver información nutricional</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modales para Viernes -->
+
+        <!-- Modal para Desayuno Viernes -->
+        <div class="modal fade" id="modalViernesDesayuno" tabindex="-1" aria-labelledby="modalViernesDesayunoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalViernesDesayunoLabel" data-i18n="gene-viedes.title">Información Nutricional - Desayuno (Viernes)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-viedes.parrafo1"><strong>Receta:</strong> Pancakes integrales</p>
+                        <p data-i18n="gene-viedes.parrafo2"><strong>Alternativas:</strong> Pancakes de avena</p>
+                        <p data-i18n="gene-viedes.parrafo3"><strong>Calorías:</strong> 250</p>
+                        <p data-i18n="gene-viedes.parrafo4"><strong>Proteínas:</strong> 8g</p>
+                        <p data-i18n="gene-viedes.parrafo5"><strong>Carbohidratos:</strong> 45g</p>
+                        <p data-i18n="gene-viedes.parrafo6"><strong>Grasas:</strong> 5g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-viedes.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+         <!-- Modal para Almuerzo Viernes -->  
+        <div class="modal fade" id="modalViernesAlmuerzo" tabindex="-1" aria-labelledby="modalViernesAlmuerzoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalViernesAlmuerzoLabel" data-i18n="gene-viealm.title">Información Nutricional - Almuerzo (Viernes)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-viealm.parrafo1"><strong>Receta:</strong> Ensalada de atún con aguacate</p>
+                        <p data-i18n="gene-viealm.parrafo2"><strong>Alternativas:</strong> Ensalada de atún con tomate</p>
+                        <p data-i18n="gene-viealm.parrafo3"><strong>Calorías:</strong> 350</p>
+                        <p data-i18n="gene-viealm.parrafo4"><strong>Proteínas:</strong> 25g</p>
+                        <p data-i18n="gene-viealm.parrafo5"><strong>Carbohidratos:</strong> 12g</p>
+                        <p data-i18n="gene-viealm.parrafo6"><strong>Grasas:</strong> 22g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-viealm.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal para Cena Viernes -->
+        <div class="modal fade" id="modalViernesCena" tabindex="-1" aria-labelledby="modalViernesCenaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalViernesCenaLabel" data-i18n="gene-viecen.title">Información Nutricional - Cena (Viernes)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-viecen.parrafo1"><strong>Receta:</strong> Salmón a la plancha con espárragos</p>
+                        <p data-i18n="gene-viecen.parrafo2"><strong>Alternativas:</strong> Atún a la plancha con espárragos</p>
+                        <p data-i18n="gene-viecen.parrafo3"><strong>Calorías:</strong> 400</p>
+                        <p data-i18n="gene-viecen.parrafo4"><strong>Proteínas:</strong> 35g</p>
+                        <p data-i18n="gene-viecen.parrafo5"><strong>Carbohidratos:</strong> 5g</p>
+                        <p data-i18n="gene-viecen.parrafo6"><strong>Grasas:</strong> 28g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-viecen.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modales para Sábado -->
+
+        <!-- Modal para Desayuno Sábado -->
+        <div class="modal fade" id="modalSabadoDesayuno" tabindex="-1" aria-labelledby="modalSabadoDesayunoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalSabadoDesayunoLabel" data-i18n="gene-sabdes.title">Información Nutricional - Desayuno (Sábado)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-sabdes.parrafo1"><strong>Receta:</strong> Yogur con granola y frutas</p>
+                        <p data-i18n="gene-sabdes.parrafo2"><strong>Alternativas:</strong> Yogur con miel y nueces</p>
+                        <p data-i18n="gene-sabdes.parrafo3"><strong>Calorías:</strong> 300</p>
+                        <p data-i18n="gene-sabdes.parrafo4"><strong>Proteínas:</strong> 10g</p>
+                        <p data-i18n="gene-sabdes.parrafo5"><strong>Carbohidratos:</strong> 45g</p>
+                        <p data-i18n="gene-sabdes.parrafo6"><strong>Grasas:</strong> 8g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-sabdes.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Almuerzo Sábado -->
+        <div class="modal fade" id="modalSabadoAlmuerzo" tabindex="-1" aria-labelledby="modalSabadoAlmuerzoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalSabadoAlmuerzoLabel" data-i18n="gene-sabalm.title">Información Nutricional - Almuerzo (Sábado)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-sabalm.parrafo1"><strong>Receta:</strong> Hamburguesa de pollo con ensalada</p>
+                        <p data-i18n="gene-sabalm.parrafo2"><strong>Alternativas:</strong> Hamburguesa de pavo con ensalada</p>
+                        <p data-i18n="gene-sabalm.parrafo3"><strong>Calorías:</strong> 400</p>
+                        <p data-i18n="gene-sabalm.parrafo4"><strong>Proteínas:</strong> 30g</p>
+                        <p data-i18n="gene-sabalm.parrafo5"><strong>Carbohidratos:</strong> 20g</p>
+                        <p data-i18n="gene-sabalm.parrafo6"><strong>Grasas:</strong> 25g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-sabalm.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Cena Sábado -->
+        <div class="modal fade" id="modalSabadoCena" tabindex="-1" aria-labelledby="modalSabadoCenaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalSabadoCenaLabel" data-i18n="gene-sabcen.title">Información Nutricional - Cena (Sábado)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-sabcen.parrafo1"><strong>Receta:</strong> Filete de ternera con papas al horno</p>
+                        <p data-i18n="gene-sabcen.parrafo2"><strong>Alternativas:</strong> Filete de cerdo con puré de papas</p>
+                        <p data-i18n="gene-sabcen.parrafo3"><strong>Calorías:</strong> 600</p>
+                        <p data-i18n="gene-sabcen.parrafo4"><strong>Proteínas:</strong> 50g</p>
+                        <p data-i18n="gene-sabcen.parrafo5"><strong>Carbohidratos:</strong> 40g</p>
+                        <p data-i18n="gene-sabcen.parrafo6"><strong>Grasas:</strong> 30g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-sabcen.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Domingo -->
+        <div class="col-md-4">
+            <div class="card meal-card" id="domingo">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3 data-i18n="gene-dom.title">Domingo</h3>
+                </div>
+                <div class="card-body">
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-dom.parrafo1">Desayuno:</p>
+                        <p data-i18n="gene-dom.parrafo2">Omelette de espinacas y champiñones</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDomingoDesayuno" data-i18n="gene-dom.button1">Ver información nutricional</button>
+                    </div>
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-dom.parrafo3">Almuerzo:</p>
+                        <p data-i18n="gene-dom.parrafo4">Ensalada César con pollo</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDomingoAlmuerzo" data-i18n="gene-dom.button2">Ver información nutricional</button>
+                    </div>
+                    <div class="meal">
+                        <p class="meal-type" data-i18n="gene-dom.parrafo5">Cena:</p>
+                        <p data-i18n="gene-dom.parrafo6">Pechuga de pollo con batatas</p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDomingoCena" data-i18n="gene-dom.button3">Ver información nutricional</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <!-- Modales para Domingo -->
+
+        <!-- Modal para Desayuno Domingo -->
+        <div class="modal fade" id="modalDomingoDesayuno" tabindex="-1" aria-labelledby="modalDomingoDesayunoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDomingoDesayunoLabel" data-i18n="gene-domdes.title">Información Nutricional - Desayuno (Domingo)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-domdes.parrafo1"><strong>Receta:</strong> Omelette de espinacas y champiñones</p>
+                        <p data-i18n="gene-domdes.parrafo2"><strong>Alternativas:</strong> Omelette de tomate y albahaca</p>
+                        <p data-i18n="gene-domdes.parrafo3"><strong>Calorías:</strong> 300</p>
+                        <p data-i18n="gene-domdes.parrafo4"><strong>Proteínas:</strong> 20g</p>
+                        <p data-i18n="gene-domdes.parrafo5"><strong>Carbohidratos:</strong> 10g</p>
+                        <p data-i18n="gene-domdes.parrafo6"><strong>Grasas:</strong> 25g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-domdes.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Almuerzo Domingo -->
+        <div class="modal fade" id="modalDomingoAlmuerzo" tabindex="-1" aria-labelledby="modalDomingoAlmuerzoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDomingoAlmuerzoLabel" data-i18n="gene-domalm.title">Información Nutricional - Almuerzo (Domingo)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-domalm.parrafo1"><strong>Receta:</strong> Ensalada César con pollo</p>
+                        <p data-i18n="gene-domalm.parrafo2"><strong>Alternativas:</strong> Ensalada con atún y mayonesa ligera</p>
+                        <p data-i18n="gene-domalm.parrafo3"><strong>Calorías:</strong> 450</p>
+                        <p data-i18n="gene-domalm.parrafo4"><strong>Proteínas:</strong> 30g</p>
+                        <p data-i18n="gene-domalm.parrafo5"><strong>Carbohidratos:</strong> 20g</p>
+                        <p data-i18n="gene-domalm.parrafo6"><strong>Grasas:</strong> 30g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-domalm.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Cena Domingo -->
+        <div class="modal fade" id="modalDomingoCena" tabindex="-1" aria-labelledby="modalDomingoCenaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDomingoCenaLabel" data-i18n="gene-domcen.title">Información Nutricional - Cena (Domingo)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="gene-domcen.parrafo1"><strong>Receta:</strong> Pechuga de pollo con batatas</p>
+                        <p data-i18n="gene-domcen.parrafo2"><strong>Alternativas:</strong> Pechuga de pavo con calabaza</p>
+                        <p data-i18n="gene-domcen.parrafo3"><strong>Calorías:</strong> 500</p>
+                        <p data-i18n="gene-domcen.parrafo4"><strong>Proteínas:</strong> 40g</p>
+                        <p data-i18n="gene-domcen.parrafo5"><strong>Carbohidratos:</strong> 50g</p>
+                        <p data-i18n="gene-domcen.parrafo6"><strong>Grasas:</strong> 15g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="gene-domcen.button1">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Añadir los días restantes aquí (Miércoles, Jueves, Viernes, Sábado, Domingo) con una estructura similar -->
+    </div>
+    <!-- Incluir Bootstrap JS y dependencias -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+</body>
+</html>

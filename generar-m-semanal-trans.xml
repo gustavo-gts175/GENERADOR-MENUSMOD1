@@ -1,0 +1,992 @@
+
+<translations>
+<!--Generacion de menu-->
+  <key name="title">
+    <es>Generar menu</es>
+    <en>Generate menu</en>
+  </key>
+  <key name="gene.title">
+    <es>Menú Semanal</es>
+    <en>Weekly Menu</en>
+  </key>
+  <!--Lunes-->
+  <key name="gene-lun.title">
+    <es>Lunes</es>
+    <en>Monday</en>
+  </key>
+  <key name="gene-lun.parrafo1">
+    <es>Desayuno:</es>
+    <en>Breakfast:</en>
+  </key>
+  <key name="gene-lun.parrafo2">
+    <es>Ensalada de quinoa</es>
+    <en>Quinoa salad</en>
+  </key>
+   <key name="gene-lun.button1">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-lun.parrafo3">
+    <es>Almuerzo:</es>
+    <en>Lunch:</en>
+  </key>
+  <key name="gene-lun.parrafo4">
+    <es>Tacos de vegetales</es>
+    <en>Vegetable tacos</en>
+  </key>
+   <key name="gene-lun.button2">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-lun.parrafo5">
+    <es>Cena:</es>
+    <en>Dinner:</en>
+  </key>
+  <key name="gene-lun.parrafo6">
+    <es>Sopa de lentejas</es>
+    <en>lentil soup</en>
+  </key>
+  <key name="gene-lun.button3">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+   <!-- Modal desayuno para Lunes -->
+  <key name="gene-lundes.title">
+    <es>Información Nutricional - Desayuno (Lunes)</es>
+    <en>Nutritional Information - Breakfast (Monday)</en>
+  </key>
+    <key name="gene-lundes.parrafo1">
+    <es>Receta: Ensalada de quinoa</es>
+    <en>Recipe: Quinoa Salad</en>
+  </key>
+  <key name="gene-lundes.parrafo2">
+    <es>Alternativas: Ensalada de garbanzos</es>
+    <en>Alternatives: Chickpea salad</en>
+  </key>
+   <key name="gene-lundes.parrafo3">
+    <es>Calorías: 350</es>
+    <en>Calories: 350</en>
+  </key>
+   <key name="gene-lundes.parrafo4">
+    <es>Proteínas: 10g</es>
+    <en>Proteins: 10g</en>
+  </key>
+  <key name="gene-lundes.parrafo5">
+    <es>Carbohidratos: 45g</es>
+    <en>Carbohydrates: 45g</en>
+  </key>
+  <key name="gene-lundes.parrafo6">
+    <es>Grasas: 12g</es>
+    <en>Fats: 12g</en>
+  </key>
+  <key name="gene-lundes.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!-- Modal almuerzo para Lunes -->
+    <key name="gene-lunalm.title">
+    <es>Información Nutricional - Almuerzo (Lunes)</es>
+    <en>Nutritional Information - Lunch (Monday)</en>
+  </key>
+    <key name="gene-lunalm.parrafo1">
+    <es>Receta: Tacos de vegetales</es>
+    <en>Recipe: Vegetable Tacos</en>
+  </key>
+  <key name="gene-lunalm.parrafo2">
+    <es>Alternativas: Tacos de soja</es>
+    <en>Alternatives: Soy Tacos</en>
+  </key>
+   <key name="gene-lunalm.parrafo3">
+    <es>Calorías: 400</es>
+    <en>Calories: 400</en>
+  </key>
+   <key name="gene-lunalm.parrafo4">
+    <es>Proteínas: 15g</es>
+    <en>Proteins: 15g</en>
+  </key>
+  <key name="gene-lunalm.parrafo5">
+    <es>Carbohidratos: 50g</es>
+    <en>Carbohydrates: 50g</en>
+  </key>
+  <key name="gene-lunalm.parrafo6">
+    <es>Grasas: 10g</es>
+    <en>Fats: 10g</en>
+  </key>
+  <key name="gene-lunalm.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!-- Modal cena para Lunes -->
+      <key name="gene-luncen.title">
+    <es>Información Nutricional - Cena (Lunes)</es>
+    <en>Nutritional Information - Dinner (Monday)</en>
+  </key>
+    <key name="gene-luncen.parrafo1">
+    <es>Receta: Sopa de lentejas</es>
+    <en>Recipe: Lentil soup</en>
+  </key>
+  <key name="gene-luncen.parrafo2">
+    <es>Alternativas: Sopa de garbanzo</es>
+    <en>Alternatives: Chickpea soup</en>
+  </key>
+   <key name="gene-luncen.parrafo3">
+    <es>Calorías: 300</es>
+    <en>Calories: 300</en>
+  </key>
+   <key name="gene-luncen.parrafo4">
+    <es>Proteínas: 18g</es>
+    <en>Proteins: 18g</en>
+  </key>
+  <key name="gene-luncen.parrafo5">
+    <es>Carbohidratos: 40g</es>
+    <en>Carbohydrates: 40g</en>
+  </key>
+  <key name="gene-luncen.parrafo6">
+    <es>Grasas: 5g</es>
+    <en>Fats: 5g</en>
+  </key>
+  <key name="gene-luncen.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!--Martes-->
+  <key name="gene-mar.title">
+    <es>Martes</es>
+    <en>Tuesday</en>
+  </key>
+  <key name="gene-mar.parrafo1">
+    <es>Desayuno:</es>
+    <en>Breakfast:</en>
+  </key>
+  <key name="gene-mar.parrafo2">
+    <es>Porridge de avena</es>
+    <en>Oatmeal porridge</en>
+  </key>
+   <key name="gene-mar.button1">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-mar.parrafo3">
+    <es>Almuerzo:</es>
+    <en>Lunch:</en>
+  </key>
+  <key name="gene-mar.parrafo4">
+    <es>Ensalada de pollo</es>
+    <en>chicken salad</en>
+  </key>
+   <key name="gene-mar.button2">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-mar.parrafo5">
+    <es>Cena:</es>
+    <en>Dinner:</en>
+  </key>
+  <key name="gene-mar.parrafo6">
+    <es>Arroz integral con brócoli</es>
+    <en>Brown rice with broccoli</en>
+  </key>
+  <key name="gene-mar.button3">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <!-- Modal desayuno para Martes -->
+  <key name="gene-mardes.title">
+    <es>Información Nutricional - Desayuno (Martes)</es>
+    <en>Nutritional Information - Breakfast (Tuesday)</en>
+  </key>
+    <key name="gene-mardes.parrafo1">
+    <es>Receta:  Porridge de avena</es>
+    <en>Recipe:  Oatmeal porridge</en>
+  </key>
+  <key name="gene-mardes.parrafo2">
+    <es>Alternativas: Avena con frutas</es>
+    <en>Alternatives: Oatmeal with fruits</en>
+  </key>
+   <key name="gene-mardes.parrafo3">
+    <es>Calorías: 300</es>
+    <en>Calories: 300</en>
+  </key>
+   <key name="gene-mardes.parrafo4">
+    <es>Proteínas: 10g</es>
+    <en>Proteins: 10g</en>
+  </key>
+  <key name="gene-mardes.parrafo5">
+    <es>Carbohidratos: 50g</es>
+    <en>Carbohydrates: 50g</en>
+  </key>
+  <key name="gene-mardes.parrafo6">
+    <es>Grasas: 5g</es>
+    <en>Fats: 5g</en>
+  </key>
+  <key name="gene-mardes.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!-- Modal almuerzo para Martes -->
+  <key name="gene-maralm.title">
+    <es>Información Nutricional - Almuerzo (Martes)</es>
+    <en>Nutritional Information - Lunch (Tuesday)</en>
+  </key>
+    <key name="gene-maralm.parrafo1">
+    <es>Receta: Ensalada de pollo</es>
+    <en>Recipe: Chicken Salad</en>
+  </key>
+  <key name="gene-maralm.parrafo2">
+    <es>Alternativas: Ensalada de tofu</es>
+    <en>Alternatives: Tofu Salad</en>
+  </key>
+   <key name="gene-maralm.parrafo3">
+    <es>Calorías: 450</es>
+    <en>Calories: 450</en>
+  </key>
+   <key name="gene-maralm.parrafo4">
+    <es>Proteínas: 30g</es>
+    <en>Proteins: 30g</en>
+  </key>
+  <key name="gene-maralm.parrafo5">
+    <es>Carbohidratos: 40g</es>
+    <en>Carbohydrates: 40g</en>
+  </key>
+  <key name="gene-maralm.parrafo6">
+    <es>Grasas: 12g</es>
+    <en>Fats: 12g</en>
+  </key>
+  <key name="gene-maralm.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!-- Modal cena para Martes -->
+  <key name="gene-marcen.title">
+    <es>Información Nutricional - Cena (Martes)</es>
+    <en>Nutritional Information - Dinner (Tuesday)</en>
+  </key>
+    <key name="gene-marcen.parrafo1">
+    <es>Receta: Arroz integral con brócoli</es>
+    <en>Recipe: Brown rice with broccoli</en>
+  </key>
+  <key name="gene-marcen.parrafo2">
+    <es>Alternativas: Pasta de trigo integral</es>
+    <en>Alternatives: Whole wheat pasta</en>
+  </key>
+   <key name="gene-marcen.parrafo3">
+    <es>Calorías: 350</es>
+    <en>Calories: 350</en>
+  </key>
+   <key name="gene-marcen.parrafo4">
+    <es>Proteínas: 8g</es>
+    <en>Proteins: 8g</en>
+  </key>
+  <key name="gene-marcen.parrafo5">
+    <es>Carbohidratos: 60g</es>
+    <en>Carbohydrates: 60g</en>
+  </key>
+  <key name="gene-marcen.parrafo6">
+    <es>Grasas: 7g</es>
+    <en>Fats: 7g</en>
+  </key>
+  <key name="gene-marcen.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!--Miercoles-->
+  <key name="gene-mie.title">
+    <es>Miércoles</es>
+    <en>Wednesday</en>
+  </key>
+  <key name="gene-mie.parrafo1">
+    <es>Desayuno:</es>
+    <en>Breakfast:</en>
+  </key>
+  <key name="gene-mie.parrafo2">
+    <es>Avena con frutas</es>
+    <en>Oatmeal with fruits</en>
+  </key>
+   <key name="gene-mie.button1">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-mie.parrafo3">
+    <es>Almuerzo:</es>
+    <en>Lunch:</en>
+  </key>
+  <key name="gene-mie.parrafo4">
+    <es>Pollo asado con ensalada verde</es>
+    <en>Roasted chicken with green salad</en>
+  </key>
+   <key name="gene-mie.button2">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-mie.parrafo5">
+    <es>Cena:</es>
+    <en>Dinner:</en>
+  </key>
+  <key name="gene-mie.parrafo6">
+    <es>Vegetales al vapor con arroz integral</es>
+    <en>Steamed vegetables with brown rice</en>
+  </key>
+  <key name="gene-mie.button3">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+   <!-- Modal desayuno para Miercoles -->
+  <key name="gene-miedes.title">
+    <es>Información Nutricional - Desayuno (Miércoles)</es>
+    <en>Nutritional Information - Breakfast (Wednesday)</en>
+  </key>
+    <key name="gene-miedes.parrafo1">
+    <es>Receta:  Avena con frutas</es>
+    <en>Recipe:  Oatmeal with fruits</en>
+  </key>
+  <key name="gene-miedes.parrafo2">
+    <es>Alternativas: Avena con nueces</es>
+    <en>Alternatives: Oatmeal with walnuts</en>
+  </key>
+   <key name="gene-miedes.parrafo3">
+    <es>Calorías: 300</es>
+    <en>Calories: 300</en>
+  </key>
+   <key name="gene-miedes.parrafo4">
+    <es>Proteínas: 8g</es>
+    <en>Proteins: 8g</en>
+  </key>
+  <key name="gene-miedes.parrafo5">
+    <es>Carbohidratos: 50g</es>
+    <en>Carbohydrates: 50g</en>
+  </key>
+  <key name="gene-miedes.parrafo6">
+    <es>Grasas: 7g</es>
+    <en>Fats: 7g</en>
+  </key>
+  <key name="gene-miedes.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!-- Modal almuerzo para Miercoles -->
+    <key name="gene-miealm.title">
+    <es>Información Nutricional - Almuerzo (Miércoles)</es>
+    <en>Nutritional Information - Lunch (Wednesday)</en>
+  </key>
+    <key name="gene-miealm.parrafo1">
+    <es>Receta: Pollo asado con ensalada verde</es>
+    <en>Recipe: Roasted chicken with green salad</en>
+  </key>
+  <key name="gene-miealm.parrafo2">
+    <es>Alternativas: Pavo asado con ensalada verde</es>
+    <en>Alternatives:  Roasted turkey with green salad</en>
+  </key>
+   <key name="gene-miealm.parrafo3">
+    <es>Calorías: 400</es>
+    <en>Calories: 400</en>
+  </key>
+   <key name="gene-miealm.parrafo4">
+    <es>Proteínas: 15g</es>
+    <en>Proteins: 15g</en>
+  </key>
+  <key name="gene-miealm.parrafo5">
+    <es>Carbohidratos: 30g</es>
+    <en>Carbohydrates: 30g</en>
+  </key>
+  <key name="gene-miealm.parrafo6">
+    <es>Grasas: 20g</es>
+    <en>Fats: 20g</en>
+  </key>
+  <key name="gene-miealm.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!-- Modal cena para Miercoles -->
+  <key name="gene-miecen.title">
+    <es>Información Nutricional - Cena (Miércoles)</es>
+    <en>Nutritional Information - Dinner (Wednesday)</en>
+  </key>
+    <key name="gene-miecen.parrafo1">
+    <es>Receta: Vegetales al vapor con arroz integral</es>
+    <en>Recipe: Steamed Vegetables with Brown Rice</en>
+  </key>
+  <key name="gene-miecen.parrafo2">
+    <es>Alternativas: Verduras al vapor con quinoa</es>
+    <en>Alternatives: Steamed vegetables with quinoa</en>
+  </key>
+   <key name="gene-miecen.parrafo3">
+    <es>Calorías: 250</es>
+    <en>Calories: 250</en>
+  </key>
+   <key name="gene-miecen.parrafo4">
+    <es>Proteínas: 6g</es>
+    <en>Proteins: 6g</en>
+  </key>
+  <key name="gene-miecen.parrafo5">
+    <es>Carbohidratos: 45g</es>
+    <en>Carbohydrates: 45g</en>
+  </key>
+  <key name="gene-miecen.parrafo6">
+    <es>Grasas: 5g</es>
+    <en>Fats: 5g</en>
+  </key>
+  <key name="gene-miecen.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!--Jueves-->
+  <key name="gene-jue.title">
+    <es>Jueves</es>
+    <en>Thursday</en>
+  </key>
+  <key name="gene-jue.parrafo1">
+    <es>Desayuno:</es>
+    <en>Breakfast:</en>
+  </key>
+  <key name="gene-jue.parrafo2">
+    <es>Batido de proteínas con plátano</es>
+    <en>Protein shake with banana</en>
+  </key>
+   <key name="gene-jue.button1">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-jue.parrafo3">
+    <es>Almuerzo:</es>
+    <en>Lunch:</en>
+  </key>
+  <key name="gene-jue.parrafo4">
+    <es>Ensalada de quinoa con verduras</es>
+    <en>Quinoa salad with vegetables</en>
+  </key>
+   <key name="gene-jue.button2">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-jue.parrafo5">
+    <es>Cena:</es>
+    <en>Dinner:</en>
+  </key>
+  <key name="gene-jue.parrafo6">
+    <es>Sopa de lentejas</es>
+    <en>lentil soup</en>
+  </key>
+  <key name="gene-jue.button3">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <!-- Modal desayuno para Jueves -->
+  <key name="gene-juedes.title">
+    <es>Información Nutricional - Desayuno (Jueves)</es>
+    <en>Nutritional Information - Breakfast (Thursday)</en>
+  </key>
+    <key name="gene-juedes.parrafo1">
+    <es>Receta:  Batido de proteínas con plátano</es>
+    <en>Recipe:  Banana Protein Shake</en>
+  </key>
+  <key name="gene-juedes.parrafo2">
+    <es>Alternativas: Batido de proteína con fresa</es>
+    <en>Alternatives: Strawberry Protein Shake</en>
+  </key>
+   <key name="gene-juedes.parrafo3">
+    <es>Calorías: 350</es>
+    <en>Calories: 350</en>
+  </key>
+   <key name="gene-juedes.parrafo4">
+    <es>Proteínas: 25g</es>
+    <en>Proteins: 25g</en>
+  </key>
+  <key name="gene-juedes.parrafo5">
+    <es>Carbohidratos: 30g</es>
+    <en>Carbohydrates: 30g</en>
+  </key>
+  <key name="gene-juedes.parrafo6">
+    <es>Grasas: 12g</es>
+    <en>Fats: 12g</en>
+  </key>
+  <key name="gene-juedes.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!-- Modal almuerzo para Jueves -->
+  <key name="gene-juealm.title">
+    <es>Información Nutricional - Almuerzo (Jueves)</es>
+    <en>Nutritional Information - Lunch (Thursday)</en>
+  </key>
+    <key name="gene-juealm.parrafo1">
+    <es>Receta: Ensalada de quinoa con verduras</es>
+    <en>Recipe: Quinoa salad with vegetables</en>
+  </key>
+  <key name="gene-juealm.parrafo2">
+    <es>Alternativas: Ensalada de lentejas con verduras</es>
+    <en>Alternatives:  Lentil salad with vegetables</en>
+  </key>
+   <key name="gene-juealm.parrafo3">
+    <es>Calorías: 400</es>
+    <en>Calories: 400</en>
+  </key>
+   <key name="gene-juealm.parrafo4">
+    <es>Proteínas: 15g</es>
+    <en>Proteins: 15g</en>
+  </key>
+  <key name="gene-juealm.parrafo5">
+    <es>Carbohidratos: 50g</es>
+    <en>Carbohydrates: 50g</en>
+  </key>
+  <key name="gene-juealm.parrafo6">
+    <es>Grasas: 15g</es>
+    <en>Fats: 15g</en>
+  </key>
+  <key name="gene-juealm.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!-- Modal cena para Jueves -->
+  <key name="gene-juecen.title">
+    <es>Información Nutricional - Cena (Jueves)</es>
+    <en>Nutritional Information - Dinner (Thursday)</en>
+  </key>
+    <key name="gene-juecen.parrafo1">
+    <es>Receta: Sopa de lentejas</es>
+    <en>Recipe: Lentil soup</en>
+  </key>
+  <key name="gene-juecen.parrafo2">
+    <es>Alternativas: Sopa de garbanzos</es>
+    <en>Alternatives: Chickpea soup</en>
+  </key>
+   <key name="gene-juecen.parrafo3">
+    <es>Calorías: 250</es>
+    <en>Calories: 250</en>
+  </key>
+   <key name="gene-juecen.parrafo4">
+    <es>Proteínas: 15g</es>
+    <en>Proteins: 15g</en>
+  </key>
+  <key name="gene-juecen.parrafo5">
+    <es>Carbohidratos: 40g</es>
+    <en>Carbohydrates: 40g</en>
+  </key>
+  <key name="gene-juecen.parrafo6">
+    <es>Grasas: 5g</es>
+    <en>Fats: 5g</en>
+  </key>
+  <key name="gene-juecen.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!--Viernes-->
+  <key name="gene-vie.title">
+    <es>Viernes</es>
+    <en>Friday</en>
+  </key>
+  <key name="gene-vie.parrafo1">
+    <es>Desayuno:</es>
+    <en>Breakfast:</en>
+  </key>
+  <key name="gene-vie.parrafo2">
+    <es>Pancakes integrales</es>
+    <en>Whole wheat pancakes</en>
+  </key>
+   <key name="gene-vie.button1">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-vie.parrafo3">
+    <es>Almuerzo:</es>
+    <en>Lunch:</en>
+  </key>
+  <key name="gene-vie.parrafo4">
+    <es>Ensalada de atún con aguacate</es>
+    <en>Tuna salad with avocado</en>
+  </key>
+   <key name="gene-vie.button2">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-vie.parrafo5">
+    <es>Cena:</es>
+    <en>Dinner:</en>
+  </key>
+  <key name="gene-vie.parrafo6">
+    <es>Salmón a la plancha con espárragos</es>
+    <en>Grilled salmon with asparagus</en>
+  </key>
+  <key name="gene-vie.button3">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <!-- Modal desayuno para viernes -->
+  <key name="gene-viedes.title">
+    <es>Información Nutricional - Desayuno (Viernes)</es>
+    <en>Nutritional Information - Breakfast (Friday)</en>
+  </key>
+    <key name="gene-viedes.parrafo1">
+    <es>Receta:  Pancakes integrales</es>
+    <en>Recipe:  Whole wheat pancakes</en>
+  </key>
+  <key name="gene-viedes.parrafo2">
+    <es>Alternativas: Pancakes de avena</es>
+    <en>Alternatives: Oatmeal pancakes</en>
+  </key>
+   <key name="gene-viedes.parrafo3">
+    <es>Calorías: 250</es>
+    <en>Calories: 250</en>
+  </key>
+   <key name="gene-viedes.parrafo4">
+    <es>Proteínas: 8g</es>
+    <en>Proteins: 8g</en>
+  </key>
+  <key name="gene-viedes.parrafo5">
+    <es>Carbohidratos: 45g</es>
+    <en>Carbohydrates: 45g</en>
+  </key>
+  <key name="gene-viedes.parrafo6">
+    <es>Grasas: 5g</es>
+    <en>Fats: 5g</en>
+  </key>
+  <key name="gene-viedes.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+   <!-- Modal almuerzo para viernes -->
+<key name="gene-viealm.title">
+    <es>Información Nutricional - Almuerzo (Viernes)</es>
+    <en>Nutritional Information - Lunch (Friday)</en>
+  </key>
+    <key name="gene-viealm.parrafo1">
+    <es>Receta: Ensalada de atún con aguacate</es>
+    <en>Recipe: Tuna salad with avocado</en>
+  </key>
+  <key name="gene-viealm.parrafo2">
+    <es>Alternativas: Ensalada de atún con tomate</es>
+    <en>Alternatives: Tuna salad with tomato</en>
+  </key>
+   <key name="gene-viealm.parrafo3">
+    <es>Calorías: 350</es>
+    <en>Calories: 350</en>
+  </key>
+   <key name="gene-viealm.parrafo4">
+    <es>Proteínas: 25g</es>
+    <en>Proteins: 25g</en>
+  </key>
+  <key name="gene-viealm.parrafo5">
+    <es>Carbohidratos: 12g</es>
+    <en>Carbohydrates: 12g</en>
+  </key>
+  <key name="gene-viealm.parrafo6">
+    <es>Grasas: 22g</es>
+    <en>Fats: 22g</en>
+  </key>
+  <key name="gene-viealm.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!-- Modal cena para viernes -->
+   <key name="gene-viecen.title">
+    <es>Información Nutricional - Cena (Viernes)</es>
+    <en>Nutritional Information - Dinner (Friday)</en>
+  </key>
+    <key name="gene-viecen.parrafo1">
+    <es>Receta: Salmón a la plancha con espárragos</es>
+    <en>Recipe: Grilled salmon with asparagus</en>
+  </key>
+  <key name="gene-viecen.parrafo2">
+    <es>Alternativas: Atún a la plancha con espárragos</es>
+    <en>Alternatives: Grilled tuna with asparagus</en>
+  </key>
+   <key name="gene-viecen.parrafo3">
+    <es>Calorías: 400</es>
+    <en>Calories: 400</en>
+  </key>
+   <key name="gene-viecen.parrafo4">
+    <es>Proteínas: 35g</es>
+    <en>Proteins: 35g</en>
+  </key>
+  <key name="gene-viecen.parrafo5">
+    <es>Carbohidratos: 5g</es>
+    <en>Carbohydrates: 5g</en>
+  </key>
+  <key name="gene-viecen.parrafo6">
+    <es>Grasas: 28g</es>
+    <en>Fats: 28g</en>
+  </key>
+  <key name="gene-viecen.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!--Sabado-->
+ <key name="gene-sab.title">
+    <es>Sábado</es>
+    <en>Saturday</en>
+  </key>
+  <key name="gene-sab.parrafo1">
+    <es>Desayuno:</es>
+    <en>Breakfast:</en>
+  </key>
+  <key name="gene-sab.parrafo2">
+    <es>Yogur con granola y frutas</es>
+    <en>Yogurt with granola and fruits</en>
+  </key>
+   <key name="gene-sab.button1">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-sab.parrafo3">
+    <es>Almuerzo:</es>
+    <en>Lunch:</en>
+  </key>
+  <key name="gene-sab.parrafo4">
+    <es>Hamburguesa de pollo con ensalada</es>
+    <en>Chicken burger with salad</en>
+  </key>
+   <key name="gene-sab.button2">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-sab.parrafo5">
+    <es>Cena:</es>
+    <en>Dinner:</en>
+  </key>
+  <key name="gene-sab.parrafo6">
+    <es>Filete de ternera con papas al horno</es>
+    <en>Beef steak with baked potatoes</en>
+  </key>
+  <key name="gene-sab.button3">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+    <!-- Modal desayuno para sabado -->
+  <key name="gene-sabdes.title">
+    <es>Información Nutricional - Desayuno (Sábado)</es>
+    <en>Nutritional Information - Breakfast (Saturday)</en>
+  </key>
+    <key name="gene-sabdes.parrafo1">
+    <es>Receta:  Yogur con granola y frutas</es>
+    <en>Recipe:  Yogurt with granola and fruits</en>
+  </key>
+  <key name="gene-sabdes.parrafo2">
+    <es>Alternativas: Yogur con miel y nueces</es>
+    <en>Alternatives: Yogurt with honey and nuts</en>
+  </key>
+   <key name="gene-sabdes.parrafo3">
+    <es>Calorías: 300</es>
+    <en>Calories: 300</en>
+  </key>
+   <key name="gene-sabdes.parrafo4">
+    <es>Proteínas: 10g</es>
+    <en>Proteins: 10g</en>
+  </key>
+  <key name="gene-sabdes.parrafo5">
+    <es>Carbohidratos: 45g</es>
+    <en>Carbohydrates: 45g</en>
+  </key>
+  <key name="gene-sabdes.parrafo6">
+    <es>Grasas: 8g</es>
+    <en>Fats: 8g</en>
+  </key>
+  <key name="gene-sabdes.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>  
+   <!-- Modal almuerzo para sabado -->
+   <key name="gene-sabalm.title">
+    <es>Información Nutricional - Almuerzo (Sábado)</es>
+    <en>Nutritional Information - Lunch (Saturday)</en>
+  </key>
+    <key name="gene-sabalm.parrafo1">
+    <es>Receta: Hamburguesa de pollo con ensalada</es>
+    <en>Recipe: Chicken burger with salad</en>
+  </key>
+  <key name="gene-sabalm.parrafo2">
+    <es>Alternativas: Hamburguesa de pavo con ensalada</es>
+    <en>Alternatives: Turkey burger with salad</en>
+  </key>
+   <key name="gene-sabalm.parrafo3">
+    <es>Calorías: 400</es>
+    <en>Calories: 400</en>
+  </key>
+   <key name="gene-sabalm.parrafo4">
+    <es>Proteínas: 30g</es>
+    <en>Proteins: 30g</en>
+  </key>
+  <key name="gene-sabalm.parrafo5">
+    <es>Carbohidratos: 20g</es>
+    <en>Carbohydrates: 20g</en>
+  </key>
+  <key name="gene-sabalm.parrafo6">
+    <es>Grasas: 25g</es>
+    <en>Fats: 25g</en>
+  </key>
+  <key name="gene-sabalm.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!-- Modal cena para sabado -->
+  <key name="gene-sabcen.title">
+    <es>Información Nutricional - Cena (Sábado)</es>
+    <en>Nutritional Information - Dinner (Saturday)</en>
+  </key>
+    <key name="gene-sabcen.parrafo1">
+    <es>Receta: Filete de ternera con papas al horno</es>
+    <en>Recipe: Beef fillet with baked potatoes</en>
+  </key>
+  <key name="gene-sabcen.parrafo2">
+    <es>Alternativas: Filete de cerdo con puré de papas</es>
+    <en>Alternatives: Pork steak with mashed potatoes</en>
+  </key>
+   <key name="gene-sabcen.parrafo3">
+    <es>Calorías: 600</es>
+    <en>Calories: 600</en>
+  </key>
+   <key name="gene-sabcen.parrafo4">
+    <es>Proteínas: 50g</es>
+    <en>Proteins: 50g</en>
+  </key>
+  <key name="gene-sabcen.parrafo5">
+    <es>Carbohidratos: 40g</es>
+    <en>Carbohydrates: 40g</en>
+  </key>
+  <key name="gene-sabcen.parrafo6">
+    <es>Grasas: 30g</es>
+    <en>Fats: 30g</en>
+  </key>
+  <key name="gene-sabcen.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!--Domingo-->
+  <key name="gene-dom.title">
+    <es>Domingo</es>
+    <en>Sunday</en>
+  </key>
+  <key name="gene-dom.parrafo1">
+    <es>Desayuno:</es>
+    <en>Breakfast:</en>
+  </key>
+  <key name="gene-dom.parrafo2">
+    <es>Omelette de espinacas y champiñones</es>
+    <en>Spinach and mushroom omelette</en>
+  </key>
+   <key name="gene-dom.button1">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-dom.parrafo3">
+    <es>Almuerzo:</es>
+    <en>Lunch:</en>
+  </key>
+  <key name="gene-dom.parrafo4">
+    <es>Ensalada César con pollo</es>
+    <en>Caesar salad with chicken</en>
+  </key>
+   <key name="gene-dom.button2">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <key name="gene-dom.parrafo5">
+    <es>Cena:</es>
+    <en>Dinner:</en>
+  </key>
+  <key name="gene-dom.parrafo6">
+    <es>Pechuga de pollo con batatas</es>
+    <en>Chicken breast with sweet potatoes</en>
+  </key>
+  <key name="gene-dom.button3">
+    <es>Ver información nutricional</es>
+    <en>See nutritional information</en>
+  </key>
+  <!-- Modal desayuno para domingo -->
+  <key name="gene-domdes.title">
+    <es>Información Nutricional - Desayuno (Domingo)</es>
+    <en>Nutritional Information - Breakfast (Sunday)</en>
+  </key>
+    <key name="gene-domdes.parrafo1">
+    <es>Receta:  Omelette de espinacas y champiñones</es>
+    <en>Recipe:  Spinach and Mushroom Omelette</en>
+  </key>
+  <key name="gene-domdes.parrafo2">
+    <es>Alternativas: Omelette de tomate y albahaca</es>
+    <en>Alternatives: Tomato and Basil Omelette</en>
+  </key>
+   <key name="gene-domdes.parrafo3">
+    <es>Calorías: 300</es>
+    <en>Calories: 300</en>
+  </key>
+   <key name="gene-domdes.parrafo4">
+    <es>Proteínas: 20g</es>
+    <en>Proteins: 20g</en>
+  </key>
+  <key name="gene-domdes.parrafo5">
+    <es>Carbohidratos: 10g</es>
+    <en>Carbohydrates: 10g</en>
+  </key>
+  <key name="gene-domdes.parrafo6">
+    <es>Grasas: 25g</es>
+    <en>Fats: 25g</en>
+  </key>
+  <key name="gene-domdes.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>  
+  <!-- Modal almuerzo para domingo -->
+  <key name="gene-domalm.title">
+    <es>Información Nutricional - Almuerzo (Domingo)</es>
+    <en>Nutritional Information - Lunch (Sunday)</en>
+  </key>
+    <key name="gene-domalm.parrafo1">
+    <es>Receta: Ensalada César con pollo</es>
+    <en>Recipe: Caesar Salad with Chicken</en>
+  </key>
+  <key name="gene-domalm.parrafo2">
+    <es>Alternativas: Ensalada con atún y mayonesa ligera</es>
+    <en>Alternatives: Salad with tuna and light mayonnaise</en>
+  </key>
+   <key name="gene-domalm.parrafo3">
+    <es>Calorías: 450</es>
+    <en>Calories: 450</en>
+  </key>
+   <key name="gene-domalm.parrafo4">
+    <es>Proteínas: 30g</es>
+    <en>Proteins: 30g</en>
+  </key>
+  <key name="gene-domalm.parrafo5">
+    <es>Carbohidratos: 20g</es>
+    <en>Carbohydrates: 20g</en>
+  </key>
+  <key name="gene-domalm.parrafo6">
+    <es>Grasas: 30g</es>
+    <en>Fats: 30g</en>
+  </key>
+  <key name="gene-domalm.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+  <!-- Modal cena para domingo -->
+  <key name="gene-domcen.title">
+    <es>Información Nutricional - Cena (Domingo)</es>
+    <en>Nutritional Information - Dinner (Sunday)</en>
+  </key>
+    <key name="gene-domcen.parrafo1">
+    <es>Receta: Pechuga de pollo con batatas</es>
+    <en>Recipe: Chicken breast with sweet potatoes</en>
+  </key>
+  <key name="gene-domcen.parrafo2">
+    <es>Alternativas: Pechuga de pavo con calabaza</es>
+    <en>Alternatives: Turkey breast with pumpkin</en>
+  </key>
+   <key name="gene-domcen.parrafo3">
+    <es>Calorías: 500</es>
+    <en>Calories: 500</en>
+  </key>
+   <key name="gene-domcen.parrafo4">
+    <es>Proteínas: 40g</es>
+    <en>Proteins: 40g</en>
+  </key>
+  <key name="gene-domcen.parrafo5">
+    <es>Carbohidratos: 50g</es>
+    <en>Carbohydrates: 50g</en>
+  </key>
+  <key name="gene-domcen.parrafo6">
+    <es>Grasas: 15g</es>
+    <en>Fats: 15g</en>
+  </key>
+  <key name="gene-domcen.button1">
+    <es>Cerrar</es>
+    <en>Close</en>
+  </key>
+</translations>

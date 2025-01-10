@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title3">Compartir Menús Personalizados</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery para simplificar -->
+    <script src="https://unpkg.com/i18next@21.6.3/i18next.min.js"></script> <!-- i18next -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="aplica-a-todo.css"><!--esta es el enlace de estilo-->
+    <style>
+        body {
+            background: linear-gradient(135deg, #FF00FF, #FF007F, #00FFFF);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .section-title {
+            color: #fff;
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .card-custom {
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: #FF007F;
+            color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .card-custom:hover {
+            transform: scale(1.05);
+            background-color: #FF00FF;
+        }
+
+        .btn-custom {
+            background-color: #FF00FF;
+            color: white;
+            border-radius: 20px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-custom:hover {
+            background-color: #FF007F;
+        }
+
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-container input, .form-container textarea {
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .form-container button {
+            background-color: #00FFFF;
+            color: black;
+            font-size: 18px;
+        }
+
+        .form-container button:hover {
+            background-color: #FF00FF;
+        }
+
+        .feedback-section {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .feedback-section h5 {
+            color: #FFF;
+            font-weight: bold;
+        }
+
+        .save-menu-btn {
+            background-color: #00FF00;
+            color: black;
+            border-radius: 10px;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .save-menu-btn:hover {
+            background-color: #FF8C00;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-warning navbar-light sticky-top">
+   
+        <div class="container-fluid">
+    
+          <a class="navbar-brand" href="#">
+            <img src="img/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-center">
+          ZITEX</a>
+          <!-- Selector de idioma -->
+      <div>
+        <select id="language-selector">
+          <option value="en">English</option>
+          <option value="es" selected>Español</option>
+        </select>
+      </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto" id="menu">
+              <!-- Aqui XML-->
+            </div>
+          </div>
+        </div>
+      </nav>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <!--Scrip para cambiar de idioma de los menus principales y submenus dinamicante desde xml y json-->
+  <script>
+    let currentLang = "es"; // Idioma actual
+
+    function loadXML(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "menu1.xml", true);
+      xhr.onload = function () { 
+        if (xhr.status === 200) {
+          const xmlDoc = xhr.responseXML;
+          callback(null, xmlDoc);
+        } else {
+          callback(new Error("Error al cargar el menú XML."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function loadJSON(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "submenu1.json", true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const jsonData = JSON.parse(xhr.responseText);
+          callback(null, jsonData);
+        } else {
+          callback(new Error("Error al cargar el JSON de submenús."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function generateMenu(xmlDoc, jsonData) {
+      const items = xmlDoc.getElementsByTagName("item");
+      let menuHTML = ""; // Eliminamos la lista duplicada
+
+      for (let i = 0; i < items.length; i++) {
+        const nombreNode = items[i].getElementsByTagName("nombre")[0];
+        const nombre = nombreNode.getElementsByTagName(currentLang)[0].textContent;
+        const link = items[i].getElementsByTagName("link")[0].textContent;
+
+        // Menú principal
+        menuHTML += `
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="${link}" id="navbarDropdown-${i}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ${nombre}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown-${i}">
+        `;
+
+        // Submenús
+        const menuKey = nombreNode.getElementsByTagName("es")[0].textContent; // Usar clave en español como referencia
+        const submenuData = jsonData[menuKey];
+
+        if (submenuData && submenuData.length > 0) {
+          submenuData.forEach(submenu => {
+            const submenuNombre = submenu.nombre[currentLang];
+            menuHTML += `
+              <li><a class="dropdown-item" href="${submenu.link}">${submenuNombre}</a></li>
+            `;
+          });
+        } else {
+          menuHTML += `
+            <li><span class="dropdown-item-text">No hay submenús disponibles</span></li>
+          `;
+        }
+
+        menuHTML += `</ul></li>`;
+      }
+
+      // Insertar el menú generado en el contenedor adecuado
+      document.getElementById("menu").innerHTML = menuHTML;
+    }
+
+    function changeLanguage(newLang) {
+      currentLang = newLang;
+      loadXML(function (xmlError, xmlDoc) {
+        if (xmlError) {
+          console.error(xmlError);
+          return;
+        }
+
+        loadJSON(function (jsonError, jsonData) {
+          if (jsonError) {
+            console.error(jsonError);
+            return;
+          }
+
+          generateMenu(xmlDoc, jsonData);
+        });
+      });
+    }
+
+    // Cargar XML y JSON inicialmente
+    loadXML(function (xmlError, xmlDoc) {
+      if (xmlError) {
+        console.error(xmlError);
+        return;
+      }
+
+      loadJSON(function (jsonError, jsonData) {
+        if (jsonError) {
+          console.error(jsonError);
+          return;
+        }
+
+        generateMenu(xmlDoc, jsonData);
+      });
+    });
+
+    // Asignar evento al selector de idioma
+    document.getElementById("language-selector").addEventListener("change", function (event) {
+      changeLanguage(event.target.value);
+    });
+  </script>
+<!--Aqui termina el script para el cambio de idiomas (internalizacion)-->
+    
+<!--scrip para la internalizacion del contenido-->
+<script>
+     //Función para cargar el archivo XML -->
+    function loadTranslations(language) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "comunidad-trans.xml", true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var parser = new DOMParser();
+          var xmlDoc = parser.parseFromString(xhr.responseText, "application/xml");
+
+          var translations = {};
+          var keys = xmlDoc.getElementsByTagName("key");
+          for (var i = 0; i < keys.length; i++) {
+            var name = keys[i].getAttribute("name");
+            var value = keys[i].getElementsByTagName(language)[0].textContent;
+            translations[name] = value;
+          }
+
+          i18next.init(
+            {
+              lng: language,
+              resources: {
+                [language]: {
+                  translation: translations,
+                },
+              },
+            },
+            function (err, t) {
+              document.querySelectorAll("[data-i18n]").forEach(function (element) {
+                element.innerHTML = t(element.getAttribute("data-i18n"));
+              });
+            }
+          );
+        }
+      };
+      xhr.send();
+    }
+
+    // Cambiar idioma con el selector
+    document.getElementById("language-selector").addEventListener("change", function () {
+      loadTranslations(this.value);
+    });
+
+    // Idioma predeterminado al cargar la página
+    window.onload = function () {
+      loadTranslations("es");
+    };
+  </script>
+  <!--Aqui termina el script de la internalizacion del contenido-->
+    <!-- Header -->
+    <header class="text-center text-white py-5">
+        <h1 class="display-4" data-i18n="compartir.title">Compartir Menús Personalizados</h1>
+        <p class="lead" data-i18n="compartir.parrafo">Crea menús exclusivos, comparte con la comunidad y recibe retroalimentación para mejorar tus creaciones culinarias.</p>
+    </header>
+
+    <!-- Formulario para Crear Menú -->
+    <section class="container py-5">
+        <h2 class="section-title" data-i18n="compartir-perso.title">Crea tu Menú Personalizado</h2>
+        <div class="form-container">
+            <form>
+                <div class="mb-3">
+                    <label for="menuName" class="form-label text-white" data-i18n="compartir-perso.label1">Nombre del Menú</label>
+                    <input type="text" class="form-control" id="menuName" placeholder="">
+                </div>
+                <div class="mb-3">
+                    <label for="recipeList" class="form-label text-white" data-i18n="compartir-perso.label2">Lista de Recetas</label>
+                    <textarea class="form-control" id="recipeList" rows="5" placeholder=""></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="menuNotes" class="form-label text-white" data-i18n="compartir-perso.label3">Notas del Menú</label>
+                    <textarea class="form-control" id="menuNotes" rows="4" placeholder=""></textarea>
+                </div>
+                <button type="submit" class="btn btn-custom" data-i18n="compartir-perso.button">Compartir Menú</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Espacio para Retroalimentación -->
+    <section class="container py-5">
+        <h2 class="section-title" data-i18n="compartir-retro.title">Recibe Retroalimentación</h2>
+        <div class="feedback-section">
+            <h5 class="text-center" data-i18n="compartir-retro.subtitle">Comentarios de la Comunidad</h5>
+            <div class="mb-3">
+                <p class="text-white" data-i18n="compartir-retro.parrafo1">ChefLuna: ¡Me encanta este menú! Las recetas son muy saludables y fáciles de preparar. Definitivamente lo probaré.</p>
+            </div>
+            <div class="mb-3">
+                <p class="text-white" data-i18n="compartir-retro.parrafo2">GastronomeX: ¡Qué increíble menú! Sería genial si incluyeras una receta de postre saludable.</p>
+            </div>
+            <button class="save-menu-btn" data-i18n="compartir-retro.button">Guardar este Menú</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 text-white">
+        <p data-i18n="compartir.copy">&copy; 2024 Comunidad Culinaria. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Formulario de Generacion</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery para simplificar -->
+  <script src="https://unpkg.com/i18next@21.6.3/i18next.min.js"></script> <!-- i18next -->
+  <!-- Agregar Bootstrap desde CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="aplica-a-todo.css"><!-- esta es el enlace de estilo -->
+  <style>
+    body{
+      background-color: rgb(163, 234, 247);
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin-top: 30px;
+    }
+    table {
+      width: 100%;
+      margin-top: 30px;
+    }
+    .table th, .table td {
+      text-align: center;
+    }
+    button {
+      margin: 2px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg bg-warning navbar-light sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="img/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-center">
+          ZITEX
+        </a>
+        <!-- Selector de idioma -->
+        <div>
+          <select id="language-selector">
+            <option value="en">English</option>
+            <option value="es" selected>Español</option>
+          </select>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Aquí irá el menú -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto" id="menu">
+            <!-- El menú se generará aquí dinámicamente -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <!--Scrip para cambiar de idioma de los menus principales y submenus dinamicante desde xml y json-->
+    <script>
+      let currentLang = "es"; // Idioma actual
+  
+      function loadXML(callback) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "menu1.xml", true);
+        xhr.onload = function () { 
+          if (xhr.status === 200) {
+            const xmlDoc = xhr.responseXML;
+            callback(null, xmlDoc);
+          } else {
+            callback(new Error("Error al cargar el menú XML."), null);
+          }
+        };
+        xhr.send();
+      }
+  
+      function loadJSON(callback) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "submenu1.json", true);
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            const jsonData = JSON.parse(xhr.responseText);
+            callback(null, jsonData);
+          } else {
+            callback(new Error("Error al cargar el JSON de submenús."), null);
+          }
+        };
+        xhr.send();
+      }
+  
+      function generateMenu(xmlDoc, jsonData) {
+        const items = xmlDoc.getElementsByTagName("item");
+        let menuHTML = ""; // Eliminamos la lista duplicada
+  
+        for (let i = 0; i < items.length; i++) {
+          const nombreNode = items[i].getElementsByTagName("nombre")[0];
+          const nombre = nombreNode.getElementsByTagName(currentLang)[0].textContent;
+          const link = items[i].getElementsByTagName("link")[0].textContent;
+  
+          // Menú principal
+          menuHTML += `
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="${link}" id="navbarDropdown-${i}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ${nombre}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown-${i}">
+          `;
+  
+          // Submenús
+          const menuKey = nombreNode.getElementsByTagName("es")[0].textContent; // Usar clave en español como referencia
+          const submenuData = jsonData[menuKey];
+  
+          if (submenuData && submenuData.length > 0) {
+            submenuData.forEach(submenu => {
+              const submenuNombre = submenu.nombre[currentLang];
+              menuHTML += `
+                <li><a class="dropdown-item" href="${submenu.link}">${submenuNombre}</a></li>
+              `;
+            });
+          } else {
+            menuHTML += `
+              <li><span class="dropdown-item-text">No hay submenús disponibles</span></li>
+            `;
+          }
+  
+          menuHTML += `</ul></li>`;
+        }
+  
+        // Insertar el menú generado en el contenedor adecuado
+        document.getElementById("menu").innerHTML = menuHTML;
+      }
+  
+      function changeLanguage(newLang) {
+        currentLang = newLang;
+        loadXML(function (xmlError, xmlDoc) {
+          if (xmlError) {
+            console.error(xmlError);
+            return;
+          }
+  
+          loadJSON(function (jsonError, jsonData) {
+            if (jsonError) {
+              console.error(jsonError);
+              return;
+            }
+  
+            generateMenu(xmlDoc, jsonData);
+          });
+        });
+      }
+  
+      // Cargar XML y JSON inicialmente
+      loadXML(function (xmlError, xmlDoc) {
+        if (xmlError) {
+          console.error(xmlError);
+          return;
+        }
+  
+        loadJSON(function (jsonError, jsonData) {
+          if (jsonError) {
+            console.error(jsonError);
+            return;
+          }
+  
+          generateMenu(xmlDoc, jsonData);
+        });
+      });
+  
+      // Asignar evento al selector de idioma
+      document.getElementById("language-selector").addEventListener("change", function (event) {
+        changeLanguage(event.target.value);
+      });
+    </script>
+  <!--Aqui termina el script para el cambio de idiomas (internalizacion)-->
+      
+  <!--scrip para la internalizacion del contenido-->
+  <script>
+       //Función para cargar el archivo XML -->
+      function loadTranslations(language) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "formulario-trans.xml", true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(xhr.responseText, "application/xml");
+  
+            var translations = {};
+            var keys = xmlDoc.getElementsByTagName("key");
+            for (var i = 0; i < keys.length; i++) {
+              var name = keys[i].getAttribute("name");
+              var value = keys[i].getElementsByTagName(language)[0].textContent;
+              translations[name] = value;
+            }
+  
+            i18next.init(
+              {
+                lng: language,
+                resources: {
+                  [language]: {
+                    translation: translations,
+                  },
+                },
+              },
+              function (err, t) {
+                document.querySelectorAll("[data-i18n]").forEach(function (element) {
+                  element.innerHTML = t(element.getAttribute("data-i18n"));
+                });
+              }
+            );
+          }
+        };
+        xhr.send();
+      }
+  
+      // Cambiar idioma con el selector
+      document.getElementById("language-selector").addEventListener("change", function () {
+        loadTranslations(this.value);
+      });
+  
+      // Idioma predeterminado al cargar la página
+      window.onload = function () {
+        loadTranslations("es");
+      };
+    </script>
+    <!--Aqui termina el script de la internalizacion del contenido-->
+  <div class="container-fluid">
+    <h1 data-i18n="formu.title">Formulario de Generación</h1>
+    <form id="data-form" class="mb-4 row">
+      <input type="hidden" id="record-id">
+
+      <div class="mb-3 col-12 col-md-6">
+        <label for="dietary-preferences" class="form-label" data-i18n="formu.label1">Preferencias Alimenticias:</label>
+        <select id="dietary-preferences" class="form-select" required>
+          <option value="Vegetariano" data-i18n="formu.opcion1">Vegetariano</option>
+          <option value="Sin Gluten" data-i18n="formu.opcion2">Sin Gluten</option>
+          <option value="Vegano" data-i18n="formu.opcion3">Vegano</option>
+          <option value="Carnívoro" data-i18n="formu.opcion4">Carnívoro</option>
+          <option value="Otro" data-i18n="formu.opcion5">Otro</option>
+        </select>
+      </div>
+
+      <div class="mb-3 col-12 col-md-6">
+        <label for="num-persons" class="form-label" data-i18n="formu.label2">Número de Personas:</label>
+        <input type="number" id="num-persons" class="form-control" required>
+      </div>
+
+      <div class="mb-3 col-12">
+        <label for="dietary-restrictions" class="form-label" data-i18n="formu.label3">Restricciones Dietéticas:</label>
+        <input type="text" id="dietary-restrictions" class="form-control" required>
+      </div>
+
+      <div class="mb-3 col-12">
+        <div class="form-check">
+          <input type="checkbox" id="confirmation" class="form-check-input" required>
+          <label for="confirmation" class="form-check-label" data-i18n="formu.label4">Confirmo mi selección</label>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary" data-i18n="formu.button">Guardar</button>
+      </div>
+    </form>
+
+    <h2 data-i18n="formu-reg.title">Registros Guardados</h2>
+    <!-- Clase table-responsive para que la tabla sea desplazable en pantallas pequeñas -->
+    <div class="table-responsive">
+      <table class="table table-striped" id="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="formu-tab.colum1">ID</th>
+            <th data-i18n="formu-tab.colum2">Preferencias Alimenticias</th>
+            <th data-i18n="formu-tab.colum3">Número de Personas</th>
+            <th data-i18n="formu-tab.colum4">Restricciones Dietéticas</th>
+            <th data-i18n="formu-tab.colum5">Confirmación</th>
+            <th data-i18n="formu-tab.colum6">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Se llenará dinámicamente con JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Agregar Bootstrap JS y Popper.js desde CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script>
+    // Variables globales
+    let data = []; // Aquí almacenamos los datos de la respuesta JSON
+    let tableBody = document.getElementById('data-table').querySelector('tbody');
+    let form = document.getElementById('data-form');
+    let recordIdInput = document.getElementById('record-id');
+    let dietaryPreferencesInput = document.getElementById('dietary-preferences');
+    let numPersonsInput = document.getElementById('num-persons');
+    let dietaryRestrictionsInput = document.getElementById('dietary-restrictions');
+    let confirmationInput = document.getElementById('confirmation');
+
+    // Cargar datos usando XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "formulario.json", true);  // Suponiendo que el archivo JSON está en la misma carpeta
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        const responseData = JSON.parse(xhr.responseText); // Convertir el JSON en objeto
+        
+        // Asumimos que el JSON contiene solo los datos de la tabla
+        data = responseData; // Almacenamos directamente los datos de la tabla en 'data'
+        
+        // Renderizamos la tabla con los datos cargados
+        renderTable();
+      } else {
+        console.error("Error al cargar el JSON");
+      }
+    };
+    xhr.send();
+
+    // Función para renderizar la tabla
+    function renderTable() {
+      tableBody.innerHTML = ''; // Limpiar tabla antes de actualizar
+      data.forEach((record) => {
+        let row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${record.id}</td>
+          <td>${record.dietaryPreferences}</td>
+          <td>${record.numPersons}</td>
+          <td>${record.dietaryRestrictions}</td>
+          <td>${record.confirmation ? 'Confirmado' : 'No Confirmado'}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" onclick="editRecord(${record.id})" data-i18n="formu-tab.button1">Editar</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteRecord(${record.id})" data-i18n="formu-tab.button2">Eliminar</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Función para manejar el envío del formulario
+    form.addEventListener('submit', (e) => {
+      e.preventDefault(); // Evitar recarga de página
+      const id = recordIdInput.value;
+      const dietaryPreferences = dietaryPreferencesInput.value;
+      const numPersons = numPersonsInput.value;
+      const dietaryRestrictions = dietaryRestrictionsInput.value;
+      const confirmation = confirmationInput.checked;
+
+      if (id) {
+        // Editar registro existente
+        const recordIndex = data.findIndex((record) => record.id == id);
+        if (recordIndex !== -1) {
+          data[recordIndex] = { id: parseInt(id), dietaryPreferences, numPersons: parseInt(numPersons), dietaryRestrictions, confirmation };
+        }
+      } else {
+        // Agregar nuevo registro
+        const newRecord = {
+          id: data.length ? Math.max(...data.map((record) => record.id)) + 1 : 1,
+          dietaryPreferences,
+          numPersons: parseInt(numPersons),
+          dietaryRestrictions,
+          confirmation,
+        };
+        data.push(newRecord);
+      }
+
+      renderTable();
+      form.reset(); // Limpiar formulario
+    });
+
+    // Función para editar un registro
+    function editRecord(id) {
+      const record = data.find((record) => record.id == id);
+      if (record) {
+        recordIdInput.value = record.id;
+        dietaryPreferencesInput.value = record.dietaryPreferences;
+        numPersonsInput.value = record.numPersons;
+        dietaryRestrictionsInput.value = record.dietaryRestrictions;
+        confirmationInput.checked = record.confirmation;
+      }
+    }
+
+    // Función para eliminar un registro
+    function deleteRecord(id) {
+      if (confirm('¿Estás seguro de eliminar este registro?')) {
+        data = data.filter((record) => record.id != id); // Filtrar el registro eliminado
+        renderTable();
+      }
+    }
+  </script>
+</body>
+</html>

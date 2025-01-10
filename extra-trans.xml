@@ -1,0 +1,322 @@
+
+<translations>
+<!--Artículos sobre Dietas Saludables-->
+  <key name="title">
+    <es>Artículos sobre Dietas Saludables</es>
+    <en>Articles about Healthy Diets</en>
+  </key>
+  <key name="arti.title">
+    <es>Artículos sobre Dietas Saludables</es>
+    <en>Articles about Healthy Diets</en>
+  </key>
+  <key name="arti.parrafo">
+    <es>Todo lo que necesitas saber para mantener una vida saludable y disfrutar de una alimentación balanceada</es>
+    <en>Everything you need to know to maintain a healthy life and enjoy a balanced diet</en>
+  </key>
+  <key name="arti-salu.title">
+    <es>Las Dietas Saludables</es>
+    <en>Healthy Diets</en>
+  </key>
+  <key name="arti-salu.subtitle">
+    <es>Definición y Beneficios</es>
+    <en>Definition and Benefits</en>
+  </key>
+   <key name="arti-salu.parrafo1">
+    <es>Las dietas saludables se basan en el consumo equilibrado de alimentos que aportan los nutrientes necesarios para el funcionamiento óptimo del cuerpo. Esto incluye una amplia variedad de alimentos como frutas, verduras, proteínas magras, granos enteros y grasas saludables.</es>
+    <en>Healthy diets are based on the balanced consumption of foods that provide the nutrients necessary for the optimal functioning of the body. This includes a wide variety of foods such as fruits, vegetables, lean proteins, whole grains, and healthy fats.</en>
+  </key>
+  <key name="arti-salu.parrafo2">
+    <es>Incorporar estos alimentos a tu dieta diaria tiene múltiples beneficios para tu salud, como mejorar la salud cardiovascular, controlar el peso, aumentar los niveles de energía y reducir el riesgo de enfermedades crónicas.</es>
+    <en>Incorporating these foods into your daily diet has multiple benefits for your health, such as improving cardiovascular health, weight control, increasing energy levels and reducing the risk of chronic diseases.</en>
+  </key>
+  <key name="arti-salu.subtitle1">
+    <es>Beneficios de una Dieta Saludable:</es>
+    <en>Benefits of a Healthy Diet:</en>
+  </key>
+  <key name="arti-salu.lista1">
+    <es>Mejora la salud cardiovascular: Disminuye el riesgo de enfermedades cardíacas al mantener una presión arterial saludable.</es>
+    <en>Improves cardiovascular health: Decreases the risk of heart disease by maintaining healthy blood pressure.</en>
+  </key>
+  <key name="arti-salu.lista2">
+    <es>Control de peso: Una dieta rica en fibra y baja en grasas saturadas ayuda a mantener el peso corporal adecuado.</es>
+    <en>Weight control: A diet rich in fiber and low in saturated fat helps maintain adequate body weight.</en>
+  </key>
+  <key name="arti-salu.lista3">
+    <es>Aumento de energía: Los alimentos frescos y naturales proporcionan energía constante durante el día.</es>
+    <en>Increased energy: Fresh, natural foods provide constant energy throughout the day.</en>
+  </key>
+  <key name="arti-salu.lista4">
+    <es>Prevención de enfermedades crónicas: Reducir el riesgo de diabetes, hipertensión, y ciertos tipos de cáncer.</es>
+    <en>Prevention of chronic diseases: Reduce the risk of diabetes, hypertension, and certain types of cancer.</en>
+  </key>
+    <key name="arti-salu.subtitle2">
+    <es>Tipos de Dietas Saludables:</es>
+    <en>Types of Healthy Diets:</en>
+  </key>
+  <key name="arti-salu.lista5">
+    <es>Dieta Mediterránea: Rica en frutas, verduras, aceite de oliva y pescado. Promueve la salud del corazón y la longevidad.</es>
+    <en>Mediterranean Diet: Rich in fruits, vegetables, olive oil and fish. Promotes heart health and longevity.</en>
+  </key>
+   <key name="arti-salu.lista6">
+    <es>Dieta DASH: Diseñada para reducir la presión arterial, enfocándose en alimentos bajos en sodio y ricos en potasio, calcio y magnesio.</es>
+    <en>DASH Diet: Designed to lower blood pressure by focusing on foods low in sodium and rich in potassium, calcium and magnesium.</en>
+  </key>
+   <key name="arti-salu.lista7">
+    <es>Dieta Plant-Based: Basada en alimentos de origen vegetal, con el objetivo de reducir el consumo de carne y productos animales.</es>
+    <en>Plant-Based Diet: Based on foods of plant origin, with the aim of reducing the consumption of meat and animal products.</en>
+  </key>
+  <key name="arti-salu.subtitle3">
+    <es>Consejos para Empezar:</es>
+    <en>Tips to Get Started:</en>
+  </key>
+  <key name="arti-salu.parrafo">
+    <es>Si quieres comenzar a implementar una dieta más saludable, aquí tienes algunos consejos:</es>
+    <en>If you want to start implementing a healthier diet, here are some tips:</en>
+  </key>
+  <key name="arti-salu.lista8">
+    <es>Come más frutas y verduras: Intenta incluir al menos 5 porciones al día.</es>
+    <en>Eat more fruits and vegetables: Try to include at least 5 servings a day.</en>
+  </key>
+  <key name="arti-salu.lista9">
+    <es>Opta por grasas saludables: Usa aceite de oliva, aguacates y frutos secos en lugar de grasas saturadas.</es>
+    <en>Opt for fats healthy: Use olive oil, avocados and nuts instead of saturated fats.
+</en>
+  </key>
+  <key name="arti-salu.lista10">
+  <es>Controla las porciones: Evita comer en exceso controlando las cantidades y disfrutando de tus alimentos con moderación.</es>
+  <en>Control portions: Avoid overeating by controlling quantities and enjoying your food in moderation.</en>
+  </key>
+  <key name="arti-bene.title">
+    <es>Beneficios de las Frutas y Verduras</es>
+    <en>Benefits of Fruits and Vegetables</en>
+  </key>
+  <key name="arti-bene.parrafo1">
+    <es>Las frutas y verduras son esenciales en una dieta saludable. Proporcionan fibra, vitaminas y minerales que ayudan a mejorar tu salud general.</es>
+    <en>Fruits and vegetables are essential in a healthy diet. They provide fiber, vitamins and minerals that help improve your overall health.</en>
+  </key>
+  <key name="arti-bene.title1">
+    <es>Pescado: Una Excelente Fuente de Proteína</es>
+    <en>Fish: An Excellent Source of Protein</en>
+  </key>
+    <key name="arti-bene.parrafo2">
+    <es>El pescado es una gran fuente de proteínas magras, grasas saludables y antioxidantes que promueven la salud cardiovascular.</es>
+    <en>Fish is a great source of lean protein, healthy fats, and antioxidants that promote cardiovascular health.</en>
+  </key>
+  <key name="arti-copy.title">
+    <es>© 2025 Artículos sobre Dietas Saludables - Todos los derechos reservados.</es>
+    <en>© 2025 Articles about Healthy Diets - All rights reserved.</en>
+  </key>
+  <!--Videos de Cocina Fáciles y Rápidas-->
+   <key name="title1">
+    <es>Videos de Cocina Fáciles y Rápidas</es>
+    <en>Quick and Easy Cooking Videos</en>
+  </key>
+   <key name="vide.title">
+    <es>Videos de Cocina Fáciles y Rápidas</es>
+    <en>Quick and Easy Cooking Videos</en>
+  </key>
+   <key name="vide.parrafo">
+    <es>Recetas sencillas y deliciosas para preparar en minutos</es>
+    <en>Simple and delicious recipes to prepare in minutes</en>
+  </key>
+  <key name="vide-reco.subtitle1">
+    <es>Recomendaciones</es>
+    <en>Recommendations</en>
+  </key>
+  <key name="vide-reco.parrafo1">
+    <es>Si estás buscando recetas fáciles y rápidas que no te tomen mucho tiempo ni requieran ingredientes complicados, ¡has llegado al lugar indicado! Aquí te presentamos algunas opciones de recetas para que disfrutes de comidas rápidas y nutritivas.</es>
+    <en>If you're looking for quick and easy recipes that don't take a lot of time or require complicated ingredients, you've come to the right place! Here we present some recipe options so you can enjoy quick and nutritious meals.</en>
+  </key>
+  <key name="vide-reco.subtitle2">
+    <es>Ejemplos de Recetas Fáciles</es>
+    <en>Examples of Easy Recipes</en>
+  </key>
+  <key name="vide-reco.lista1">
+    <es>Ensaladas Rápidas: Usa ingredientes frescos como vegetales, legumbres y proteínas (pollo, atún, tofu).</es>
+    <en>Quick Salads: Use fresh ingredients such as vegetables, legumes and proteins (chicken, tuna, tofu).</en>
+  </key>
+    <key name="vide-reco.lista2">
+    <es>Platos de una Sola Sartén: Recetas fáciles como salteados de vegetales con pollo o tofu.</es>
+    <en>One-Pan Dishes: Easy recipes like vegetable stir-fries with chicken or tofu.</en>
+  </key>
+  <key name="vide-reco.lista3">
+    <es>Smoothies Energéticos: Prepara bebidas saludables con frutas, yogur o leche vegetal, y semillas.</es>
+    <en>Energy Smoothies: Prepare healthy drinks with fruits, yogurt or vegetable milk, and seeds.</en>
+  </key>
+    <key name="vide-reco.subtitle3">
+    <es>Plataformas Sugeridas</es>
+    <en>Suggested Platforms</en>
+  </key>
+  <key name="vide-reco.parrafo2">
+    <es>Para encontrar más ideas y tutoriales, te recomendamos explorar los siguientes canales:</es>
+    <en>To find more ideas and tutorials, we recommend exploring the following channels:</en>
+  </key>
+  <key name="vide-reco.lista4">
+    <es>YouTube: Canal "Tasty" para recetas rápidas y fáciles.</es>
+    <en>YouTube: "Tasty" channel for quick and easy recipes.</en>
+  </key>
+  <key name="vide-reco.lista5">
+    <es>TikTok: Videos cortos y creativos con recetas rápidas y fáciles.</es>
+    <en>TikTok: Short and creative videos with quick and easy recipes.</en>
+  </key>
+      <key name="vide-fa.title">
+    <es>Videos de Recetas Fáciles</es>
+    <en>Easy Recipe Videos</en>
+  </key>
+  <key name="vide-fa.subtitle1">
+    <es>Receta: Ensalada Rápida con Pollo y Legumbres</es>
+    <en>Recipe: Quick Salad with Chicken and Legumes</en>
+  </key>
+  <key name="vide-fa.parrafo1">
+    <es>En este video aprenderás a preparar una ensalada fresca, ligera y llena de nutrientes. ¡Perfecta para cualquier momento del día!</es>
+    <en>In this video you will learn how to prepare a fresh, light salad full of nutrients. Perfect for any time of the day!</en>
+  </key>
+      <key name="vide-fa.subtitle2">
+    <es>Receta: Salteado de Vegetales con Tofu</es>
+    <en>Recipe: Stir-Fried Vegetables with Tofu</en>
+  </key>
+    <key name="vide-fa.parrafo2">
+    <es>Un delicioso y rápido plato de una sola sartén. Perfecto para una comida rápida pero deliciosa.</es>
+    <en>A delicious and quick one-pan dish. Perfect for a quick but delicious meal.</en>
+  </key>
+  <key name="vide-fa.subtitle3">
+    <es>Receta: Smoothie Energético de Frutas</es>
+    <en>Recipe: Energy Fruit Smoothie</en>
+  </key>
+      <key name="vide-fa.parrafo3">
+    <es>Un smoothie lleno de vitaminas, perfecto para empezar el día con energía. ¡Fresco y delicioso!</es>
+    <en>A smoothie full of vitamins, perfect to start the day with energy. Fresh and delicious!</en>
+  </key>
+      <key name="vide-copy.title">
+    <es>© 2025 Videos de Cocina Fáciles y Rápidas - Todos los derechos reservados.</es>
+    <en>© 2025 Quick and Easy Cooking Videos - All rights reserved.</en>
+  </key>
+  <!--Cómo Planificar Comidas para la Semana-->
+  <key name="title2">
+    <es>Guías sobre Cómo Planificar Comidas para la Semana</es>
+    <en>Guides on How to Plan Meals for the Week</en>
+  </key>
+      <key name="guias.title">
+    <es>Cómo Planificar Comidas para la Semana</es>
+    <en>How to Plan Meals for the Week</en>
+  </key>
+    <key name="guias.parrafo">
+    <es>Reduce el estrés, ahorra tiempo y come de manera saludable con estos sencillos pasos</es>
+    <en>Reduce stress, save time and eat healthy with these simple steps</en>
+  </key>
+  <key name="guias-plan.title">
+    <es>Importancia de la Planificación</es>
+    <en>Importance of Planning</en>
+  </key>
+   <key name="guias-plan.parrafo">
+    <es>Planificar tus comidas semanalmente es clave para mantener un estilo de vida saludable. No solo te ayuda a reducir el estrés a la hora de cocinar, sino que también evita decisiones impulsivas que podrían no ser tan saludables. Además, ¡puedes ahorrar tiempo y dinero!</es>
+    <en>Planning your meals weekly is key to maintaining a healthy lifestyle. Not only does it help you reduce stress when cooking, but it also prevents impulsive decisions that might not be so healthy. Plus, you can save time and money!</en>
+  </key>
+    <key name="guias-pas.title">
+    <es>Pasos para Planificar Comidas</es>
+    <en>Steps to Plan Meals</en>
+  </key>
+  <key name="guias-pas.subtitle">
+    <es>1. Haz una lista de compras semanal</es>
+    <en>1. Make a weekly shopping list</en>
+  </key>
+      <key name="guias-pas.parrafo">
+    <es>Comienza haciendo una lista con los ingredientes básicos que necesitarás: vegetales frescos, proteínas (pollo, pescado, tofu), granos como arroz integral o quinoa, y algunos ingredientes no perecederos como especias y aceites</es>
+    <en>Start by making a list of the basic ingredients you'll need: fresh vegetables, proteins (chicken, fish, tofu), grains like brown rice or quinoa, and some non-perishable ingredients like spices and oils.</en>
+  </key>
+  <key name="guias-rece.title">
+    <es>2. Elige recetas fáciles y balanceadas</es>
+    <en>2. Choose easy and balanced recipes</en>
+  </key>
+  <key name="guias-rece.parrafo">
+    <es>Planifica una combinación de platos fáciles y nutritivos que se adapten a tu rutina. Incluye ensaladas frescas, sopas rápidas, y platos de una sola sartén. Mantén la variedad para no aburrirte.</es>
+    <en>Plan a combination of easy, nutritious dishes that fit into your routine. Includes fresh salads, quick soups, and one-pan dishes. Keep variety so you don't get bored.</en>
+  </key>
+      <key name="guias-pre.title">
+    <es>3. Prepara ingredientes con antelación</es>
+    <en>3. Prepare ingredients in advance</en>
+  </key>
+  <key name="guias-pre.parrafo">
+    <es>Lava y corta tus vegetales, cocina granos y proteínas con anticipación para ahorrar tiempo durante la semana. Guárdalos en recipientes herméticos para mantener su frescura.</es>
+    <en>Wash and cut your vegetables, cook grains and proteins ahead of time to save time during the week. Store them in airtight containers to maintain freshness.</en>
+  </key>
+  <key name="guias-div.title">
+    <es>4. Diversifica las opciones</es>
+    <en>4. Diversify the options</en>
+  </key>
+  <key name="guias-div.parrafo">
+    <es>Alterna entre diferentes tipos de platos durante la semana: sopas, ensaladas, pastas integrales, y stir-fries. Esto ayudará a que tus comidas sean más interesantes y sabrosas.</es>
+    <en>Alternate between different types of dishes during the week: soups, salads, whole wheat pastas, and stir-fries. This will help make your meals more interesting and tasty.</en>
+  </key>
+    <key name="guias-copy.title">
+    <es>© 2025 Planificación de Comidas - Todos los derechos reservados.</es>
+    <en>© 2025 Meal Planning - All rights reserved.</en>
+  </key>
+  <!--Consejos sobre el Control de Porciones-->
+  <key name="title3">
+    <es>Consejos sobre el Control de Porciones</es>
+    <en>Tips on Portion Control</en>
+  </key>
+  <key name="por.title">
+    <es>Consejos sobre el Control de Porciones</es>
+    <en>Tips on Portion Control</en>
+  </key>
+  <key name="por.parrafo">
+    <es>Aprende cómo controlar las porciones para mantener un peso saludable y evitar el exceso de calorías.</es>
+    <en>Learn how to control portions to maintain a healthy weight and avoid excess calories.</en>
+  </key>
+  <key name="por-im.title">
+    <es>¿Por qué es Importante?</es>
+    <en>Why is it important?</en>
+  </key>
+  <key name="por-im.parrafo">
+    <es>El control de porciones es esencial para mantener un peso saludable, ya que ayuda a evitar el consumo excesivo de calorías. Además, una adecuada distribución de las porciones a lo largo del día puede mejorar la digestión y mantener un balance nutricional adecuado.</es>
+    <en>Portion control is essential for maintaining a healthy weight as it helps prevent excessive calorie consumption. In addition, an adequate distribution of portions throughout the day can improve digestion and maintain an adequate nutritional balance.</en>
+  </key>
+  <key name="por.con.title">
+    <es>Consejos para Controlar las Porciones</es>
+    <en>Tips for Portion Control</en>
+  </key>
+  <key name="por-con.subtitle1">
+    <es>1. Usa Platos Más Pequeños</es>
+    <en>1. Use Smaller Plates</en>
+  </key>
+    <key name="por-con.parrafo1">
+    <es>Usa platos más pequeños para 
+    Los platos más pequeños ayudan a reducir el tamaño de las porciones visualmente, lo que puede ayudarte a comer menos sin sentir que estás sacrificando la cantidad de comida.</es>
+    <en>Use smaller plates to
+                                    Smaller plates help visually reduce portion sizes, which can help you eat less without feeling like you're sacrificing the amount of food.</en>
+  </key>
+  <key name="por-con.subtitle2">
+    <es>2. Prepara Porciones Individuales</es>
+    <en>2. Prepare Individual Servings</en>
+  </key>
+  <key name="por-con.parrafo2">
+    <es>Cocinar o servir porciones individuales te ayudará a evitar comer en exceso. Esto también es útil para llevar comidas preparadas durante la semana.</es>
+    <en>Cooking or serving individual portions will help you avoid overeating. This is also useful for carrying prepared meals during the week.</en>
+  </key>
+  <key name="por-con.subtitle3">
+    <es>3. Escucha tu Hambre</es>
+    <en>3. Listen to your Hunger</en>
+  </key>
+  <key name="por-con.parrafo3">
+    <es>Comer lentamente y detenerse cuando te sientas satisfecho, no lleno, es clave para evitar comer en exceso. Aprender a escuchar las señales de tu cuerpo puede ayudarte a comer con conciencia.</es>
+    <en>Eating slowly and stopping when you feel satisfied, not full, is key to avoiding overeating. Learning to listen to your body's signals can help you eat mindfully.</en>
+  </key>
+  <key name="por-con.subtitle4">
+    <es>4. Revisa las Etiquetas Nutricionales</es>
+    <en>4. Check Nutrition Labels</en>
+  </key>
+  <key name="por-con.parrafo4">
+    <es>Presta atención al tamaño de las porciones recomendadas en las etiquetas nutricionales de los productos que compras. Esto te ayudará a comprender mejor lo que estás consumiendo.</es>
+    <en>Pay attention to the recommended serving sizes on the nutrition labels of the products you buy. This will help you better understand what you are consuming.</en>
+  </key>
+    <key name="por-vid.title">
+    <es>Video sobre el Control de Porciones</es>
+    <en>Portion Control Video</en>
+  </key>
+  <key name="por-copy.title">
+    <es>© 2025 Control de Porciones - Todos los derechos reservados.</es>
+    <en>© 2025 Portion Control - All rights reserved.</en>
+  </key>
+</translations>

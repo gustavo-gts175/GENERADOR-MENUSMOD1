@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "dietaryPreferences": "Vegetariano",
+      "numPersons": 4,
+      "dietaryRestrictions": "Ninguna",
+      "confirmation": true
+    },
+    {
+      "id": 2,
+      "dietaryPreferences": "Sin Gluten",
+      "numPersons": 2,
+      "dietaryRestrictions": "Alérgico al maní",
+      "confirmation": false
+    }
+  ]
+  

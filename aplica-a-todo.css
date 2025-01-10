@@ -1,0 +1,16 @@
+/*Esta parte del estilo se aplica a esta pagina para los controles del mouse */
+.dropdown-menu {
+    display: none; /* con esto se oculta los submenús inicialmente */
+    position: absolute;
+    top: 100%; /* Despliega justo debajo del menú principal */
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block; /* Muestra los submenús al pasar el mouse */
+  }
+  
+  .dropdown-menu .dropdown-item {
+    white-space: nowrap;
+  }

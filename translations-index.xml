@@ -1,0 +1,137 @@
+
+<translations>
+  <key name="title">
+    <es>¡Bienvenido a Generador de Menús!</es>
+    <en>Welcome to Menu Planner!</en>
+  </key>
+  <key name="carousel1.title">
+    <es>¡Planifica tus menús semanales en minutos!</es>
+    <en>Plan Your Weekly Menus in Minutes!</en>
+  </key>
+  <key name="carousel1.subtitle">
+    <es>Con nuestro generador de menús, disfrutarás de una planificación fácil y rápida para toda la semana.</es>
+    <en>With our menu generator, enjoy quick and easy weekly planning.</en>
+  </key>
+  <key name="carousel1.button">
+    <es>Comienza ahora</es>
+    <en>Start now</en>
+  </key>
+  <key name="carousel2.title">
+    <es>Descubre cómo funciona</es>
+    <en>Find out how it works</en>
+  </key>
+  <key name="carousel2.subtitle">
+    <es>Mira este breve video para aprender cómo usar nuestro generador de menús.</es>
+    <en>Watch this short video to learn how to use our menu builder.</en>
+  </key>
+  <key name="carousel2.button">
+    <es>Explorar más</es>
+    <en>Explore more</en>
+  </key>
+  <key name="carousel3.title">
+    <es>Comidas equilibradas para toda la semana</es>
+    <en>Balanced meals for the whole week</en>
+  </key>
+  <key name="carousel3.subtitle">
+    <es>Desde recetas rápidas hasta opciones más elaboradas, adapta tu menú a tus necesidades.</es>
+    <en>From quick recipes to more elaborate options, adapt your menu to your needs.</en>
+  </key>
+  <key name="carousel3.button">
+    <es>Descubre nuestras opciones</es>
+    <en> Discover our options</en>
+  </key>
+    <key name="carousel4.title">
+    <es>¡Hazlo más fácil y rápido!</es>
+    <en>Make it easier and faster!</en>
+  </key>
+  <key name="carousel4.subtitle">
+    <es> Genera menús personalizados con solo unos clics y olvídate de la preocupación semanal.</es>
+    <en> Generate personalized menus with just a few clicks and forget about weekly worries.</en>
+  </key>
+  <key name="carousel4.button">
+    <es>Empieza ahora</es>
+    <en> Start now</en>
+  </key>
+  <key name="beneficios.title">
+    <es>¿Por qué usar nuestro generador de menús?</es>
+    <en>¿Why use our menu builder?</en>
+  </key>
+  <key name="beneficios.subtitle">
+    <es>La mejor herramienta para planificar tus comidas semanales de forma rápida y sencilla.</es>
+    <en>  The best tool to plan your weekly meals quickly and easily.</en>
+  </key>
+    <key name="tiempo.title">
+    <es> Ahorra tiempo</es>
+    <en>Save time</en>
+  </key>
+  <key name="tiempo.subtitle">
+    <es>Olvídate del estrés de planificar cada comida. Con solo unos clics, tendrás tu menú completo.</es>
+    <en>Forget the stress of planning each meal. With just a few clicks, you will have your complete menu.</en>
+  </key>
+  <key name="pers.title">
+    <es>Menús personalizados</es>
+    <en>Custom menus</en>
+  </key>
+  <key name="pers.subtitle">
+    <es>dapta el menú a tus preferencias alimenticias, restricciones o objetivos nutricionales.</es>
+    <en>Adapt the menu to your dietary preferences, restrictions or nutritional goals.</en>
+  </key>
+  <key name="varied.title">
+    <es> Variedad de opciones</es>
+    <en>Variety of options</en>
+  </key>
+  <key name="varied.subtitle">
+    <es> Explora una amplia gama de recetas para todos los gustos y necesidades.</es>
+    <en>Explore a wide range of recipes for all tastes and needs.</en>
+  </key>
+  <key name="listo.title">
+    <es>¿Listo para empezar?</es>
+    <en>¿Ready to get started?</en>
+  </key>
+  <key name="listo.subtitle">
+    <es>Comienza a generar tu menú semanal hoy mismo y lleva la planificación de tus comidas al siguiente nivel.</es>
+    <en>Start generating your weekly menu today and take your meal planning to the next level.</en>
+  </key>
+  <key name="listo.button">
+    <es>Genera tu Menú Ahora</es>
+    <en>Generate your Menu Now</en>
+  </key>
+  <key name="seman.title">
+    <es>Menús semanales recomendados</es>
+    <en>Recommended weekly menus</en>
+  </key>
+  <key name="seman.subtitle">
+    <es>Echa un vistazo a nuestras recomendaciones de menús para diferentes objetivos.</es>
+    <en>Take a look at our menu recommendations for different objectives.</en>
+  </key>
+  <key name="salu.title">
+    <es>Menú Saludable</es>
+    <en>Healthy Menu</en>
+  </key>
+  <key name="salu.subtitle">
+    <es>Recetas balanceadas que te ayudarán a mantenerte en forma y saludable.</es>
+    <en>Balanced recipes that will help you stay fit and healthy.</en>
+  </key>
+  <key name="vega.title">
+    <es>Menú Vegano</es>
+    <en>Vegan Menu</en>
+  </key>
+  <key name="vega.subtitle">
+    <es>Menú 100% vegetal para aquellos que siguen una dieta vegana.</es>
+    <en>vegetable menu for those who follow a vegan diet.</en>
+  </key>
+  <key name="rap.title">
+    <es>Menú Rápido</es>
+    <en>Quick Menu</en>
+  </key>
+  <key name="rap.subtitle">
+    <es>Recetas fáciles y rápidas para aquellos con poco tiempo para cocinar.</es>
+    <en>Quick and easy recipes for those with little time to cook.</en>
+  </key> 
+  <key name="copy.title">
+    <es>2025 Generador de Menús para la Semana. Todos los derechos reservados.</es>
+    <en>2025 Menu Generator for the Week. All rights reserved.</en>
+  </key>
+          
+
+</translations>

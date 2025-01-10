@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title3">Consejos sobre el Control de Porciones</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery para simplificar -->
+    <script src="https://unpkg.com/i18next@21.6.3/i18next.min.js"></script> <!-- i18next -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="aplica-a-todo.css"><!--esta es el enlace de estilo-->
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: rgb(63, 60, 60);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #00bcd4;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            border-radius: 0 0 50% 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #00bcd4;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .card-custom {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .card-custom-body {
+            padding: 30px;
+        }
+
+        .card-custom-title {
+            font-size: 1.8rem;
+            color: #00bcd4;
+            margin-bottom: 20px;
+        }
+
+        .card-custom-text {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .video-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .video-section iframe {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            height: 450px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .col-md-6 {
+            margin-bottom: 30px;
+        }
+
+        .image-section img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-warning navbar-light sticky-top">
+   
+        <div class="container-fluid">
+    
+          <a class="navbar-brand" href="#">
+            <img src="img/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-center">
+          ZITEX</a>
+          <!-- Selector de idioma -->
+      <div>
+        <select id="language-selector">
+          <option value="en">English</option>
+          <option value="es" selected>Español</option>
+        </select>
+      </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto" id="menu">
+              <!-- Aqui XML-->
+            </div>
+          </div>
+        </div>
+      </nav>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <!--Scrip para cambiar de idioma de los menus principales y submenus dinamicante desde xml y json-->
+  <script>
+    let currentLang = "es"; // Idioma actual
+
+    function loadXML(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "menu1.xml", true);
+      xhr.onload = function () { 
+        if (xhr.status === 200) {
+          const xmlDoc = xhr.responseXML;
+          callback(null, xmlDoc);
+        } else {
+          callback(new Error("Error al cargar el menú XML."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function loadJSON(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "submenu1.json", true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const jsonData = JSON.parse(xhr.responseText);
+          callback(null, jsonData);
+        } else {
+          callback(new Error("Error al cargar el JSON de submenús."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function generateMenu(xmlDoc, jsonData) {
+      const items = xmlDoc.getElementsByTagName("item");
+      let menuHTML = ""; // Eliminamos la lista duplicada
+
+      for (let i = 0; i < items.length; i++) {
+        const nombreNode = items[i].getElementsByTagName("nombre")[0];
+        const nombre = nombreNode.getElementsByTagName(currentLang)[0].textContent;
+        const link = items[i].getElementsByTagName("link")[0].textContent;
+
+        // Menú principal
+        menuHTML += `
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="${link}" id="navbarDropdown-${i}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ${nombre}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown-${i}">
+        `;
+
+        // Submenús
+        const menuKey = nombreNode.getElementsByTagName("es")[0].textContent; // Usar clave en español como referencia
+        const submenuData = jsonData[menuKey];
+
+        if (submenuData && submenuData.length > 0) {
+          submenuData.forEach(submenu => {
+            const submenuNombre = submenu.nombre[currentLang];
+            menuHTML += `
+              <li><a class="dropdown-item" href="${submenu.link}">${submenuNombre}</a></li>
+            `;
+          });
+        } else {
+          menuHTML += `
+            <li><span class="dropdown-item-text">No hay submenús disponibles</span></li>
+          `;
+        }
+
+        menuHTML += `</ul></li>`;
+      }
+
+      // Insertar el menú generado en el contenedor adecuado
+      document.getElementById("menu").innerHTML = menuHTML;
+    }
+
+    function changeLanguage(newLang) {
+      currentLang = newLang;
+      loadXML(function (xmlError, xmlDoc) {
+        if (xmlError) {
+          console.error(xmlError);
+          return;
+        }
+
+        loadJSON(function (jsonError, jsonData) {
+          if (jsonError) {
+            console.error(jsonError);
+            return;
+          }
+
+          generateMenu(xmlDoc, jsonData);
+        });
+      });
+    }
+
+    // Cargar XML y JSON inicialmente
+    loadXML(function (xmlError, xmlDoc) {
+      if (xmlError) {
+        console.error(xmlError);
+        return;
+      }
+
+      loadJSON(function (jsonError, jsonData) {
+        if (jsonError) {
+          console.error(jsonError);
+          return;
+        }
+
+        generateMenu(xmlDoc, jsonData);
+      });
+    });
+
+    // Asignar evento al selector de idioma
+    document.getElementById("language-selector").addEventListener("change", function (event) {
+      changeLanguage(event.target.value);
+    });
+  </script>
+<!--Aqui termina el script para el cambio de idiomas (internalizacion)-->
+    
+<!--scrip para la internalizacion del contenido-->
+<script>
+     //Función para cargar el archivo XML -->
+    function loadTranslations(language) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "extra-trans.xml", true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var parser = new DOMParser();
+          var xmlDoc = parser.parseFromString(xhr.responseText, "application/xml");
+
+          var translations = {};
+          var keys = xmlDoc.getElementsByTagName("key");
+          for (var i = 0; i < keys.length; i++) {
+            var name = keys[i].getAttribute("name");
+            var value = keys[i].getElementsByTagName(language)[0].textContent;
+            translations[name] = value;
+          }
+
+          i18next.init(
+            {
+              lng: language,
+              resources: {
+                [language]: {
+                  translation: translations,
+                },
+              },
+            },
+            function (err, t) {
+              document.querySelectorAll("[data-i18n]").forEach(function (element) {
+                element.innerHTML = t(element.getAttribute("data-i18n"));
+              });
+            }
+          );
+        }
+      };
+      xhr.send();
+    }
+
+    // Cambiar idioma con el selector
+    document.getElementById("language-selector").addEventListener("change", function () {
+      loadTranslations(this.value);
+    });
+
+    // Idioma predeterminado al cargar la página
+    window.onload = function () {
+      loadTranslations("es");
+    };
+  </script>
+  <!--Aqui termina el script de la internalizacion del contenido-->
+    
+    <!-- Header Section -->
+    <div class="header">
+        <h1 data-i18n="por.title">Consejos sobre el Control de Porciones</h1>
+        <p data-i18n="por.parrafo">Aprende cómo controlar las porciones para mantener un peso saludable y evitar el exceso de calorías.</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <!-- Importance Section -->
+                <div class="card-custom">
+                    <div class="card-custom-body">
+                        <h2 class="card-custom-title" data-i18n="por-im.title">¿Por qué es Importante?</h2>
+                        <p class="card-custom-text" data-i18n="por-im.parrafo">El control de porciones es crucial para
+                            El control de porciones es esencial para mantener un peso saludable, ya que ayuda a evitar el consumo excesivo de calorías. Además, una adecuada distribución de las porciones a lo largo del día puede mejorar la digestión y mantener un balance nutricional adecuado.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tips Section -->
+                <h3 class="section-title" data-i18n="por.con.title">Consejos para Controlar las Porciones</h3>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card-custom">
+                            <div class="card-custom-body">
+                                <h4 class="card-custom-title" data-i18n="por-con.subtitle1">1. Usa Platos Más Pequeños</h4>
+                                <p class="card-custom-text" data-i18n="por-con.parrafo1">Usa platos más pequeños para
+                                    Los platos más pequeños ayudan a reducir el tamaño de las porciones visualmente, lo que puede ayudarte a comer menos sin sentir que estás sacrificando la cantidad de comida.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-custom">
+                            <div class="card-custom-body">
+                                <h4 class="card-custom-title" data-i18n="por-con.subtitle2">2. Prepara Porciones Individuales</h4>
+                                <p class="card-custom-text" data-i18n="por-con.parrafo2">
+                                    Cocinar o servir porciones individuales te ayudará a evitar comer en exceso. Esto también es útil para llevar comidas preparadas durante la semana.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card-custom">
+                            <div class="card-custom-body">
+                                <h4 class="card-custom-title" data-i18n="por-con.subtitle3">3. Escucha tu Hambre</h4>
+                                <p class="card-custom-text" data-i18n="por-con.parrafo3">
+                                    Comer lentamente y detenerse cuando te sientas satisfecho, no lleno, es clave para evitar comer en exceso. Aprender a escuchar las señales de tu cuerpo puede ayudarte a comer con conciencia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-custom">
+                            <div class="card-custom-body">
+                                <h4 class="card-custom-title" data-i18n="por-con.subtitle4">4. Revisa las Etiquetas Nutricionales</h4>
+                                <p class="card-custom-text" data-i18n="por-con.parrafo4">
+                                    Presta atención al tamaño de las porciones recomendadas en las etiquetas nutricionales de los productos que compras. Esto te ayudará a comprender mejor lo que estás consumiendo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Section -->
+                <div class="image-section">
+                    <img src="img/contr-por.jpg" alt="Control de porciones">
+                </div>
+
+                <!-- Video Section -->
+                <div class="video-section">
+                    <h3 class="section-title" data-i18n="por-vid.title">Video sobre el Control de Porciones</h3>
+                    <iframe src="https://www.youtube.com/embed/gq0Vno6P_lo" allowfullscreen></iframe>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p data-i18n="por-copy.title">&copy; 2025 Control de Porciones - Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

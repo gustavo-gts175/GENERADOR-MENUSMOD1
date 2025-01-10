@@ -1,0 +1,388 @@
+
+<translations>
+<!--Foros sobre recetas y menús-->
+  <key name="title">
+    <es>Comunidad Culinaria - Consejos y Recetas</es>
+    <en>Culinary Community - Tips and Recipes</en>
+  </key>
+  <key name="foros.title">
+    <es>Comunidad Culinaria</es>
+    <en>Culinary Community</en>
+  </key>
+  <key name="foros.subtitle">
+    <es>Comparte recetas, participa en retos y mejora tu cocina mientras te diviertes.</es>
+    <en>Share recipes, participate in challenges and improve your cooking while having fun.</en>
+  </key>
+  <key name="foros-men.title">
+    <es>Foros sobre Recetas y Menús</es>
+    <en>Forums about Recipes and Menus</en>
+  </key>
+  <key name="foros-men.parrafo">
+    <es>Únete a nuestros foros para discutir recetas, intercambiar ideas y obtener consejos útiles de otros cocineros apasionados.</es>
+    <en>Join our forums to discuss recipes, exchange ideas, and get helpful tips from other passionate cooks.</en>
+  </key>
+   <key name="foros-tem.title">
+    <es>Crear un Nuevo Tema</es>
+    <en>Create a New Topic</en>
+  </key>
+  <key name="foros-tem.label">
+    <es>Título del Tema</es>
+    <en>Topic Title</en>
+  </key>
+  <key name="foros-tem.label1">
+    <es>Contenido del Tema</es>
+    <en>Topic Content</en>
+  </key>
+  <key name="foros-tem.button">
+    <es>Crear Tema</es>
+    <en>Create Theme</en>
+  </key>
+  <key name="foros-pas.title">
+    <es>¿Cómo hacer un pastel de chocolate perfecto?</es>
+    <en>How to make a perfect chocolate cake?</en>
+  </key>
+  <key name="foros-pas.parrafo">
+    <es>Publicado por JuanCocinero el 31 de diciembre, 2024</es>
+    <en>Posted by JohnCook on December 31, 2024</en>
+  </key>
+  <key name="foros-pas.parrafo1">
+    <es>En este tema quiero compartir con ustedes algunos consejos que me han ayudado a hacer el pastel de chocolate perfecto. ¿Cuáles son sus mejores recetas o trucos para hacerlo?</es>
+    <en>In this topic I want to share with you some tips that have helped me make the perfect chocolate cake. What are your best recipes or tricks for making it?</en>
+  </key>
+    <key name="foros-pas.parrafo2">
+    <es>ChefLiz: Yo siempre recomiendo usar cacao en polvo de buena calidad y agregar un toque de café para intensificar el sabor del chocolate.</es>
+    <en>ChefLiz: I always recommend using good quality cocoa powder and adding a touch of coffee to intensify the chocolate flavor.</en>
+  </key>
+  <key name="foros-pas.parrafo3">
+    <es>MariaChef: ¡Interesante! Nunca pensé en agregar café. Probaré esa recomendación en mi próxima receta.</es>
+    <en>MariaChef: Interesting! I never thought about adding coffee. I will try that recommendation in my next recipe.</en>
+  </key>
+   <key name="foros-pas.label">
+    <es>Deja tu comentario</es>
+    <en>Leave your comment</en>
+  </key>
+   <key name="foros-pas.button">
+    <es>Comentar</es>
+    <en>Comment</en>
+  </key>
+  <key name="foros-us.title">
+    <es>Recetas de Otros Usuarios</es>
+    <en>Recipes from Other Users</en>
+  </key>
+  <key name="foros-us.subtitle">
+    <es>Explora las recetas favoritas de la comunidad, calificadas y comentadas por otros usuarios.</es>
+    <en>Explore the community's favorite recipes, rated and commented on by other users.</en>
+  </key>
+  <key name="foros-us.subtitle1">
+    <es>Tacos de Pescado</es>
+    <en>Fish Tacos</en>
+  </key>
+  <key name="foros-us.parrafo1">
+    <es>Una receta deliciosa y saludable para preparar tacos de pescado con salsa fresca y guarniciones.</es>
+    <en>A delicious and healthy recipe to prepare fish tacos with fresh sauce and garnishes.</en>
+  </key>
+  <key name="foros-us.subtitle2">
+  <es>Ensalada Mediterránea</es>
+  <en>Mediterranean Salad</en>
+  </key>
+ <key name="foros-us.parrafo2">
+  <es>Disfruta de una ensalada fresca con ingredientes mediterráneos, ideal para el verano.</es>
+  <en>Enjoy a fresh salad with Mediterranean ingredients, ideal for summer.</en>
+  </key>
+  <key name="foros-us.subtitle3">
+    <es>Pastel de Chocolate</es>
+    <en>Chocolate cake</en>
+  </key>
+  <key name="foros-us.parrafo3">
+    <es>Una receta irresistible de pastel de chocolate para los amantes de los postres.</es>
+    <en>a recipe Irresistible chocolate cake for dessert lovers.</en>
+  </key>
+  <key name="foros-vid.title">
+    <es>Video de Cocina</es>
+    <en>Cooking Video</en>
+  </key>
+    <key name="foros-coc.title">
+    <es>Encuentros y Retos de Cocina</es>
+    <en>Meetings and Cooking Challenges</en>
+  </key>
+  <key name="foros-coc.parrafo">
+    <es>Participa en nuestros retos culinarios y demuestra tu habilidad en la cocina mientras te diviertes con otros miembros.</es>
+    <en>Take part in our culinary challenges and show off your cooking skills while having fun with other members.</en>
+  </key>
+   <key name="foros-coc.subtitle1">
+    <es>Reto de Cocina Vegana</es>
+    <en>Vegan Cooking Challenge</en>
+  </key>
+   <key name="foros-coc.parrafo1">
+    <es>¡Acepta el reto de preparar platos veganos! Comparte tus recetas y compite por ser el mejor chef vegano.</es>
+    <en>Accept the challenge of preparing vegan dishes! Share your recipes and compete to be the best vegan chef.</en>
+  </key>
+   <key name="foros-coc.subtitle2">
+    <es>Reto de Postres Caseros</es>
+    <en>Homemade Dessert Challenge</en>
+  </key>
+  <key name="foros-coc.parrafo2">
+    <es>Los postres caseros nunca fallan. Participa y demuestra tus habilidades en el mundo de los postres</es>
+    <en>Homemade desserts never fail. Participate and demonstrate your skills in the world of desserts</en>
+  </key>
+  <key name="foros-copy.title">
+    <es>© 2024 Comunidad Culinaria. Todos los derechos reservados.</es>
+    <en>© 2024 Culinary Community. All rights reserved.</en>
+  </key>
+
+  <!--Recetas de otros usuarios-->
+
+  <key name="title1">
+    <es>Recetas de otros usuarios</es>
+    <en>Recipes from other users</en>
+  </key>
+  <key name="rece.title">
+    <es>Recetas de otros usuarios</es>
+    <en>Recipes from other users</en>
+  </key>
+    <key name="rece.subtitle1">
+    <es>Tarta de Frutas</es>
+    <en>Fruit Cake</en>
+  </key>
+  <key name="rece.parrafo1">
+    <es>Una deliciosa tarta con frutas frescas, perfecta para el verano.</es>
+    <en>A delicious cake with fresh fruits, perfect for summer.</en>
+  </key>
+      <key name="rece.button1">
+    <es>Ver receta</es>
+    <en>See recipe</en>
+  </key>
+  <key name="rece.subtitle2">
+    <es>Hamburguesa Vegana</es>
+    <en>Vegan Burger</en>
+  </key>
+  <key name="rece.parrafo2">
+    <es>Una opción saludable y deliciosa para los amantes de la comida vegana.</es>
+    <en>A healthy and delicious option for vegan food lovers.</en>
+  </key>
+      <key name="rece.button2">
+    <es>Ver receta</es>
+    <en>See recipe</en>
+  </key>
+  <key name="rece.subtitle3">
+    <es>Brownies Sin Gluten</es>
+    <en>Gluten Free Brownies</en>
+  </key>
+  <key name="rece.parrafo3">
+    <es>Un postre irresistible para quienes evitan el gluten.</es>
+    <en>An irresistible dessert for those who avoid gluten.</en>
+  </key>
+      <key name="rece.button3">
+    <es>Ver receta</es>
+    <en>See recipe</en>
+  </key>
+    <key name="rece.subtitle4">
+    <es>Smoothie Tropical</es>
+    <en>Tropical Smoothie</en>
+  </key>
+  <key name="rece.parrafo4">
+    <es>Una bebida refrescante y saludable con frutas tropicales.</es>
+    <en>A refreshing and healthy drink with tropical fruits.</en>
+  </key>
+      <key name="rece.button4">
+    <es>Ver receta</es>
+    <en>See recipe</en>
+  </key>
+      <key name="rece.subtitle5">
+    <es>Smoothie Tropical</es>
+    <en>Tropical Smoothie</en>
+  </key>
+  <key name="rece.parrafo5">
+    <es>Una bebida refrescante y saludable con frutas tropicales.</es>
+    <en>A refreshing and healthy drink with tropical fruits.</en>
+  </key>
+      <key name="rece.button5">
+    <es>Ver receta</es>
+    <en>See recipe</en>
+  </key>
+    <key name="rece.subtitle6">
+    <es>Brownies Sin Gluten</es>
+    <en>Gluten Free Brownies</en>
+  </key>
+  <key name="rece.parrafo6">
+    <es>Un postre irresistible para quienes evitan el gluten.</es>
+    <en>An irresistible dessert for those who avoid gluten.</en>
+  </key>
+      <key name="rece.button6">
+    <es>Ver receta</es>
+    <en>See recipe</en>
+  </key>
+    <key name="rece.subtitle7">
+    <es>Hamburguesa Vegana</es>
+    <en>Vegan Burger</en>
+  </key>
+  <key name="rece.parrafo7">
+    <es>Una opción saludable y deliciosa para los amantes de la comida vegana.</es>
+    <en>A healthy and delicious option for vegan food lovers.</en>
+  </key>
+      <key name="rece.button7">
+    <es>Ver receta</es>
+    <en>See recipe</en>
+  </key>
+  <key name="rece.subtitle8">
+    <es>Tarta de Frutas</es>
+    <en>Fruit Cake</en>
+  </key>
+  <key name="rece.parrafo8">
+    <es>Una deliciosa tarta con frutas frescas, perfecta para el verano.</es>
+    <en>A delicious cake with fresh fruits, perfect for summer.</en>
+  </key>
+      <key name="rece.button8">
+    <es>Ver receta</es>
+    <en>See recipe</en>
+  </key>
+
+  <!--Encuentros y Retos de Cocina-->
+
+  <key name="title2">
+    <es>Encuentros y Retos de Cocina</es>
+    <en>Meetings and Cooking Challenges</en>
+  </key>
+  <key name="enc.title">
+    <es>Encuentros y Retos de Cocina</es>
+    <en>Meetings and Cooking Challenges</en>
+  </key>
+  <key name="enc.subtitle">
+    <es>Participa en los retos culinarios y demuestra tus habilidades en la cocina</es>
+    <en>Participate in culinary challenges and show your cooking skills</en>
+  </key>
+    <key name="enc.title2">
+    <es>Próximos Retos</es>
+    <en>Next Challenges</en>
+  </key>
+  <key name="enc-com.title">
+    <es>¿Cómo Participar?</es>
+    <en>How to Participate?</en>
+  </key>
+  <key name="enc-com.subtitle">
+    <es>¡Es muy fácil! Solo tienes que seguir estos pasos:</es>
+    <en>It's very easy! You just have to follow these steps:</en>
+  </key>
+  <key name="enc-com.lista1">
+    <es>Elige un reto culinario en el calendario.</es>
+    <en>Choose a culinary challenge on the calendar.</en>
+  </key>
+  <key name="enc-com.lista2">
+    <es>Sube una foto de tu plato siguiendo las reglas del reto.</es>
+    <en>Upload a photo of your dish following the rules of the challenge.</en>
+  </key>
+  <key name="enc-com.lista3">
+    <es>Vota por las recetas que más te gusten y comenta tu experiencia.</es>
+    <en>Vote for the recipes you like the most and comment on your experience.</en>
+  </key>
+  <key name="enc-su.title">
+    <es>Sube tu Foto y Vota</es>
+    <en>Upload your Photo and Vote</en>
+  </key>
+  <key name="enc-su.label">
+    <es>Sube tu Foto del Plato</es>
+    <en>Upload your Photo of the Plate</en>
+  </key>
+    <key name="enc-su.title1">
+    <es>Reto: Pizza Casera</es>
+    <en>Challenge: Homemade Pizza</en>
+  </key>
+  <key name="enc-su.parrafo">
+    <es>Muestra tu mejor pizza casera y compártela con la comunidad.</es>
+    <en>Show off your best homemade pizza and share it with the community.</en>
+  </key>
+  <key name="enc-su.button">
+    <es>Votar por esta receta</es>
+    <en>Vote for this recipe</en>
+  </key>
+  <key name="enc-ex.title">
+    <es>Comentarios y Experiencias</es>
+    <en>Comments and Experiences</en>
+  </key>
+  <key name="enc-ex.subtitle1">
+    <es>ChefLiz:</es>
+    <en>ChefLiz:</en>
+  </key>
+  <key name="enc-ex.parrafo1">
+    <es>¡Este reto de pizza fue increíble! Disfruté mucho haciendo la masa desde cero. Definitivamente haré esta receta más seguido..</es>
+    <en>This pizza challenge was amazing! I really enjoyed making the dough from scratch. I will definitely make this recipe more often.</en>
+  </key>
+  <key name="enc-ex.subtitle2">
+    <es>ReyCocinero:</es>
+    <en>KingCook:</en>
+  </key>
+    <key name="enc-ex.parrafo2">
+    <es>Mi pizza fue un éxito. El secreto está en usar ingredientes frescos. ¡Gracias por el reto!</es>
+    <en>My pizza was a success. The secret is to use fresh ingredients. Thanks for the challenge!</en>
+  </key>
+  <key name="enc-ex.subtitle3">
+    <es>Deja tu comentario</es>
+    <en>Leave your comment</en>
+  </key>
+    <key name="enc-ex.button">
+    <es>Comentar</es>
+    <en>Comment</en>
+  </key>
+  <key name="enc-copy.title">
+    <es>© 2024 Comunidad Culinaria. Todos los derechos reservados.</es>
+    <en>© 2024 Culinary Community. All rights reserved.</en>
+  </key>
+  <!--Compartir Menús Personalizados-->
+  <key name="title3">
+    <es>Compartir Menús Personalizados</es>
+    <en>Share Custom Menus</en>
+  </key>
+   <key name="compartir.title">
+    <es>Compartir Menús Personalizados</es>
+    <en>Share Custom Menus</en>
+  </key>
+  <key name="compartir.parrafo">
+    <es>Crea menús exclusivos, comparte con la comunidad y recibe retroalimentación para mejorar tus creaciones culinarias.</es>
+    <en>Create exclusive menus, share with the community and receive feedback to improve your culinary creations.</en>
+  </key>
+  <key name="compartir-perso.title">
+    <es>Crea tu Menú Personalizado</es>
+    <en>Create your Custom Menu</en>
+  </key>
+    <key name="compartir-perso.label1">
+    <es>Nombre del Menú</es>
+    <en>Menu Name</en>
+  </key>
+  <key name="compartir-perso.label2">
+    <es>Lista de Recetas</es>
+    <en>Recipe List</en>
+  </key>
+    <key name="compartir-perso.label3">
+    <es>Notas del Menú</es>
+    <en>Menu Notes</en>
+  </key>
+    <key name="compartir-perso.button">
+    <es>Compartir Menú</es>
+    <en>Share Menu</en>
+  </key>
+  <key name="compartir-retro.title">
+    <es>Recibe Retroalimentación</es>
+    <en>Receive Feedback</en>
+  </key>
+  <key name="compartir-retro.subtitle">
+    <es>Comentarios de la Comunidad</es>
+    <en>Community Comments</en>
+  </key>
+  <key name="compartir-retro.parrafo1">
+    <es>ChefLuna: ¡Me encanta este menú! Las recetas son muy saludables y fáciles de preparar. Definitivamente lo probaré.</es>
+    <en>ChefLuna: I love this menu! The recipes are very healthy and easy to prepare. I will definitely try it.</en>
+  </key>
+    <key name="compartir-retro.parrafo2">
+    <es>GastronomeX: ¡Qué increíble menú! Sería genial si incluyeras una receta de postre saludable.</es>
+    <en>GastronomeX: What an incredible menu! It would be great if you included a healthy dessert recipe.</en>
+  </key>
+  <key name="compartir-retro.button">
+    <es>Guardar este Menú</es>
+    <en>Save this Menu</en>
+  </key>
+    <key name="compartir.copy">
+    <es>© 2024 Comunidad Culinaria. Todos los derechos reservados.</es>
+    <en>© 2024 Culinary Community. All rights reserved.</en>
+  </key>
+
+</translations>

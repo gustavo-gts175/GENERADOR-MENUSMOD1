@@ -1,0 +1,27 @@
+/*esta parte es el body*/
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('img/fon2.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    margin: 0;
+    padding: 20px;
+}
+
+
+.dropdown-menu {
+  display: none; /* Oculta los submenús inicialmente */
+  position: absolute;
+  top: 100%; /* Despliega justo debajo del menú principal */
+  left: 0;
+  z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block; /* Muestra los submenús al pasar el mouse */
+}
+
+.dropdown-menu .dropdown-item {
+  white-space: nowrap;
+}

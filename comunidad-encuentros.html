@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title2">Encuentros y Retos de Cocina</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery para simplificar -->
+    <script src="https://unpkg.com/i18next@21.6.3/i18next.min.js"></script> <!-- i18next -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="aplica-a-todo.css"><!--esta es el enlace de estilo-->
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff00ff, #ff7f00, #ff00ff, #00ff00);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .section-title {
+            color: #fff;
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-custom {
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: linear-gradient(135deg, #ff007f, #ff8c00);
+            color: #fff;
+        }
+
+        .card-custom:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #ff8c00, #ff007f);
+        }
+
+        .btn-custom {
+            background-color: #FF00FF;
+            color: white;
+            border-radius: 20px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-custom:hover {
+            background-color: #FF8C00;
+        }
+
+        .upload-section input[type="file"] {
+            display: none;
+        }
+
+        .upload-section label {
+            background-color: #00FF00;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .upload-section label:hover {
+            background-color: #00BFFF;
+        }
+
+        .calendar-container {
+            margin-top: 30px;
+        }
+
+        .comments-box {
+            background-color: #ffcc00;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .vote-button {
+            background-color: #ff0099;
+            color: white;
+            border-radius: 10px;
+            padding: 8px 15px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .vote-button:hover {
+            background-color: #ff6f00;
+        }
+
+        .calendar {
+            background-color: #ffff00;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-warning navbar-light sticky-top">
+   
+        <div class="container-fluid">
+    
+          <a class="navbar-brand" href="#">
+            <img src="img/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-center">
+          ZITEX</a>
+          <!-- Selector de idioma -->
+      <div>
+        <select id="language-selector">
+          <option value="en">English</option>
+          <option value="es" selected>Español</option>
+        </select>
+      </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto" id="menu">
+              <!-- Aqui XML-->
+            </div>
+          </div>
+        </div>
+      </nav>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <!--Scrip para cambiar de idioma de los menus principales y submenus dinamicante desde xml y json-->
+  <script>
+    let currentLang = "es"; // Idioma actual
+
+    function loadXML(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "menu1.xml", true);
+      xhr.onload = function () { 
+        if (xhr.status === 200) {
+          const xmlDoc = xhr.responseXML;
+          callback(null, xmlDoc);
+        } else {
+          callback(new Error("Error al cargar el menú XML."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function loadJSON(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "submenu1.json", true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const jsonData = JSON.parse(xhr.responseText);
+          callback(null, jsonData);
+        } else {
+          callback(new Error("Error al cargar el JSON de submenús."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function generateMenu(xmlDoc, jsonData) {
+      const items = xmlDoc.getElementsByTagName("item");
+      let menuHTML = ""; // Eliminamos la lista duplicada
+
+      for (let i = 0; i < items.length; i++) {
+        const nombreNode = items[i].getElementsByTagName("nombre")[0];
+        const nombre = nombreNode.getElementsByTagName(currentLang)[0].textContent;
+        const link = items[i].getElementsByTagName("link")[0].textContent;
+
+        // Menú principal
+        menuHTML += `
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="${link}" id="navbarDropdown-${i}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ${nombre}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown-${i}">
+        `;
+
+        // Submenús
+        const menuKey = nombreNode.getElementsByTagName("es")[0].textContent; // Usar clave en español como referencia
+        const submenuData = jsonData[menuKey];
+
+        if (submenuData && submenuData.length > 0) {
+          submenuData.forEach(submenu => {
+            const submenuNombre = submenu.nombre[currentLang];
+            menuHTML += `
+              <li><a class="dropdown-item" href="${submenu.link}">${submenuNombre}</a></li>
+            `;
+          });
+        } else {
+          menuHTML += `
+            <li><span class="dropdown-item-text">No hay submenús disponibles</span></li>
+          `;
+        }
+
+        menuHTML += `</ul></li>`;
+      }
+
+      // Insertar el menú generado en el contenedor adecuado
+      document.getElementById("menu").innerHTML = menuHTML;
+    }
+
+    function changeLanguage(newLang) {
+      currentLang = newLang;
+      loadXML(function (xmlError, xmlDoc) {
+        if (xmlError) {
+          console.error(xmlError);
+          return;
+        }
+
+        loadJSON(function (jsonError, jsonData) {
+          if (jsonError) {
+            console.error(jsonError);
+            return;
+          }
+
+          generateMenu(xmlDoc, jsonData);
+        });
+      });
+    }
+
+    // Cargar XML y JSON inicialmente
+    loadXML(function (xmlError, xmlDoc) {
+      if (xmlError) {
+        console.error(xmlError);
+        return;
+      }
+
+      loadJSON(function (jsonError, jsonData) {
+        if (jsonError) {
+          console.error(jsonError);
+          return;
+        }
+
+        generateMenu(xmlDoc, jsonData);
+      });
+    });
+
+    // Asignar evento al selector de idioma
+    document.getElementById("language-selector").addEventListener("change", function (event) {
+      changeLanguage(event.target.value);
+    });
+  </script>
+<!--Aqui termina el script para el cambio de idiomas (internalizacion)-->
+    
+<!--scrip para la internalizacion del contenido-->
+<script>
+     //Función para cargar el archivo XML -->
+    function loadTranslations(language) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "comunidad-trans.xml", true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var parser = new DOMParser();
+          var xmlDoc = parser.parseFromString(xhr.responseText, "application/xml");
+
+          var translations = {};
+          var keys = xmlDoc.getElementsByTagName("key");
+          for (var i = 0; i < keys.length; i++) {
+            var name = keys[i].getAttribute("name");
+            var value = keys[i].getElementsByTagName(language)[0].textContent;
+            translations[name] = value;
+          }
+
+          i18next.init(
+            {
+              lng: language,
+              resources: {
+                [language]: {
+                  translation: translations,
+                },
+              },
+            },
+            function (err, t) {
+              document.querySelectorAll("[data-i18n]").forEach(function (element) {
+                element.innerHTML = t(element.getAttribute("data-i18n"));
+              });
+            }
+          );
+        }
+      };
+      xhr.send();
+    }
+
+    // Cambiar idioma con el selector
+    document.getElementById("language-selector").addEventListener("change", function () {
+      loadTranslations(this.value);
+    });
+
+    // Idioma predeterminado al cargar la página
+    window.onload = function () {
+      loadTranslations("es");
+    };
+  </script>
+  <!--Aqui termina el script de la internalizacion del contenido-->
+    <!-- Header -->
+    <header class="text-center text-white py-5">
+        <h1 class="display-4" data-i18n="enc.title">Encuentros y Retos de Cocina</h1>
+        <p class="lead" data-i18n="enc.subtitle">Participa en los retos culinarios y demuestra tus habilidades en la cocina.</p>
+    </header>
+
+    <!-- Calendario de Retos -->
+    <section class="container calendar-container">
+        <h2 class="section-title" data-i18n="enc.title2">Próximos Retos</h2>
+        <div id="calendar"></div>
+    </section>
+
+    <!-- Información sobre cómo participar -->
+    <section class="container py-5">
+        <h2 class="section-title" data-i18n="enc-com.title">¿Cómo Participar?</h2>
+        <p class="text-white text-center" data-i18n="enc-com.subtitle">¡Es muy fácil! Solo tienes que seguir estos pasos:</p>
+        <ol class="text-white">
+            <li data-i18n="enc-com.lista1">Elige un reto culinario en el calendario.</li>
+            <li data-i18n="enc-com.lista2">Sube una foto de tu plato siguiendo las reglas del reto.</li>
+            <li data-i18n="enc-com.lista3">Vota por las recetas que más te gusten y comenta tu experiencia.</li>
+        </ol>
+    </section>
+
+    <!-- Subir Fotos y Votaciones -->
+    <section class="container py-5">
+        <h2 class="section-title" data-i18n="enc-su.title">Sube tu Foto y Vota</h2>
+        <div class="row">
+            <!-- Espacio para subir fotos -->
+            <div class="col-md-6">
+                <div class="upload-section">
+                    <label for="upload-photo" data-i18n="enc-su.label">Sube tu Foto del Plato</label>
+                    <input type="file" id="upload-photo" name="photo" accept="image/*">
+                </div>
+            </div>
+
+            <!-- Ejemplo de reto con fotos y votación -->
+            <div class="col-md-6">
+                <div class="card card-custom">
+                    <img src="img/slider1.jpg" class="card-img-top" alt="Plato reto">
+                    <div class="card-body">
+                        <h5 class="card-title" data-i18n="enc-su.title1">Reto: Pizza Casera</h5>
+                        <p class="card-text" data-i18n="enc-su.parrafo">Muestra tu mejor pizza casera y compártela con la comunidad.</p>
+                        <button class="vote-button" data-i18n="enc-su.button">Votar por esta receta</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Espacio para comentarios de la comunidad -->
+    <section class="container py-5">
+        <h2 class="section-title" data-i18n="enc-ex.title">Comentarios y Experiencias</h2>
+
+        <div class="comments-box">
+            <h5 data-i18n="enc-ex.subtitle1"><strong>ChefLiz:</strong></h5>
+            <p data-i18n="enc-ex.parrafo1">¡Este reto de pizza fue increíble! Disfruté mucho haciendo la masa desde cero. Definitivamente haré esta receta más seguido.</p>
+        </div>
+
+        <div class="comments-box">
+            <h5 data-i18n="enc-ex.subtitle2"><strong>ReyCocinero:</strong></h5>
+            <p data-i18n="enc-ex.parrafo2">Mi pizza fue un éxito. El secreto está en usar ingredientes frescos. ¡Gracias por el reto!</p>
+        </div>
+
+        <!-- Formulario para comentarios -->
+        <div class="mt-4">
+            <h5 data-i18n="enc-ex.subtitle3">Deja tu comentario</h5>
+            <form>
+                <div class="mb-3">
+                    <textarea class="form-control" rows="3" placeholder=""></textarea>
+                </div>
+                <button type="submit" class="btn btn-custom" data-i18n="enc-ex.button">Comentar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4">
+        <p class="text-white" data-i18n="enc-copy.title">&copy; 2024 Comunidad Culinaria. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

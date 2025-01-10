@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title1">Videos de Cocina Fáciles y Rápidas</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery para simplificar -->
+    <script src="https://unpkg.com/i18next@21.6.3/i18next.min.js"></script> <!-- i18next -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="aplica-a-todo.css"><!--esta es el enlace de estilo-->
+   <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color:rgb(99, 93, 93);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FF6347, #15ff00);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 50px;
+            border-radius: 0 0 50% 50%;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.8;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #FF6347;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            margin-bottom: 30px;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            color: #FF6347;
+            margin-bottom: 15px;
+        }
+
+        .card-text {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .video-container {
+            margin-top: 30px;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+        }
+
+        .card img {
+            border-radius: 15px;
+            max-height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .col-md-6 {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-warning navbar-light sticky-top">
+   
+        <div class="container-fluid">
+    
+          <a class="navbar-brand" href="#">
+            <img src="img/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-center">
+          ZITEX</a>
+          <!-- Selector de idioma -->
+      <div>
+        <select id="language-selector">
+          <option value="en">English</option>
+          <option value="es" selected>Español</option>
+        </select>
+      </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto" id="menu">
+              <!-- Aqui XML-->
+            </div>
+          </div>
+        </div>
+      </nav>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+     <!--Scrip para cambiar de idioma de los menus principales y submenus dinamicante desde xml y json-->
+  <script>
+    let currentLang = "es"; // Idioma actual
+
+    function loadXML(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "menu1.xml", true);
+      xhr.onload = function () { 
+        if (xhr.status === 200) {
+          const xmlDoc = xhr.responseXML;
+          callback(null, xmlDoc);
+        } else {
+          callback(new Error("Error al cargar el menú XML."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function loadJSON(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "submenu1.json", true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const jsonData = JSON.parse(xhr.responseText);
+          callback(null, jsonData);
+        } else {
+          callback(new Error("Error al cargar el JSON de submenús."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function generateMenu(xmlDoc, jsonData) {
+      const items = xmlDoc.getElementsByTagName("item");
+      let menuHTML = ""; // Eliminamos la lista duplicada
+
+      for (let i = 0; i < items.length; i++) {
+        const nombreNode = items[i].getElementsByTagName("nombre")[0];
+        const nombre = nombreNode.getElementsByTagName(currentLang)[0].textContent;
+        const link = items[i].getElementsByTagName("link")[0].textContent;
+
+        // Menú principal
+        menuHTML += `
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="${link}" id="navbarDropdown-${i}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ${nombre}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown-${i}">
+        `;
+
+        // Submenús
+        const menuKey = nombreNode.getElementsByTagName("es")[0].textContent; // Usar clave en español como referencia
+        const submenuData = jsonData[menuKey];
+
+        if (submenuData && submenuData.length > 0) {
+          submenuData.forEach(submenu => {
+            const submenuNombre = submenu.nombre[currentLang];
+            menuHTML += `
+              <li><a class="dropdown-item" href="${submenu.link}">${submenuNombre}</a></li>
+            `;
+          });
+        } else {
+          menuHTML += `
+            <li><span class="dropdown-item-text">No hay submenús disponibles</span></li>
+          `;
+        }
+
+        menuHTML += `</ul></li>`;
+      }
+
+      // Insertar el menú generado en el contenedor adecuado
+      document.getElementById("menu").innerHTML = menuHTML;
+    }
+
+    function changeLanguage(newLang) {
+      currentLang = newLang;
+      loadXML(function (xmlError, xmlDoc) {
+        if (xmlError) {
+          console.error(xmlError);
+          return;
+        }
+
+        loadJSON(function (jsonError, jsonData) {
+          if (jsonError) {
+            console.error(jsonError);
+            return;
+          }
+
+          generateMenu(xmlDoc, jsonData);
+        });
+      });
+    }
+
+    // Cargar XML y JSON inicialmente
+    loadXML(function (xmlError, xmlDoc) {
+      if (xmlError) {
+        console.error(xmlError);
+        return;
+      }
+
+      loadJSON(function (jsonError, jsonData) {
+        if (jsonError) {
+          console.error(jsonError);
+          return;
+        }
+
+        generateMenu(xmlDoc, jsonData);
+      });
+    });
+
+    // Asignar evento al selector de idioma
+    document.getElementById("language-selector").addEventListener("change", function (event) {
+      changeLanguage(event.target.value);
+    });
+  </script>
+<!--Aqui termina el script para el cambio de idiomas (internalizacion)-->
+    
+<!--scrip para la internalizacion del contenido-->
+<script>
+     //Función para cargar el archivo XML -->
+    function loadTranslations(language) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "extra-trans.xml", true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var parser = new DOMParser();
+          var xmlDoc = parser.parseFromString(xhr.responseText, "application/xml");
+
+          var translations = {};
+          var keys = xmlDoc.getElementsByTagName("key");
+          for (var i = 0; i < keys.length; i++) {
+            var name = keys[i].getAttribute("name");
+            var value = keys[i].getElementsByTagName(language)[0].textContent;
+            translations[name] = value;
+          }
+
+          i18next.init(
+            {
+              lng: language,
+              resources: {
+                [language]: {
+                  translation: translations,
+                },
+              },
+            },
+            function (err, t) {
+              document.querySelectorAll("[data-i18n]").forEach(function (element) {
+                element.innerHTML = t(element.getAttribute("data-i18n"));
+              });
+            }
+          );
+        }
+      };
+      xhr.send();
+    }
+
+    // Cambiar idioma con el selector
+    document.getElementById("language-selector").addEventListener("change", function () {
+      loadTranslations(this.value);
+    });
+
+    // Idioma predeterminado al cargar la página
+    window.onload = function () {
+      loadTranslations("es");
+    };
+  </script>
+  <!--Aqui termina el script de la internalizacion del contenido-->
+    <!-- Header Section -->
+    <div class="header">
+        <h1 data-i18n="vide.title">Videos de Cocina Fáciles y Rápidas</h1>
+        <p data-i18n="vide.parrafo">Recetas sencillas y deliciosas para preparar en minutos</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Dietas Saludables Info -->
+            <div class="col-lg-10 mx-auto">
+                <!-- Card for Recommendations -->
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title" data-i18n="vide-reco.subtitle1">Recomendaciones</h2>
+                        <p class="card-text" data-i18n="vide-reco.parrafo1">
+                            Si estás buscando recetas fáciles y rápidas que no te tomen mucho tiempo ni requieran ingredientes complicados,
+                            ¡has llegado al lugar indicado! Aquí te presentamos algunas opciones de recetas para que disfrutes de comidas rápidas
+                            y nutritivas.
+                        </p>
+
+                        <h3 class="section-title" data-i18n="vide-reco.subtitle2">Ejemplos de Recetas Fáciles</h3>
+                        <ul>
+                            <li data-i18n="vide-reco.lista1">Ensaladas Rápidas: Usa ingredientes frescos como vegetales, legumbres y proteínas (pollo, atún, tofu).</li>
+                            <li data-i18n="vide-reco.lista2">Platos de una Sola Sartén: Recetas fáciles como salteados de vegetales con pollo o tofu.</li>
+                            <li data-i18n="vide-reco.lista3">Smoothies Energéticos: Prepara bebidas saludables con frutas, yogur o leche vegetal, y semillas.</li>
+                        </ul>
+
+                        <h3 class="section-title" data-i18n="vide-reco.subtitle3">Plataformas Sugeridas</h3>
+                        <p class="card-text" data-i18n="vide-reco.parrafo2">
+                            Para encontrar más ideas y tutoriales, te recomendamos explorar los siguientes canales:
+                        </p>
+                        <ul>
+                            <li data-i18n="vide-reco.lista4">YouTube: Canal "Tasty" para recetas rápidas y fáciles.</li>
+                            <li data-i18n="vide-reco.lista5">TikTok: Videos cortos y creativos con recetas rápidas y fáciles.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Video Section -->
+                <div class="video-container">
+                    <h3 class="section-title" data-i18n="vide-fa.title">Videos de Recetas Fáciles</h3>
+                    
+                    <!-- Video 1: Ensaladas Rápidas -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="vide-fa.subtitle1">Receta: Ensalada Rápida con Pollo y Legumbres</h5>
+                            <p class="card-text" data-i18n="vide-fa.parrafo1">En este video aprenderás a preparar una ensalada fresca, ligera y llena de nutrientes. ¡Perfecta para cualquier momento del día!</p>
+                        </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/3LbUtNZ9W50" title="Ensalada Rápida" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Video 2: Platos de una Sola Sartén -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="vide-fa.subtitle2">Receta: Salteado de Vegetales con Tofu</h5>
+                            <p class="card-text" data-i18n="vide-fa.parrafo2">Un delicioso y rápido plato de una sola sartén. Perfecto para una comida rápida pero deliciosa.</p>
+                        </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/jdOAgCSMAdk" title="Salteado de Vegetales con Tofu" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Video 3: Smoothie Energético -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="vide-fa.subtitle3">Receta: Smoothie Energético de Frutas</h5>
+                            <p class="card-text" data-i18n="vide-fa.parrafo3">Un smoothie lleno de vitaminas, perfecto para empezar el día con energía. ¡Fresco y delicioso!</p>
+                        </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/mtR3GRBjRns
+                            " title="Smoothie Energético" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p data-i18n="vide-copy.title">&copy; 2025 Videos de Cocina Fáciles y Rápidas - Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

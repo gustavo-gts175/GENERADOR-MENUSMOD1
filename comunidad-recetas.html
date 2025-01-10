@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title1">Recetas de otros usuarios</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery para simplificar -->
+  <script src="https://unpkg.com/i18next@21.6.3/i18next.min.js"></script> <!-- i18next -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="aplica-a-todo.css"><!--esta es el enlace de estilo-->
+  <style>
+    /* Estilos personalizados */
+    body {
+      background-color: #ffe5e0;
+      font-family: 'Arial', sans-serif;
+      padding:20px;
+    }
+    h2 {
+      font-size: 3rem;
+      color: #ff5e57;
+      font-weight: bold;
+      text-shadow: 2px 2px #fff;
+    }
+    .card {
+      border: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .card-title {
+      font-size: 1.5rem;
+      color: #ff5e57;
+      font-weight: bold;
+    }
+    .card-text {
+      font-size: 1.1rem;
+    }
+    .btn-primary {
+      background-color: #ff5e57;
+      border: none;
+      font-size: 1rem;
+      padding: 10px 20px;
+    }
+    .btn-primary:hover {
+      background-color: #ff867f;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-warning navbar-light sticky-top">
+   
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="#">
+        <img src="img/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-center">
+      ZITEX</a>
+      <!-- Selector de idioma -->
+      <div>
+        <select id="language-selector">
+          <option value="en">English</option>
+          <option value="es" selected>Español</option>
+        </select>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ms-auto" id="menu">
+          <!-- Aqui XML-->
+        </div>
+      </div>
+    </div>
+  </nav>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <!--Scrip para cambiar de idioma de los menus principales y submenus dinamicante desde xml y json-->
+  <script>
+    let currentLang = "es"; // Idioma actual
+
+    function loadXML(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "menu1.xml", true);
+      xhr.onload = function () { 
+        if (xhr.status === 200) {
+          const xmlDoc = xhr.responseXML;
+          callback(null, xmlDoc);
+        } else {
+          callback(new Error("Error al cargar el menú XML."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function loadJSON(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "submenu1.json", true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const jsonData = JSON.parse(xhr.responseText);
+          callback(null, jsonData);
+        } else {
+          callback(new Error("Error al cargar el JSON de submenús."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function generateMenu(xmlDoc, jsonData) {
+      const items = xmlDoc.getElementsByTagName("item");
+      let menuHTML = ""; // Eliminamos la lista duplicada
+
+      for (let i = 0; i < items.length; i++) {
+        const nombreNode = items[i].getElementsByTagName("nombre")[0];
+        const nombre = nombreNode.getElementsByTagName(currentLang)[0].textContent;
+        const link = items[i].getElementsByTagName("link")[0].textContent;
+
+        // Menú principal
+        menuHTML += `
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="${link}" id="navbarDropdown-${i}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ${nombre}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown-${i}">
+        `;
+
+        // Submenús
+        const menuKey = nombreNode.getElementsByTagName("es")[0].textContent; // Usar clave en español como referencia
+        const submenuData = jsonData[menuKey];
+
+        if (submenuData && submenuData.length > 0) {
+          submenuData.forEach(submenu => {
+            const submenuNombre = submenu.nombre[currentLang];
+            menuHTML += `
+              <li><a class="dropdown-item" href="${submenu.link}">${submenuNombre}</a></li>
+            `;
+          });
+        } else {
+          menuHTML += `
+            <li><span class="dropdown-item-text">No hay submenús disponibles</span></li>
+          `;
+        }
+
+        menuHTML += `</ul></li>`;
+      }
+
+      // Insertar el menú generado en el contenedor adecuado
+      document.getElementById("menu").innerHTML = menuHTML;
+    }
+
+    function changeLanguage(newLang) {
+      currentLang = newLang;
+      loadXML(function (xmlError, xmlDoc) {
+        if (xmlError) {
+          console.error(xmlError);
+          return;
+        }
+
+        loadJSON(function (jsonError, jsonData) {
+          if (jsonError) {
+            console.error(jsonError);
+            return;
+          }
+
+          generateMenu(xmlDoc, jsonData);
+        });
+      });
+    }
+
+    // Cargar XML y JSON inicialmente
+    loadXML(function (xmlError, xmlDoc) {
+      if (xmlError) {
+        console.error(xmlError);
+        return;
+      }
+
+      loadJSON(function (jsonError, jsonData) {
+        if (jsonError) {
+          console.error(jsonError);
+          return;
+        }
+
+        generateMenu(xmlDoc, jsonData);
+      });
+    });
+
+    // Asignar evento al selector de idioma
+    document.getElementById("language-selector").addEventListener("change", function (event) {
+      changeLanguage(event.target.value);
+    });
+  </script>
+<!--Aqui termina el script para el cambio de idiomas (internalizacion)-->
+    
+<!--scrip para la internalizacion del contenido-->
+<script>
+     //Función para cargar el archivo XML -->
+    function loadTranslations(language) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "comunidad-trans.xml", true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var parser = new DOMParser();
+          var xmlDoc = parser.parseFromString(xhr.responseText, "application/xml");
+
+          var translations = {};
+          var keys = xmlDoc.getElementsByTagName("key");
+          for (var i = 0; i < keys.length; i++) {
+            var name = keys[i].getAttribute("name");
+            var value = keys[i].getElementsByTagName(language)[0].textContent;
+            translations[name] = value;
+          }
+
+          i18next.init(
+            {
+              lng: language,
+              resources: {
+                [language]: {
+                  translation: translations,
+                },
+              },
+            },
+            function (err, t) {
+              document.querySelectorAll("[data-i18n]").forEach(function (element) {
+                element.innerHTML = t(element.getAttribute("data-i18n"));
+              });
+            }
+          );
+        }
+      };
+      xhr.send();
+    }
+
+    // Cambiar idioma con el selector
+    document.getElementById("language-selector").addEventListener("change", function () {
+      loadTranslations(this.value);
+    });
+
+    // Idioma predeterminado al cargar la página
+    window.onload = function () {
+      loadTranslations("es");
+    };
+  </script>
+  <!--Aqui termina el script de la internalizacion del contenido-->
+  <div class="container my-5">
+    <!-- Título -->
+    <h2 class="text-center mb-5" data-i18n="rece.title">Recetas de otros usuarios</h2>
+
+    <!-- contenedor de todas las recetas -->
+    <div class="row g-4">
+      <!-- receta 1 -->
+      <div class="col-md-3">
+        <div class="card shadow-sm">
+          <img src="img/tart-frut.webp" class="card-img-top" alt="Receta 1">
+          <div class="card-body">
+            <h5 class="card-title" data-i18n="rece.subtitle1">Tarta de Frutas</h5>
+            <p class="card-text" data-i18n="rece.parrafo1">Una deliciosa tarta con frutas frescas, perfecta para el verano.</p>
+            <a href="#" class="btn btn-primary" data-i18n="rece.button1">Ver receta</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- receta 2 -->
+      <div class="col-md-3">
+        <div class="card shadow-sm">
+          <img src="img/amb-veg.jpg" class="card-img-top" alt="Receta 2">
+          <div class="card-body">
+            <h5 class="card-title" data-i18n="rece.subtitle2">Hamburguesa Vegana</h5>
+            <p class="card-text" data-i18n="rece.parrafo2">Una opción saludable y deliciosa para los amantes de la comida vegana.</p>
+            <a href="#" class="btn btn-primary" data-i18n="rece.button2">Ver receta</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- receta 3 -->
+      <div class="col-md-3">
+        <div class="card shadow-sm">
+          <img src="img/brow-glut.jpg" class="card-img-top" alt="Receta 3">
+          <div class="card-body">
+            <h5 class="card-title" data-i18n="rece.subtitle3">Brownies Sin Gluten</h5>
+            <p class="card-text" data-i18n="rece.parrafo3">Un postre irresistible para quienes evitan el gluten.</p>
+            <a href="#" class="btn btn-primary" data-i18n="rece.button3">Ver receta</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- receta 4 -->
+      <div class="col-md-3">
+        <div class="card shadow-sm">
+          <img src="img/tropi.jpg" class="card-img-top" alt="Receta 4">
+          <div class="card-body">
+            <h5 class="card-title"  data-i18n="rece.subtitle4">Smoothie Tropical</h5>
+            <p class="card-text" data-i18n="rece.parrafo4">Una bebida refrescante y saludable con frutas tropicales.</p>
+            <a href="#" class="btn btn-primary" data-i18n="rece.button4">Ver receta</a>
+          </div>
+        </div>
+      </div>
+      <!-- rceta 5 -->
+      <div class="col-md-3">
+        <div class="card shadow-sm">
+          <img src="img/tropi.jpg" class="card-img-top" alt="Receta 4">
+          <div class="card-body">
+            <h5 class="card-title" data-i18n="rece.subtitle5">Smoothie Tropical</h5>
+            <p class="card-text" data-i18n="rece.parrafo5">Una bebida refrescante y saludable con frutas tropicales.</p>
+            <a href="#" class="btn btn-primary" data-i18n="rece.button5">Ver receta</a>
+          </div>
+        </div>
+      </div>
+     <!-- receta 6 -->
+      <div class="col-md-3">
+        <div class="card shadow-sm">
+           <img src="img/brow-glut.jpg" class="card-img-top" alt="Receta 3">
+             <div class="card-body">
+               <h5 class="card-title" data-i18n="rece.subtitle6">Brownies Sin Gluten</h5>
+               <p class="card-text" data-i18n="rece.parrafo6">Un postre irresistible para quienes evitan el gluten.</p>
+                <a href="#" class="btn btn-primary" data-i18n="rece.button6">Ver receta</a>
+              </div>
+        </div>
+       </div>
+             <!-- receta 7 -->
+      <div class="col-md-3">
+        <div class="card shadow-sm">
+          <img src="img/amb-veg.jpg" class="card-img-top" alt="Receta 2">
+          <div class="card-body">
+            <h5 class="card-title" data-i18n="rece.subtitle7">Hamburguesa Vegana</h5>
+            <p class="card-text" data-i18n="rece.parrafo7">Una opción saludable y deliciosa para los amantes de la comida vegana.</p>
+            <a href="#" class="btn btn-primary" data-i18n="rece.button7">Ver receta</a>
+          </div>
+        </div>
+      </div>
+            <!-- Receta 8 -->
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <img src="img/tart-frut.webp" class="card-img-top" alt="Receta 1">
+                <div class="card-body">
+                  <h5 class="card-title" data-i18n="rece.subtitle8">Tarta de Frutas</h5>
+                  <p class="card-text" data-i18n="rece.parrafo8">Una deliciosa tarta con frutas frescas, perfecta para el verano.</p>
+                   <a href="#" class="btn btn-primary" data-i18n="rece.button8">Ver receta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</body>
+</html>
+

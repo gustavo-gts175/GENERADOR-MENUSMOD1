@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title3">Consejos para Reducir el Desperdicio de Comida</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery para simplificar -->
+    <script src="https://unpkg.com/i18next@21.6.3/i18next.min.js"></script> <!-- i18next -->
+    <!-- Incluyendo Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="aplica-a-todo.css"><!--esta es el enlace de estilo-->
+    <style>
+        /* Efecto de movimiento de imagen al hacer clic */
+        .img-move:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+        /* Colores de texto para tarjetas */
+        .card-body {
+            color: black; /* Establece un color oscuro para el texto en las tarjetas */
+        }
+        /* Fondo de la página con paleta chillante */
+        body {
+            background: linear-gradient(45deg, #FF007F, #00ccff, #ac5076, #32a1cd, #00BFFF);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            color: #fff;
+            padding: 20px;
+        }
+
+        /* Animación para el fondo degradado */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+      
+    </style>
+</head>
+<body class="bg-light text-dark">
+    <nav class="navbar navbar-expand-lg bg-warning navbar-light sticky-top">
+   
+        <div class="container-fluid">
+    
+          <a class="navbar-brand" href="#">
+            <img src="img/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-center">
+          ZITEX</a>
+          <!-- Selector de idioma -->
+      <div>
+        <select id="language-selector">
+          <option value="en">English</option>
+          <option value="es" selected>Español</option>
+        </select>
+      </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto" id="menu">
+              <!-- Aqui XML-->
+            </div>
+          </div>
+        </div>
+      </nav>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <!--Scrip para cambiar de idioma de los menus principales y submenus dinamicante desde xml y json-->
+  <script>
+    let currentLang = "es"; // Idioma actual
+
+    function loadXML(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "menu1.xml", true);
+      xhr.onload = function () { 
+        if (xhr.status === 200) {
+          const xmlDoc = xhr.responseXML;
+          callback(null, xmlDoc);
+        } else {
+          callback(new Error("Error al cargar el menú XML."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function loadJSON(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "submenu1.json", true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const jsonData = JSON.parse(xhr.responseText);
+          callback(null, jsonData);
+        } else {
+          callback(new Error("Error al cargar el JSON de submenús."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function generateMenu(xmlDoc, jsonData) {
+      const items = xmlDoc.getElementsByTagName("item");
+      let menuHTML = ""; // Eliminamos la lista duplicada
+
+      for (let i = 0; i < items.length; i++) {
+        const nombreNode = items[i].getElementsByTagName("nombre")[0];
+        const nombre = nombreNode.getElementsByTagName(currentLang)[0].textContent;
+        const link = items[i].getElementsByTagName("link")[0].textContent;
+
+        // Menú principal
+        menuHTML += `
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="${link}" id="navbarDropdown-${i}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ${nombre}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown-${i}">
+        `;
+
+        // Submenús
+        const menuKey = nombreNode.getElementsByTagName("es")[0].textContent; // Usar clave en español como referencia
+        const submenuData = jsonData[menuKey];
+
+        if (submenuData && submenuData.length > 0) {
+          submenuData.forEach(submenu => {
+            const submenuNombre = submenu.nombre[currentLang];
+            menuHTML += `
+              <li><a class="dropdown-item" href="${submenu.link}">${submenuNombre}</a></li>
+            `;
+          });
+        } else {
+          menuHTML += `
+            <li><span class="dropdown-item-text">No hay submenús disponibles</span></li>
+          `;
+        }
+
+        menuHTML += `</ul></li>`;
+      }
+
+      // Insertar el menú generado en el contenedor adecuado
+      document.getElementById("menu").innerHTML = menuHTML;
+    }
+
+    function changeLanguage(newLang) {
+      currentLang = newLang;
+      loadXML(function (xmlError, xmlDoc) {
+        if (xmlError) {
+          console.error(xmlError);
+          return;
+        }
+
+        loadJSON(function (jsonError, jsonData) {
+          if (jsonError) {
+            console.error(jsonError);
+            return;
+          }
+
+          generateMenu(xmlDoc, jsonData);
+        });
+      });
+    }
+
+    // Cargar XML y JSON inicialmente
+    loadXML(function (xmlError, xmlDoc) {
+      if (xmlError) {
+        console.error(xmlError);
+        return;
+      }
+
+      loadJSON(function (jsonError, jsonData) {
+        if (jsonError) {
+          console.error(jsonError);
+          return;
+        }
+
+        generateMenu(xmlDoc, jsonData);
+      });
+    });
+
+    // Asignar evento al selector de idioma
+    document.getElementById("language-selector").addEventListener("change", function (event) {
+      changeLanguage(event.target.value);
+    });
+  </script>
+<!--Aqui termina el script para el cambio de idiomas (internalizacion)-->
+    
+<!--scrip para la internalizacion del contenido-->
+<script>
+     //Función para cargar el archivo XML -->
+    function loadTranslations(language) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "recomendaciones-trans.xml", true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var parser = new DOMParser();
+          var xmlDoc = parser.parseFromString(xhr.responseText, "application/xml");
+
+          var translations = {};
+          var keys = xmlDoc.getElementsByTagName("key");
+          for (var i = 0; i < keys.length; i++) {
+            var name = keys[i].getAttribute("name");
+            var value = keys[i].getElementsByTagName(language)[0].textContent;
+            translations[name] = value;
+          }
+
+          i18next.init(
+            {
+              lng: language,
+              resources: {
+                [language]: {
+                  translation: translations,
+                },
+              },
+            },
+            function (err, t) {
+              document.querySelectorAll("[data-i18n]").forEach(function (element) {
+                element.innerHTML = t(element.getAttribute("data-i18n"));
+              });
+            }
+          );
+        }
+      };
+      xhr.send();
+    }
+
+    // Cambiar idioma con el selector
+    document.getElementById("language-selector").addEventListener("change", function () {
+      loadTranslations(this.value);
+    });
+
+    // Idioma predeterminado al cargar la página
+    window.onload = function () {
+      loadTranslations("es");
+    };
+  </script>
+  <!--Aqui termina el script de la internalizacion del contenido-->
+    <!-- Encabezado -->
+    <header class="text-center py-5">
+        <h1 class="display-3 fw-bold mb-4" data-i18n="para-en.title">Consejos para Reducir el Desperdicio de Comida</h1>
+        <p class="lead mb-6" data-i18n="para-en.subtitle">Aprende cómo puedes contribuir a un mundo más sostenible con pequeños cambios, mejorando tu estilo de vida y reduciendo el impacto ambiental.</p>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container py-5">
+
+        <!-- Consejos -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+            <!-- Consejo 1 -->
+            <div class="col">
+                <div class="card bg-warning text-dark p-4 shadow-lg">
+                    <h2 class="h4 fw-semibold mb-3" data-i18n="para-com.title">Compra Solo lo Necesario</h2>
+                    <div class="card-body">
+                        <p data-i18n="para-com.parrafo1">El primer paso hacia la reducción del desperdicio de comida comienza en el supermercado. Uno de los mayores culpables del desperdicio de alimentos es la compra en exceso. Esto no solo se debe a la falta de planificación, sino también a las compras impulsivas que a menudo hacemos al ver productos en oferta o promociones. Cuando vamos a hacer las compras sin una lista clara, es fácil llenar el carrito con artículos que no necesitamos o que no vamos a consumir antes de que se echen a perder. Por ejemplo, las frutas y verduras frescas tienen una vida útil limitada y muchas veces no las consumimos a tiempo. Esto puede evitarse si compramos solo lo que vamos a utilizar en una semana o en un corto período de tiempo.</p>
+                        <p data-i18n="para-com.parrafo2">Una excelente manera de evitar el desperdicio es hacer una lista de compras antes de salir de casa y apegarse a ella lo más posible. Al hacer esta lista, es importante revisar lo que ya tienes en casa para evitar la compra innecesaria de productos que ya tienes almacenados. De esta manera, puedes optimizar los recursos que ya tienes y evitar comprar duplicados. Si eres una persona que suele olvidar qué tienes en la alacena o en la nevera, considera hacer un inventario semanal para saber qué necesitas. Además, comprar productos en menor cantidad, especialmente aquellos que son perecederos, también es una excelente estrategia. Puedes dividir las compras grandes entre varias personas de la casa o entre amigos para no sobrecargar tu cocina con productos que no usarás antes de que se echen a perder.</p>
+                        <p data-i18n="para-com.parrafo3">En cuanto a los alimentos no perecederos, como los granos, la pasta o los productos enlatados, es importante verificar sus fechas de caducidad y consumirlos antes de que venzan. Si compras en grandes cantidades, asegúrate de que los productos tengan una rotación adecuada para evitar que se queden olvidados y se descompongan. La compra responsable no solo te ayuda a evitar el desperdicio, sino que también te permitirá ahorrar dinero a largo plazo.</p>
+                    </div>
+                    <img src="img/com-neces.jpg" class="img-move rounded-lg mt-4" alt="Compra Necesaria">
+                </div>
+            </div>
+
+            <!-- Consejo 2 -->
+            <div class="col">
+                <div class="card bg-pink text-dark p-4 shadow-lg">
+                    <h2 class="h4 fw-semibold mb-3" data-i18n="para-sob.title">Aprovecha las Sobras</h2>
+                    <div class="card-body">
+                        <p data-i18n="para-sob.parrafo1">Las sobras son una de las formas más fáciles de reducir el desperdicio de comida. En lugar de simplemente tirar los restos de una comida, puedes utilizarlos para crear nuevas recetas o transformarlos en otros platos. Este es un enfoque económico y sostenible que no solo te ahorra dinero, sino que también es un gran ejemplo de aprovechamiento responsable de los recursos. Por ejemplo, si cocinas una gran cantidad de arroz o pasta, puedes reutilizar los restos en ensaladas, sopas o guisos. Las verduras que te quedan de una comida pueden convertirse en un delicioso puré o en una sopa de verduras, mientras que las carnes sobrantes pueden ser reutilizadas en tacos, sándwiches o ensaladas. Solo necesitas un poco de creatividad para hacer que las sobras se conviertan en una comida nueva y deliciosa.</p>
+                        <p data-i18n="para-sob.parrafo2">Además, al aprovechar las sobras, contribuyes a reducir la cantidad de residuos orgánicos que se generan, lo cual es un paso importante hacia la sostenibilidad. En muchos hogares, las sobras de comida se tiran sin pensarlo dos veces, pero esto no solo es un desperdicio de alimentos, sino también de los recursos que se utilizaron para producirlos, transportarlos y almacenarlos. Para aprovechar las sobras de manera más efectiva, asegúrate de almacenarlas adecuadamente. Usa recipientes herméticos para mantenerlas frescas y etiquétalas con la fecha de preparación para que sepas cuándo deben consumirse. Si tienes dudas sobre cómo recalentarlas, investiga métodos que conserven su sabor y calidad. Por ejemplo, algunos alimentos como la pizza pueden volverse más deliciosos cuando se recalientan en una sartén en lugar de en el microondas, lo que conserva mejor su textura original.</p>
+                        <p data-i18n="para-sob.parrafo3">También puedes hacer que las sobras sean una actividad divertida en la cocina. Invita a tu familia o amigos a un desafío de sobras: cada persona debe crear una receta única usando lo que queda en la nevera. Esto no solo fomenta la creatividad, sino que también ayuda a evitar que los alimentos se desperdicien. Con el tiempo, te sorprenderás de la variedad de platos sabrosos que puedes crear con los restos de comida. Aprovechar las sobras de manera responsable no solo es una forma de reducir el desperdicio, sino que también te permite disfrutar de una alimentación más diversa y saludable sin tener que gastar dinero en ingredientes nuevos.</p>
+                    </div>
+                    <img src="img/aprovech.jpg" class="img-move rounded-lg mt-4" alt="Aprovecha las Sobras">
+                </div>
+            </div>
+
+            <!-- Consejo 3 -->
+            <div class="col">
+                <div class="card bg-success text-white p-4 shadow-lg">
+                    <h2 class="h4 fw-semibold mb-3" data-i18n="para-ala.title">Organiza Tu Alacena</h2>
+                    <div class="card-body">
+                        <p data-i18n="para-ala.parrafo1">Una de las mejores maneras de evitar que los alimentos se desperdicien es organizar adecuadamente tu alacena y tu nevera. Si los productos no están organizados, es fácil olvidarse de ellos, lo que lleva a que se echen a perder sin que los uses. La organización es clave para hacer un buen uso de los recursos que tienes en casa. Un sistema organizado te permite ver lo que tienes a simple vista y utilizar los alimentos antes de que caduquen.</p>
+                        <p data-i18n="para-ala.parrafo2">Uno de los métodos más efectivos de organización es el principio de "primero en entrar, primero en salir" (FIFO). Esto significa que los alimentos que compraste primero deben ser consumidos primero. Para implementarlo, coloca los productos más antiguos en la parte delantera de tu alacena o nevera y los nuevos en la parte de atrás. De esta manera, cuando abras la puerta, siempre verás los productos más antiguos, lo que te recordará que debes usarlos antes de que se estropeen. Esto es especialmente útil con productos como el pan, la leche, los yogures, las frutas y las verduras frescas.</p>
+                        <p data-i18n="para-ala.parrafo3">Además, es recomendable dividir tu alacena en secciones según el tipo de alimentos. Por ejemplo, puedes tener una zona para cereales, otra para legumbres y una más para enlatados. Esto hace que sea mucho más fácil encontrar lo que necesitas y evita que se acumulen productos que no vas a usar. De igual manera, en la nevera, asegúrate de colocar los productos más perecederos en las zonas más frías y los que tienen una vida útil más larga en las zonas menos frías. Puedes usar envases transparentes para almacenar los alimentos, lo que te permitirá ver claramente lo que tienes y facilitará el proceso de consumo antes de que los productos caduquen.</p>
+                    </div>
+                    <img src="img/org-alam.jpg" class="img-move rounded-lg mt-4" alt="Organiza Alacena">
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="bg-dark text-center py-4">
+        <p class="text-white" data-i18n="para-foo.title">Para un futuro más verde y saludable</p>
+    </footer>
+
+    <!-- Incluyendo Bootstrap JS y Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+</body>
+</html>

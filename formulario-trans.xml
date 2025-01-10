@@ -1,0 +1,88 @@
+
+<translations>
+<!--Formulario de Generacion-->
+  <key name="title">
+    <es>Formulario de Generacion</es>
+    <en>Generation Form</en>
+  </key>
+  <key name="formu.title">
+    <es>Formulario de Generación</es>
+    <en>Generation Form</en>
+  </key>
+  <key name="formu.label1">
+    <es>Preferencias Alimenticias:</es>
+    <en>Food Preferences:</en>
+  </key>
+  <key name="formu.opcion1">
+    <es>Vegetariano</es>
+    <en>Vegetarian</en>
+  </key>
+  <key name="formu.opcion2">
+    <es>Sin Gluten</es>
+    <en>Gluten Free</en>
+  </key>
+   <key name="formu.opcion3">
+    <es>Vegano</es>
+    <en>Vegan</en>
+  </key>
+  <key name="formu.opcion4">
+    <es>Carnívoro</es>
+    <en>Carnivorous</en>
+  </key>
+  <key name="formu.opcion5">
+    <es>Otro</es>
+    <en>Other</en>
+  </key>
+  <key name="formu.label2">
+    <es>Número de Personas:</es>
+    <en>Number of People:</en>
+  </key>
+  <key name="formu.label3">
+    <es>Restricciones Dietéticas:</es>
+    <en>Dietary Restrictions:</en>
+  </key>
+  <key name="formu.label4">
+    <es>Confirmo mi selección</es>
+    <en>I confirm my selection</en>
+  </key>
+  <key name="formu.button">
+    <es>Guardar</es>
+    <en>Save</en>
+  </key>
+    <key name="formu-reg.title">
+    <es>Registros Guardados</es>
+    <en>Saved Records</en>
+  </key>
+  <key name="formu-tab.colum1">
+    <es>ID</es>
+    <en>ID</en>
+  </key>
+   <key name="formu-tab.colum2">
+    <es>Preferencias Alimenticias</es>
+    <en>Food Preferences</en>
+  </key>
+   <key name="formu-tab.colum3">
+    <es>Número de Personas</es>
+    <en>Number of People</en>
+  </key>
+  <key name="formu-tab.colum4">
+    <es>Restricciones Dietéticas</es>
+    <en>Dietary Restrictions</en>
+  </key>
+  <key name="formu-tab.colum5">
+    <es>Confirmación</es>
+    <en>Confirmation</en>
+  </key>
+  <key name="formu-tab.colum6">
+    <es>Acciones</es>
+    <en>Actions</en>
+  </key>
+  <key name="formu-tab.button1">
+    <es>Editar</es>
+    <en>Edit</en>
+  </key>
+  <key name="formu-tab.button2">
+    <es>Eliminar</es>
+    <en>Eliminate</en>
+  </key>
+</translations>

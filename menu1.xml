@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <item>
+        <nombre>
+            <es>Inicio</es>
+            <en>Home</en>
+        </nombre>
+        <link>index.html</link>
+    </item>
+    <item>
+        <nombre>
+            <es>Formulario</es>
+            <en>Form</en>
+        </nombre>
+        <link>formulario.html</link>
+    </item>
+    <item>
+        <nombre>
+            <es>Generar Menu</es>
+            <en>Generate Menu</en>
+        </nombre>
+        <link>generar-me-semanal.html</link>
+    </item>
+    <item>
+        <nombre>
+            <es>Recomendaciones</es>
+            <en>Recommendations</en>
+        </nombre>
+        <link>recomendaciones-consejos.html</link>
+    </item>
+    <item>
+        <nombre>
+            <es>Comunidad</es>
+            <en>Community</en>
+        </nombre>
+        <link>Inicio.html</link>
+    </item>
+       <item>
+        <nombre>
+            <es>Extras</es>
+            <en>Extra</en>
+        </nombre>
+        <link>comunidad-foros.html</link>
+    </item>
+    <item>
+        <nombre>
+            <es>FAQ</es>
+            <en>Faq</en>
+        </nombre>
+        <link>faq.html</link>
+    </item>
+        <item>
+        <nombre>
+            <es>Contacto</es>
+            <en>Contact</en>
+        </nombre>
+        <link>contacto-formulario.html</link>
+    </item>
+    <item>
+        <nombre>
+            <es>V-Principal</es>
+            <en>V-Main</en>
+        </nombre>
+        <link>index.html</link>
+    </item>
+</menu>

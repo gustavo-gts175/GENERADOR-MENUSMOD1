@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title1">Ideas para la alimentacion</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery para simplificar -->
+  <script src="https://unpkg.com/i18next@21.6.3/i18next.min.js"></script> <!-- i18next -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="aplica-a-todo.css"><!--esta es el enlace de estilo-->
+  <style>
+    /*esta parte es el body*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    color: #25272d;
+    background: linear-gradient(45deg, #00ff0d, #be5108, #66ee3d, #32a1cd, #00BFFF);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+}
+     /* Animación para el fondo degradado */
+     @keyframes gradientAnimation {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
+  h1, h2 {
+    color: #2c6e49;
+  }
+  
+  img {
+    max-height: 400px;
+    object-fit: cover;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  section {
+    padding: 60px 0;
+  }
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-warning navbar-light sticky-top">
+   
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="#">
+        <img src="img/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-center">
+      ZITEX</a>
+      <!-- Selector de idioma -->
+      <div>
+        <select id="language-selector">
+          <option value="en">English</option>
+          <option value="es" selected>Español</option>
+        </select>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ms-auto" id="menu">
+          <!-- Aqui XML-->
+        </div>
+      </div>
+    </div>
+  </nav>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <!--Scrip para cambiar de idioma de los menus principales y submenus dinamicante desde xml y json-->
+  <script>
+    let currentLang = "es"; // Idioma actual
+
+    function loadXML(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "menu1.xml", true);
+      xhr.onload = function () { 
+        if (xhr.status === 200) {
+          const xmlDoc = xhr.responseXML;
+          callback(null, xmlDoc);
+        } else {
+          callback(new Error("Error al cargar el menú XML."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function loadJSON(callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "submenu1.json", true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const jsonData = JSON.parse(xhr.responseText);
+          callback(null, jsonData);
+        } else {
+          callback(new Error("Error al cargar el JSON de submenús."), null);
+        }
+      };
+      xhr.send();
+    }
+
+    function generateMenu(xmlDoc, jsonData) {
+      const items = xmlDoc.getElementsByTagName("item");
+      let menuHTML = ""; // Eliminamos la lista duplicada
+
+      for (let i = 0; i < items.length; i++) {
+        const nombreNode = items[i].getElementsByTagName("nombre")[0];
+        const nombre = nombreNode.getElementsByTagName(currentLang)[0].textContent;
+        const link = items[i].getElementsByTagName("link")[0].textContent;
+
+        // Menú principal
+        menuHTML += `
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="${link}" id="navbarDropdown-${i}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ${nombre}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown-${i}">
+        `;
+
+        // Submenús
+        const menuKey = nombreNode.getElementsByTagName("es")[0].textContent; // Usar clave en español como referencia
+        const submenuData = jsonData[menuKey];
+
+        if (submenuData && submenuData.length > 0) {
+          submenuData.forEach(submenu => {
+            const submenuNombre = submenu.nombre[currentLang];
+            menuHTML += `
+              <li><a class="dropdown-item" href="${submenu.link}">${submenuNombre}</a></li>
+            `;
+          });
+        } else {
+          menuHTML += `
+            <li><span class="dropdown-item-text">No hay submenús disponibles</span></li>
+          `;
+        }
+
+        menuHTML += `</ul></li>`;
+      }
+
+      // Insertar el menú generado en el contenedor adecuado
+      document.getElementById("menu").innerHTML = menuHTML;
+    }
+
+    function changeLanguage(newLang) {
+      currentLang = newLang;
+      loadXML(function (xmlError, xmlDoc) {
+        if (xmlError) {
+          console.error(xmlError);
+          return;
+        }
+
+        loadJSON(function (jsonError, jsonData) {
+          if (jsonError) {
+            console.error(jsonError);
+            return;
+          }
+
+          generateMenu(xmlDoc, jsonData);
+        });
+      });
+    }
+
+    // Cargar XML y JSON inicialmente
+    loadXML(function (xmlError, xmlDoc) {
+      if (xmlError) {
+        console.error(xmlError);
+        return;
+      }
+
+      loadJSON(function (jsonError, jsonData) {
+        if (jsonError) {
+          console.error(jsonError);
+          return;
+        }
+
+        generateMenu(xmlDoc, jsonData);
+      });
+    });
+
+    // Asignar evento al selector de idioma
+    document.getElementById("language-selector").addEventListener("change", function (event) {
+      changeLanguage(event.target.value);
+    });
+  </script>
+<!--Aqui termina el script para el cambio de idiomas (internalizacion)-->
+    
+<!--scrip para la internalizacion del contenido-->
+<script>
+     //Función para cargar el archivo XML -->
+    function loadTranslations(language) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "recomendaciones-trans.xml", true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var parser = new DOMParser();
+          var xmlDoc = parser.parseFromString(xhr.responseText, "application/xml");
+
+          var translations = {};
+          var keys = xmlDoc.getElementsByTagName("key");
+          for (var i = 0; i < keys.length; i++) {
+            var name = keys[i].getAttribute("name");
+            var value = keys[i].getElementsByTagName(language)[0].textContent;
+            translations[name] = value;
+          }
+
+          i18next.init(
+            {
+              lng: language,
+              resources: {
+                [language]: {
+                  translation: translations,
+                },
+              },
+            },
+            function (err, t) {
+              document.querySelectorAll("[data-i18n]").forEach(function (element) {
+                element.innerHTML = t(element.getAttribute("data-i18n"));
+              });
+            }
+          );
+        }
+      };
+      xhr.send();
+    }
+
+    // Cambiar idioma con el selector
+    document.getElementById("language-selector").addEventListener("change", function () {
+      loadTranslations(this.value);
+    });
+
+    // Idioma predeterminado al cargar la página
+    window.onload = function () {
+      loadTranslations("es");
+    };
+  </script>
+  <!--Aqui termina el script de la internalizacion del contenido-->
+<main>
+    <div id="ideas">
+        <h2 data-i18n="ideas-alim.title">Ideas para una alimentación balanceada</h2>
+        <p data-i18n="ideas-alim.subtitle">Una alimentación balanceada es esencial para mantener una buena salud.</p>
+
+        <h3 data-i18n="ideas-gru.title">Grupos Alimenticios</h3>
+        <ul>
+            <li data-i18n="ideas-gru.lista1"><strong>Frutas:</strong> Incluye variedad y colores.</li>
+            <li data-i18n="ideas-gru.lista2"><strong>Verduras:</strong> Consume al menos cinco porciones al día.</li>
+            <li data-i18n="ideas-gru.lista3"><strong>Granos:</strong> Prefiere los integrales.</li>
+            <li data-i18n="ideas-gru.lista4"><strong>Proteínas:</strong> Varía entre carnes, legumbres y frutos secos.</li>
+        </ul>
+
+        <h3 data-i18n="ideas-rece.title">Recetas Sugeridas</h3>
+        <p data-i18n="ideas-rece.subtitle">Aquí podrías incluir recetas que incorporen todos los grupos alimenticios.</p>
+    </div>
+        <section class="bg-light py-4 text-center">
+            <h1 class="mb-3"data-i18n="ideas-bal.title">Ideas para una Alimentación Balanceada</h1>
+            <p class="text-muted" data-i18n="ideas-bal.subtitle">Descubre cómo mejorar tu salud con pequeños cambios diarios.</p>
+        </section>
+        <section id="variedad" class="py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h2 data-i18n="ideas-vad.title">1. Elige alimentos variados</h2>
+                        <p data-i18n="ideas-vad.subtitle">Incluye en tu dieta alimentos de todos los grupos: proteínas, carbohidratos, grasas saludables, vitaminas y minerales.</p>
+                    </div>
+                    <div class="col-md-6">
+                         <img src="img/ali_var.jpg" alt="Alimentos variados" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="frutas" class="bg-light py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <h2 data-i18n="ideas-fru.title">2. Consume frutas y verduras diariamente</h2>
+                        <p data-i18n="ideas-fru.subtitle">Las frutas y verduras son una fuente importante de vitaminas, minerales y fibra. Asegúrate de incluir al menos cinco porciones al día.</p>
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <img src="img/frutas.mine.jpg" alt="Frutas y verduras" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="cereales" class="py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h2 data-i18n="ideas-cer.title">3. Opta por cereales integrales</h2>
+                        <p data-i18n="ideas-cer.subtitle">Prefiere cereales integrales como arroz integral, avena o pan integral. Estos aportan más fibra y nutrientes que los refinados.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="img/cereales1.jpeg" alt="Cereales integrales" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </section>
+  <section id="proteinas" class="bg-light py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 order-md-2">
+          <h2 data-i18n="ideas-prot.title">4. Consume proteínas saludables</h2>
+          <p data-i18n="ideas-prot.subtitle">Incluye opciones como pollo, pescado, legumbres y frutos secos para un crecimiento y reparación saludables.</p>
+        </div>
+        <div class="col-md-6 order-md-1">
+          <img src="img/grasas_salu1.jpg" alt="Proteínas saludables" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="grasas" class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h2 data-i18n="ideas-gras.title">5. No olvides las grasas saludables</h2>
+          <p data-i18n="ideas-gras.subtitle">Las grasas saludables, como las que se encuentran en el aguacate, el aceite de oliva y los frutos secos, son esenciales para el cerebro y el corazón.</p>
+        </div>
+        <div class="col-md-6">
+          <img src="img/grasas_salu.jpg" alt="Grasas saludables" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="hidratacion" class="bg-light py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 order-md-2">
+          <h2 data-i18n="ideas-be.title">6. Bebe suficiente agua</h2>
+          <p data-i18n="ideas-be.subtitle">La hidratación es clave para el funcionamiento óptimo de tu cuerpo. Toma al menos 8 vasos de agua al día.</p>
+        </div>
+        <div class="col-md-6 order-md-1">
+          <img src="img/idratacion.jpg" alt="Hidratación" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="py-4 text-center bg-dark text-light">
+    <p data-i18n="ideas-copy.title">© 2024 Alimentación Balanceada. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</main>
+</html>

@@ -1,0 +1,82 @@
+{
+    "Inicio": [
+        { "nombre": { "es": "Descripción del menu objetivos-beneficios", "en": "Description of the objectives-benefits menu" }, "link": "inicio-descripcion.html" },
+        { "nombre": { "es": "Preguntas frecuentes", "en": "Frequently asked questions" }, "link": "inicio-preguntas-frec.html" }
+    ],
+    "Home": [
+        { "nombre": { "es": "Descripción del menu objetivos-beneficios", "en": "Description of the objectives-benefits menu" }, "link": "inicio-descripcion.html" },
+        { "nombre": { "es": "Preguntas frecuentes", "en": "Frequently asked questions" }, "link": "inicio-preguntas-frec.html" }
+    ],
+    "Formulario": [
+        { "nombre": { "es": "Formulario de Generacion", "en": "Generation Form" }, "link": "formulario.html" }
+        ],
+    "Form": [
+        { "nombre": { "es": "Formulario de Generacion", "en": "Generation Form" }, "link": "formulario.html" }
+        
+    ],
+    "Generar Menu": [
+        { "nombre": { "es": "Generar Menu", "en": "Menu Generation" }, "link": "generar-me-semanal.html" }
+        ],
+    "Menu Generation": [
+        { "nombre": { "es": "Generar Menu", "en": "Menu Generation" }, "link": "inicio-descripcion.html" }
+        
+    ],
+    "Recomendaciones": [
+        { "nombre": { "es": "Consejos para hacer un buen uso del generador de menús", "en": "Tips to make good use of the menu generator" }, "link": "recomendaciones-consejos.html" },
+        { "nombre": { "es": "Ideas para una alimentación balanceada", "en": "Ideas for a balanced diet" }, "link": "recomendaciones-ideas.html" },
+        { "nombre": { "es": "Sugerencias de preparación y almacenamiento de alimentos", "en": "Food Preparation and Storage Tips" }, "link": "recomendaciones-sugerencias.html" },
+        { "nombre": { "es": "Consejos para reducir el desperdicio de comida", "en": "Tips to reduce food waste" }, "link": "recomendaciones-desperdicio.html" }
+    ],
+    "Recommendations": [   
+        { "nombre": { "es": "Consejos para hacer un buen uso del generador de menús", "en": "Tips to make good use of the menu generator" }, "link": "recomendaciones-consejos.html" },
+        { "nombre": { "es": "Ideas para una alimentación balanceada", "en": "Ideas for a balanced diet" }, "link": "recomendaciones-ideas.html" },
+        { "nombre": { "es": "Sugerencias de preparación y almacenamiento de alimentos", "en": "Food Preparation and Storage Tips" }, "link": "recomendaciones-sugerencias.html" },
+        { "nombre": { "es": "Consejos para reducir el desperdicio de comida", "en": "Tips to reduce food waste" }, "link": "recomendaciones-desperdicio.html" }
+    ],
+    "Comunidad": [
+        { "nombre": { "es": "Foros sobre recetas y menús", "en": "Recipe and menu forums" }, "link": "comunidad-foros.html" },
+        { "nombre": { "es": "Recetas de otros usuarios", "en": "Recipes from other users" }, "link": "comunidad-recetas.html" },
+        { "nombre": { "es": "Encuentros y retos de cocina", "en": "Cooking meetings and challenges" }, "link": "comunidad-encuentros.html" },
+        { "nombre": { "es": "Compartir menús personalizados", "en": "Share custom menus" }, "link": "comunidad-compartir.html" }
+    ],
+    "Communit": [   
+        { "nombre": { "es": "Foros sobre recetas y menús", "en": "Recipe and menu forums" }, "link": "comunidad-foros.html" },
+        { "nombre": { "es": "Recetas de otros usuarios", "en": "Recipes from other users" }, "link": "Comunidad-recetas.html" },
+        { "nombre": { "es": "Encuentros y retos de cocina", "en": "Cooking meetings and challenges" }, "link": "comunidad-encuentros.html" },
+        { "nombre": { "es": "Compartir menús personalizados", "en": "Share custom menus" }, "link": "comunidad-compartir.html" }
+    ],
+    "Extras": [
+        { "nombre": { "es": "Artículos sobre dietas saludables", "en": "Articles about healthy diets" }, "link": "extra-articulos.html" },
+        { "nombre": { "es": "Videos de cocina fáciles y rápidas", "en": "Quick and easy cooking videos" }, "link": "extra-videos.html" },
+        { "nombre": { "es": "Guías sobre cómo planificar comidas para la semana", "en": "Guides on how to plan meals for the week" }, "link": "extra-guias.html" },
+        { "nombre": { "es": "Consejos sobre el control de porciones", "en": "Tips on portion control" }, "link": "extra-porciones.html" }
+    ],
+    "Extra": [   
+        { "nombre": { "es": "Artículos sobre dietas saludables", "en": "Articles about healthy diets" }, "link": "extra-articulos.html" },
+        { "nombre": { "es": "Videos de cocina fáciles y rápidas", "en": "Quick and easy cooking videos" }, "link": "extra-videos.html" },
+        { "nombre": { "es": "Guías sobre cómo planificar comidas para la semana", "en": "Guides on how to plan meals for the week" }, "link": "extra-guias.html" },
+        { "nombre": { "es": "Consejos sobre el control de porciones", "en": "Tips on portion control" }, "link": "extra-porciones.html" }
+    ],
+    "FAQ": [
+        { "nombre": { "es": "FAQ", "en": "Faq" }, "link": "faq.html" }
+        ],
+    "Faq": [
+        { "nombre": { "es": "FAQ", "en": "Faq" }, "link": "faq.html" }
+        
+    ],
+    "Contacto": [
+        { "nombre": { "es": "F-Contacto", "en": "F-Contact" }, "link": "contacto-formulario.html" }
+        ],
+    "Contact": [
+        { "nombre": { "es": "F-Contacto", "en": "F-Contact" }, "link": "contacto-formulario.html" }
+        
+    ],
+    "V-Principal": [
+        { "nombre": { "es": "V-Principal", "en": "V-Main" }, "link": "index.html" }
+        ],
+    "V-Main": [
+        { "nombre": { "es": "V-Principal", "en": "V-Main" }, "link": "index.html" }
+        
+    ]
+    
+}

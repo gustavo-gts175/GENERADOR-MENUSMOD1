@@ -1,0 +1,397 @@
+
+<translations>
+<!--Consejos para hacer un buen uso del generador de menús-->
+  <key name="title">
+    <es>Consejos</es>
+    <en>Tips</en>
+  </key>
+  <key name="cons.title">
+    <es>Recomendaciones de Alimentación</es>
+    <en>Feeding Recommendations</en>
+  </key>
+  <key name="cons.subtitle">
+    <es>Consejos para hacer un buen uso del generador de menús</es>
+    <en>Tips to make good use of the menu generator</en>
+  </key>
+  <key name="cons.parrafo">
+    <es>Utilizar un generador de menús puede facilitar la planificación de comidas y asegurar una dieta equilibrada</es>
+    <en>Using a menu generator can make meal planning easier and ensure a balanced diet</en>
+  </key>
+  <key name="cons.subtitle1">
+    <es>Consejos Prácticos</es>
+    <en>Practical Tips</en>
+  </key>
+   <key name="cons-li1.lista">
+    <es>Personaliza los menús según tus preferencias dietéticas.</es>
+    <en>Customize menus based on your dietary preferences.</en>
+  </key>
+  <key name="cons-li2.lista">
+    <es>Ejemplos de combinaciones de comidas para toda la semana.</es>
+    <en>Examples of meal combinations for the entire week.</en>
+  </key>
+  <key name="cons-li3.lista">
+    <es>Evita errores comunes como no considerar las porciones adecuadas.</es>
+    <en>Avoid common mistakes like not considering proper portions.</en>
+  </key>
+  <key name="cons-plan.title">
+    <es>Optimiza tus comidas con estos consejos prácticos</es>
+    <en>Optimize your meals with these practical tips</en>
+  </key>
+    <key name="cons-plan.subtitle">
+    <es>¡Planifica tus comidas fácilmente!</es>
+    <en>Plan your meals easily!</en>
+  </key>
+  <key name="cons-defi.title">
+    <es>1. Define tus necesidades</es>
+    <en>1. Define your needs</en>
+  </key>
+  <key name="cons-defi.subtitle">
+    <es>Adapta tu menú a tus necesidades y las preferencias alimenticias de tu familia.</es>
+    <en>Adapt your menu to your needs and your family's dietary preferences.</en>
+  </key>
+    <key name="cons-ant.title">
+    <es>2. Planifica con anticipación</es>
+    <en>2. Plan ahead</en>
+  </key>
+  <key name="cons-ant.subtitle">
+    <es>Organiza tus comidas semanales para ahorrar tiempo y evitar improvisaciones.</es>
+    <en>Organize your weekly meals to save time and avoid improvisations.</en>
+  </key>
+   <key name="cons-temp.title">
+    <es>3. Aprovecha los ingredientes de temporada</es>
+    <en>3. Take advantage of seasonal ingredients</en>
+  </key>
+   <key name="cons-temp.subtitle">
+    <es>Los productos de temporada son más frescos, económicos y nutritivos.</es>
+    <en>Seasonal products are fresher, cheaper and more nutritious.</en>
+  </key>
+  <key name="cons-per.title">
+    <es>4. Personaliza los menús</es>
+    <en>4. Customize menus</en>
+  </key>
+  <key name="cons-per.subtitle">
+    <es>Ajusta el menú a tus metas calóricas y restricciones alimenticias.</es>
+    <en>Adjust the menu to your calorie goals and dietary restrictions.</en>
+  </key>
+  <key name="cons-var.title">
+    <es>5. Incluye variedad</es>
+    <en>5. Include variety</en>
+  </key>
+  <key name="cons-var.subtitle">
+    <es>Cambia recetas e ingredientes cada semana para mantener el interés.</es>
+    <en>Change recipes and ingredients every week to keep things interesting.</en>
+  </key>
+  <key name="cons-haz.title">
+  <es>¡Haz que tu menú semanal sea tu aliado!</es>
+  <en>Make your weekly menu your ally!</en>
+  </key>
+ <key name="cons-haz.sutitle">
+  <es>Planifica, disfruta y cuida tu salud.</es>
+  <en>Plan, enjoy and take care of your health.</en>
+  </key>
+  <!--Ideas para una alimentación balanceada-->
+  <key name="title1">
+    <es>Ideas para la alimentacion</es>
+    <en>Ideas for food</en>
+  </key>
+  <key name="ideas-alim.title">
+    <es>Ideas para una alimentación balanceada</es>
+    <en>Ideas for a balanced diet</en>
+  </key>
+  <key name="ideas-alim.subtitle">
+    <es>Una alimentación balanceada es esencial para mantener una buena salud.</es>
+    <en>A balanced diet is essential to maintain good health.</en>
+  </key>
+    <key name="ideas-gru.title">
+    <es>Grupos Alimenticios</es>
+    <en>Food Groups</en>
+  </key>
+  <key name="ideas-gru.lista1">
+    <es>Frutas: Incluye variedad y colores.</es>
+    <en>Fruits: Includes variety and colors.</en>
+  </key>
+   <key name="ideas-gru.lista2">
+    <es>Verduras: Consume al menos cinco porciones al día.</es>
+    <en>Vegetables: Eat at least five servings a day.</en>
+  </key>
+   <key name="ideas-gru.lista3">
+    <es>Granos: Prefiere los integrales.</es>
+    <en>Grains: Prefer whole grains.</en>
+  </key>
+   <key name="ideas-gru.lista4">
+    <es>Proteínas: Varía entre carnes, legumbres y frutos secos.</es>
+    <en>Proteins: Varies between meats, legumes and nuts.</en>
+  </key>
+  <key name="ideas-rece.title">
+    <es>Recetas Sugeridas</es>
+    <en>Suggested Recipes</en>
+  </key>
+  <key name="ideas-rece.subtitle">
+    <es>Aquí podrías incluir recetas que incorporen todos los grupos alimenticios</es>
+    <en>Here you could include recipes that incorporate all food groups</en>
+  </key>
+  <key name="ideas-bal.title">
+    <es>Ideas para una Alimentación Balanceada</es>
+    <en>Ideas for a Balanced Diet</en>
+  </key>
+  <key name="ideas-bal.subtitle">
+    <es>Descubre cómo mejorar tu salud con pequeños cambios diarios</es>
+    <en>Discover how to improve your health with small daily changes</en>
+  </key>
+    <key name="ideas-vad.title">
+    <es>1. Elige alimentos variados</es>
+    <en>1. Choose a variety of foods</en>
+  </key>
+  <key name="ideas-vad.subtitle">
+    <es>Incluye en tu dieta alimentos de todos los grupos: proteínas, carbohidratos, grasas saludables, vitaminas y minerales.</es>
+    <en>Include foods from all groups in your diet: proteins, carbohydrates, healthy fats, vitamins and minerals.</en>
+  </key>
+      <key name="ideas-fru.title">
+    <es>2. Consume frutas y verduras diariamente</es>
+    <en>2. Eat fruits and vegetables daily</en>
+  </key>
+  <key name="ideas-fru.subtitle">
+    <es>Las frutas y verduras son una fuente importante de vitaminas, minerales y fibra. Asegúrate de incluir al menos cinco porciones al día.</es>
+    <en>Fruits and vegetables are an important source of vitamins, minerals and fiber. Make sure you include at least five servings a day.</en>
+  </key>
+  <key name="ideas-cer.title">
+    <es>3. Opta por cereales integrales</es>
+    <en>3. Opt for whole grains</en>
+  </key>
+  <key name="ideas-cer.subtitle">
+    <es>Prefiere cereales integrales como arroz integral, avena o pan integral. Estos aportan más fibra y nutrientes que los refinados.</es>
+    <en>Prefer whole grains such as brown rice, oatmeal, or whole wheat bread. These provide more fiber and nutrients than refined ones.</en>
+  </key>
+    <key name="ideas-prot.title">
+    <es>4. Consume proteínas saludables</es>
+    <en>4. Eat healthy proteins</en>
+  </key>
+  <key name="ideas-prot.subtitle">
+    <es>Incluye opciones como pollo, pescado, legumbres y frutos secos para un crecimiento y reparación saludables.</es>
+    <en>Includes options like chicken, fish, legumes, and nuts for healthy growth and repair.</en>
+  </key>
+  <key name="ideas-gras.title">
+    <es>5. No olvides las grasas saludables</es>
+    <en>5. Don't forget healthy fats</en>
+  </key>
+  <key name="ideas-gras.subtitle">
+    <es>Las grasas saludables, como las que se encuentran en el aguacate, el aceite de oliva y los frutos secos, son esenciales para el cerebro y el corazón</es>
+    <en>Healthy fats, such as those found in avocado, olive oil, and nuts, are essential for the brain and heart</en>
+  </key>
+  <key name="ideas-be.title">
+    <es>6. Bebe suficiente agua</es>
+    <en>6. Drink enough water</en>
+  </key>
+  <key name="ideas-be.subtitle">
+    <es>La hidratación es clave para el funcionamiento óptimo de tu cuerpo. Toma al menos 8 vasos de agua al día.</es>
+    <en>Hydration is key to the optimal functioning of your body. Drink at least 8 glasses of water a day.</en>
+  </key>
+  <key name="ideas-copy.title">
+    <es>© 2024 Alimentación Balanceada. Todos los derechos reservados</es>
+    <en>© 2024 Balanced Nutrition. All rights reserved</en>
+  </key>
+  <!--Sugerencias de preparación y almacenamiento de alimentos-->
+  <key name="title2">
+    <es>Sugerencias de Alimentos</es>
+    <en>Food Suggestions</en>
+  </key>
+    <key name="sug-ali.title">
+    <es>Sugerencias de preparación y almacenamiento de alimentos</es>
+    <en>Food Preparation and Storage Tips</en>
+  </key>
+  <key name="sug-ali.subtitle">
+    <es>Preparar y almacenar adecuadamente los alimentos es clave para su frescura y seguridad.</es>
+    <en>Properly preparing and storing food is key to its freshness and safety.</en>
+  </key>
+  <key name="sug-alim.title">
+    <es>Métodos de Preparación</es>
+    <en>Preparation Methods</en>
+  </key>
+  <key name="sug-alim.lista1">
+    <es>Cocción al vapor para conservar nutrientes.</es>
+    <en>Steam cooking to preserve nutrients.</en>
+  </key>
+  <key name="sug-alim.lista2">
+    <es>Asado como método saludable y sabroso.</es>
+    <en>Roasting as a healthy and tasty method.</en>
+  </key>
+  <key name="sug-alim.lista3">
+    <es>Marinado para añadir sabor sin exceso de calorías.</es>
+    <en>Marinated to add flavor without excess calories.</en>
+  </key>
+  <key name="sug-alim.title1">
+    <es>Almacenamiento Efectivo</es>
+    <en>Effective Storage</en>
+  </key>
+    <key name="sug-alim.lista4">
+    <es>Usa recipientes herméticos para mantener la frescura.</es>
+    <en>Use airtight containers to maintain freshness.
+</en>
+  </key>
+  <key name="sug-alim.lista5">
+    <es>Asegúrate de etiquetar los alimentos con fechas.</es>
+    <en>Be sure to label foods with dates.</en>
+  </key>
+    <key name="sug-alim.lista6">
+    <es>Mantén el refrigerador organizado por categorías.</es>
+    <en>Keep the refrigerator organized by categories.</en>
+  </key>
+  <key name="sug-del.title">
+    <es>¡Mantén tus Alimentos Frescos y Deliciosos!</es>
+    <en>Keep Your Food Fresh and Delicious!</en>
+  </key>
+  <key name="sug-del.subtitle">
+    <es>Descubre consejos prácticos para la preparación y conservación adecuada de tus alimentos en casa.</es>
+    <en>Discover practical tips for the proper preparation and conservation of your food at home.</en>
+  </key>
+   <key name="sug-del.button">
+    <es>Ver Consejos</es>
+    <en>See Tips</en>
+  </key>
+  <key name="sug-efi.title">
+    <es>Preparación Segura y Eficiente de Alimentos</es>
+    <en>Safe and Efficient Food Preparation</en>
+  </key>
+  <key name="sug-efi.subtitle1">
+    <es>Lava tus manos y utensilios</es>
+    <en>Wash your hands and utensils</en>
+  </key>
+    <key name="sug-efi.parrafo1">
+    <es>Mantén una buena higiene lavando tus manos y utensilios antes de cocinar. Usa jabón antibacterial y agua tibia para eliminar bacterias y residuos.</es>
+    <en>Maintain good hygiene by washing your hands and utensils before cooking. Use antibacterial soap and warm water to remove bacteria and residue.</en>
+  </key>
+  <key name="sug-efi.subtitle2">
+    <es>Separa alimentos crudos y cocidos</es>
+    <en>Separate raw and cooked foods</en>
+  </key>
+    <key name="sug-efi.parrafo2">
+    <es>Utiliza tablas de cortar diferentes para carnes y vegetales. Esto ayuda a evitar la contaminación cruzada entre alimentos.</es>
+    <en>Use different cutting boards for meats and vegetables. This helps avoid cross contamination between foods.</en>
+  </key>
+    <key name="sug-efi.subtitle3">
+    <es>Cocina a la temperatura adecuada</es>
+    <en>Cook at the right temperature</en>
+  </key>
+  <key name="sug-efi.parrafo3">
+    <es>Usa un termómetro de cocina para verificar que los alimentos alcanzan la temperatura segura. Por ejemplo, el pollo debe llegar a 75°C (165°F).</es>
+    <en>Use a kitchen thermometer to check that food reaches a safe temperature. For example, chicken should reach 75°C (165°F).</en>
+  </key>
+  <key name="sug-mas.title">
+    <es>Cómo Conservar tus Alimentos por Más Tiempo</es>
+    <en>How to Preserve Your Food for Longer</en>
+  </key>
+  <key name="sug-mas.subtitle1">
+    <es>Congelador</es>
+    <en>Freezer</en>
+  </key>
+    <key name="sug-mas.parrafo1">
+    <es>Congela alimentos como carnes, vegetales y pan en bolsas herméticas. Etiqueta cada bolsa con la fecha para saber cuánto tiempo llevan almacenados.</es>
+    <en>Freeze foods such as meats, vegetables and bread in airtight bags. Label each bag with the date to know how long they have been stored.</en>
+  </key>
+  <key name="sug-mas.subtitle2">
+    <es>Refrigerador</es>
+    <en>Fridge</en>
+  </key>
+    <key name="sug-mas.parrafo2">
+    <es>Coloca los alimentos perecederos como lácteos, frutas y verduras en las zonas más frías del refrigerador para mantener su frescura.</es>
+    <en>Place perishable foods such as dairy products, fruits and vegetables in the coldest areas of the refrigerator to maintain their freshness.</en>
+  </key>
+  <key name="sug-mas.subtitle3">
+    <es>Despensa</es>
+    <en>Pantry</en>
+  </key>
+  <key name="sug-mas.parrafo3">
+    <es>Guarda alimentos secos como arroz, pastas y enlatados en un lugar fresco, seco y oscuro para evitar la humedad y el moho.</es>
+    <en>Store dry foods such as rice, pasta, and canned foods in a cool, dry, dark place to avoid moisture and mold.</en>
+  </key>
+  <key name="sug-er.title">
+    <es>Errores Comunes y Cómo Evitarlos</es>
+    <en>Common Mistakes and How to Avoid Them</en>
+  </key>
+    <key name="sug-er.parrafo1">
+    <es>No dejes alimentos cocidos a temperatura ambiente por más de 2 horas. Usa recipientes herméticos y refrigéralos inmediatamente.</es>
+    <en>Do not leave cooked foods at room temperature for more than 2 hours. Use airtight containers and refrigerate immediately.</en>
+  </key>
+  <key name="sug-er.parrafo2">
+    <es>Evita descongelar alimentos a temperatura ambiente; usa el refrigerador o el microondas para descongelar de manera segura.</es>
+    <en>Avoid defrosting food at room temperature; use the refrigerator or microwave to safely defrost.</en>
+  </key>
+  <key name="sug-er.parrafo3">
+    <es>No uses recipientes rotos o dañados para almacenar comida, ya que pueden filtrar contaminantes o romperse.</es>
+    <en>Don't use broken or damaged containers to store food, as they can leak contaminants or break.</en>
+  </key>
+  <key name="sug-red.title">
+    <es>¡Reduce el desperdicio y mantén tus alimentos seguros con estos consejos!</es>
+    <en>Reduce waste and keep your food safe with these tips!</en>
+  </key>
+  <key name="sug-red.button">
+    <es>Descarga Guia Completa</es>
+    <en>Download Complete Guide</en>
+  </key>
+  <!--Consejos para Reducir el Desperdicio de Comida-->
+  <key name="title3">
+    <es>Consejos para Reducir el Desperdicio de Comida</es>
+    <en>Tips to Reduce Food Waste</en>
+  </key>
+  <key name="para-en.title">
+    <es>Consejos para Reducir el Desperdicio de Comida</es>
+    <en>Tips to Reduce Food Waste</en>
+  </key>
+  <key name="para-en.subtitle">
+    <es>Aprende cómo puedes contribuir a un mundo más sostenible con pequeños cambios, mejorando tu estilo de vida y reduciendo el impacto ambiental.</es>
+    <en>Learn how you can contribute to a more sustainable world with small changes, improving your lifestyle and reducing environmental impact.</en>
+  </key>
+  <key name="para-com.title">
+    <es>Compra Solo lo Necesario</es>
+    <en>Buy Only What You Need</en>
+  </key>
+  <key name="para-com.parrafo1">
+    <es>El primer paso hacia la reducción del desperdicio de comida comienza en el supermercado. Uno de los mayores culpables del desperdicio de alimentos es la compra en exceso. Esto no solo se debe a la falta de planificación, sino también a las compras impulsivas que a menudo hacemos al ver productos en oferta o promociones. Cuando vamos a hacer las compras sin una lista clara, es fácil llenar el carrito con artículos que no necesitamos o que no vamos a consumir antes de que se echen a perder. Por ejemplo, las frutas y verduras frescas tienen una vida útil limitada y muchas veces no las consumimos a tiempo. Esto puede evitarse si compramos solo lo que vamos a utilizar en una semana o en un corto período de tiempo.</es>
+    <en>The first step toward reducing food waste starts in the supermarket. One of the biggest culprits of food waste is overbuying. This is not only due to a lack of planning, but also to the impulsive purchases we often make when we see products on sale or promotions. When we go shopping without a clear list, it is easy to fill the cart with items that we do not need or that we are not going to consume before they go bad. For example, fresh fruits and vegetables have a limited shelf life and we often do not consume them in time. This can be avoided if we only buy what we are going to use in a week or a short period of time.</en>
+  </key>
+  <key name="para-com.parrafo2">
+    <es>Una excelente manera de evitar el desperdicio es hacer una lista de compras antes de salir de casa y apegarse a ella lo más posible. Al hacer esta lista, es importante revisar lo que ya tienes en casa para evitar la compra innecesaria de productos que ya tienes almacenados. De esta manera, puedes optimizar los recursos que ya tienes y evitar comprar duplicados. Si eres una persona que suele olvidar qué tienes en la alacena o en la nevera, considera hacer un inventario semanal para saber qué necesitas. Además, comprar productos en menor cantidad, especialmente aquellos que son perecederos, también es una excelente estrategia. Puedes dividir las compras grandes entre varias personas de la casa o entre amigos para no sobrecargar tu cocina con productos que no usarás antes de que se echen a perder.</es>
+    <en>A great way to avoid waste is to make a shopping list before you leave the house and stick to it as much as possible. When making this list, it is important to review what you already have at home to avoid unnecessary purchases of products you already have in stock. This way, you can optimize the resources you already have and avoid purchasing duplicates. If you are a person who tends to forget what you have in the pantry or refrigerator, consider taking a weekly inventory to know what you need. Additionally, purchasing products in smaller quantities, especially those that are perishable, is also an excellent strategy. You can divide large purchases among several people in the house or among friends so as not to overload your kitchen with products that you will not use before they go bad.</en>
+  </key>
+    <key name="para-com.parrafo3">
+    <es>En cuanto a los alimentos no perecederos, como los granos, la pasta o los productos enlatados, es importante verificar sus fechas de caducidad y consumirlos antes de que venzan. Si compras en grandes cantidades, asegúrate de que los productos tengan una rotación adecuada para evitar que se queden olvidados y se descompongan. La compra responsable no solo te ayuda a evitar el desperdicio, sino que también te permitirá ahorrar dinero a largo plazo.</es>
+    <en>As for non-perishable foods, such as grains, pasta or canned goods, it is important to check their expiration dates and consume them before they expire. If you buy in large quantities, make sure that the products are in proper rotation to prevent them from being forgotten and spoiling. Responsible purchasing not only helps you avoid waste, but it will also save you money in the long run.</en>
+  </key>
+  <key name="para-sob.title">
+    <es>Aprovecha las Sobras</es>
+    <en>Take advantage of Leftovers</en>
+  </key>
+  <key name="para-sob.parrafo1">
+    <es>Las sobras son una de las formas más fáciles de reducir el desperdicio de comida. En lugar de simplemente tirar los restos de una comida, puedes utilizarlos para crear nuevas recetas o transformarlos en otros platos. Este es un enfoque económico y sostenible que no solo te ahorra dinero, sino que también es un gran ejemplo de aprovechamiento responsable de los recursos. Por ejemplo, si cocinas una gran cantidad de arroz o pasta, puedes reutilizar los restos en ensaladas, sopas o guisos. Las verduras que te quedan de una comida pueden convertirse en un delicioso puré o en una sopa de verduras, mientras que las carnes sobrantes pueden ser reutilizadas en tacos, sándwiches o ensaladas. Solo necesitas un poco de creatividad para hacer que las sobras se conviertan en una comida nueva y deliciosa.</es>
+    <en>Leftovers are one of the easiest ways to reduce food waste. Instead of simply throwing away leftovers from a meal, you can use them to create new recipes or transform them into other dishes. This is an economical and sustainable approach that not only saves you money, but is also a great example of responsible use of resources. For example, if you cook a large amount of rice or pasta, you can reuse the leftovers in salads, soups or stews. Vegetables left over from a meal can be turned into a delicious puree or vegetable soup, while leftover meats can be reused in tacos, sandwiches or salads. It just takes a little creativity to turn leftovers into a delicious new meal.</en>
+  </key>
+  <key name="para-sob.parrafo2">
+    <es>Además, al aprovechar las sobras, contribuyes a reducir la cantidad de residuos orgánicos que se generan, lo cual es un paso importante hacia la sostenibilidad. En muchos hogares, las sobras de comida se tiran sin pensarlo dos veces, pero esto no solo es un desperdicio de alimentos, sino también de los recursos que se utilizaron para producirlos, transportarlos y almacenarlos. Para aprovechar las sobras de manera más efectiva, asegúrate de almacenarlas adecuadamente. Usa recipientes herméticos para mantenerlas frescas y etiquétalas con la fecha de preparación para que sepas cuándo deben consumirse. Si tienes dudas sobre cómo recalentarlas, investiga métodos que conserven su sabor y calidad. Por ejemplo, algunos alimentos como la pizza pueden volverse más deliciosos cuando se recalientan en una sartén en lugar de en el microondas, lo que conserva mejor su textura original.</es>
+    <en>Furthermore, by using leftovers, you contribute to reducing the amount of organic waste generated, which is an important step towards sustainability. In many homes, leftover food is thrown away without a second thought, but this is not only a waste of food, but also of the resources that were used to produce, transport and store it. To use leftovers most effectively, be sure to store them properly. Use airtight containers to keep them fresh and label them with the preparation date so you know when they should be consumed. If you have questions about reheating them, research methods that preserve their flavor and quality. For example, some foods like pizza can become more delicious when reheated in a pan rather than in the microwave, which better preserves their original texture.</en>
+  </key>
+  <key name="para-sob.parrafo3">
+    <es>También puedes hacer que las sobras sean una actividad divertida en la cocina. Invita a tu familia o amigos a un desafío de sobras: cada persona debe crear una receta única usando lo que queda en la nevera. Esto no solo fomenta la creatividad, sino que también ayuda a evitar que los alimentos se desperdicien. Con el tiempo, te sorprenderás de la variedad de platos sabrosos que puedes crear con los restos de comida. Aprovechar las sobras de manera responsable no solo es una forma de reducir el desperdicio, sino que también te permite disfrutar de una alimentación más diversa y saludable sin tener que gastar dinero en ingredientes nuevos.</es>
+    <en>You can also make leftovers a fun kitchen activity. Invite your family or friends to a leftovers challenge: each person must create a unique recipe using what's left in the fridge. This not only encourages creativity, but also helps prevent food from going to waste. Over time, you'll be surprised at the variety of tasty dishes you can create with leftover food. Using leftovers responsibly is not only a way to reduce waste, but it also allows you to enjoy a more diverse and healthy diet without having to spend money on new ingredients.</en>
+  </key>
+  <key name="para-ala.title">
+    <es>Organiza Tu Alacena</es>
+    <en>Organize Your Pantry</en>
+  </key>
+  <key name="para-ala.parrafo1">
+    <es>Una de las mejores maneras de evitar que los alimentos se desperdicien es organizar adecuadamente tu alacena y tu nevera. Si los productos no están organizados, es fácil olvidarse de ellos, lo que lleva a que se echen a perder sin que los uses. La organización es clave para hacer un buen uso de los recursos que tienes en casa. Un sistema organizado te permite ver lo que tienes a simple vista y utilizar los alimentos antes de que caduquen.</es>
+    <en>One of the best ways to prevent food from going to waste is to properly organize your pantry and refrigerator. If products are not organized, it is easy to forget about them, which leads to them going bad without you using them. Organization is key to making good use of the resources you have at home. An organized system allows you to see what you have at a glance and use food before it expires.</en>
+  </key>
+  <key name="para-ala.parrafo2">
+    <es>Uno de los métodos más efectivos de organización es el principio de "primero en entrar, primero en salir" (FIFO). Esto significa que los alimentos que compraste primero deben ser consumidos primero. Para implementarlo, coloca los productos más antiguos en la parte delantera de tu alacena o nevera y los nuevos en la parte de atrás. De esta manera, cuando abras la puerta, siempre verás los productos más antiguos, lo que te recordará que debes usarlos antes de que se estropeen. Esto es especialmente útil con productos como el pan, la leche, los yogures, las frutas y las verduras frescas.</es>
+    <en>One of the most effective methods of organization is the "first in, first out" (FIFO) principle. This means that the foods you bought first must be eaten first. To implement this, place the oldest products in the front of your cupboard or refrigerator and the new ones in the back. This way, when you open the door, you'll always see the oldest products, reminding you to use them before they go bad. This is especially useful with products such as bread, milk, yogurts, fresh fruits and vegetables.</en>
+  </key>
+  <key name="para-ala.parrafo3">
+    <es>Además, es recomendable dividir tu alacena en secciones según el tipo de alimentos. Por ejemplo, puedes tener una zona para cereales, otra para legumbres y una más para enlatados. Esto hace que sea mucho más fácil encontrar lo que necesitas y evita que se acumulen productos que no vas a usar. De igual manera, en la nevera, asegúrate de colocar los productos más perecederos en las zonas más frías y los que tienen una vida útil más larga en las zonas menos frías. Puedes usar envases transparentes para almacenar los alimentos, lo que te permitirá ver claramente lo que tienes y facilitará el proceso de consumo antes de que los productos caduquen.</es>
+    <en>Additionally, it is advisable to divide your pantry into sections according to the type of food. For example, you can have one area for cereals, another for legumes, and one more for canned goods. This makes it much easier to find what you need and prevents products from accumulating that you are not going to use. Likewise, in the refrigerator, make sure to place the most perishable products in the coldest areas and those that have a longer shelf life in the least cold areas. You can use transparent containers to store food, which will allow you to clearly see what you have and will facilitate the consumption process before the products expire.</en>
+  </key>
+  <key name="para-foo.title">
+    <es>Para un futuro más verde y saludable</es>
+    <en>For a greener and healthier future</en>
+  </key>
+
+</translations>
